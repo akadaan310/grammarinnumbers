@@ -216,3 +216,76 @@ def zero_inverse_collapses(carrier_elems: list, add, mul, zero, one) -> bool:
     theorem) happens only in the zero ring.
     """
     return any(mul(zero, z) == one for z in carrier_elems)
+
+
+# ---------------------------------------------------------------------------
+# fractions as pairs: why 1/0 can be adjoined as one point and 0/0 cannot
+# ---------------------------------------------------------------------------
+@dataclass(frozen=True)
+class Pair:
+    """A formal quotient a/b of integers: the converse problem 'b·c = a' kept as data.
+
+    Two pairs are *related* when a·d = b·c (cross-multiplication).  On Z × (Z∖{0}) this
+    is the equivalence that defines Q.  On Z² ∖ {(0, 0)} it is still an equivalence, and
+    all pairs (a, 0) form a single class ∞: the projective line Q ∪ {∞}.  The pair (0, 0)
+    is related to every pair, which breaks transitivity (GIN-THM-006).
+    """
+
+    a: int
+    b: int
+
+    @property
+    def kind(self) -> str:
+        if self.a == 0 and self.b == 0:
+            return "null"
+        return "infinity" if self.b == 0 else "finite"
+
+    def normal(self) -> "Pair":
+        """Canonical representative: lowest terms, positive denominator; ∞ as (1, 0)."""
+        if self.kind == "null":
+            return self
+        if self.b == 0:
+            return Pair(1, 0)
+        g = math.gcd(self.a, self.b)
+        a, b = self.a // g, self.b // g
+        return Pair(-a, -b) if b < 0 else Pair(a, b)
+
+    def __str__(self) -> str:
+        n = self.normal()
+        if n.kind == "null":
+            return "(0, 0)"
+        if n.kind == "infinity":
+            return "∞"
+        return str(n.a) if n.b == 1 else f"{n.a}/{n.b}"
+
+
+def related(p: Pair, q: Pair) -> bool:
+    return p.a * q.b == p.b * q.a
+
+
+def pair_add(p: Pair, q: Pair) -> Pair:
+    return Pair(p.a * q.b + q.a * p.b, p.b * q.b)
+
+
+def pair_neg(p: Pair) -> Pair:
+    return Pair(-p.a, p.b)
+
+
+def pair_sub(p: Pair, q: Pair) -> Pair:
+    return pair_add(p, pair_neg(q))
+
+
+def pair_mul(p: Pair, q: Pair) -> Pair:
+    return Pair(p.a * q.a, p.b * q.b)
+
+
+def pair_div(p: Pair, q: Pair) -> Pair:
+    return Pair(p.a * q.b, p.b * q.a)
+
+
+def pair_of(x) -> Pair:
+    """Embed an integer or Fraction, or the string '∞'."""
+    if x == "∞":
+        return Pair(1, 0)
+    x = Fraction(x)
+    return Pair(x.numerator, x.denominator)

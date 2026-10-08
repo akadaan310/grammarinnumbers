@@ -162,6 +162,45 @@ def thm003():
     return "Z/n, n < 60"
 
 
+def thm006():
+    """Pairs (a, b) with cross-multiplication: equivalence exactly off (0, 0); null results = indeterminate forms."""
+    R = range(-4, 5)
+    P = [C.Pair(a, b) for a in R for b in R]
+    nonnull = [p for p in P if p.kind != "null"]
+    for p in P:
+        assert C.related(p, p)
+        for q in P:
+            assert C.related(p, q) == C.related(q, p)
+    for p in nonnull:
+        for q in nonnull:
+            if C.related(p, q):
+                for r in nonnull:
+                    if C.related(q, r):
+                        assert C.related(p, r), (p, q, r)
+    null = C.Pair(0, 0)
+    assert all(C.related(null, q) for q in P)
+    assert not C.related(C.Pair(1, 0), C.Pair(0, 1))
+    # classes of b = 0 pairs collapse to one point
+    assert all(C.related(C.Pair(a, 0), C.Pair(1, 0)) for a in R if a)
+    ops = {"+": C.pair_add, "*": C.pair_mul, "/": C.pair_div}
+    n = 0
+    for p in nonnull:
+        for q in nonnull:
+            for name, f in ops.items():
+                r = f(p, q)
+                pk, qk = p.kind, q.kind
+                zero = lambda x: x.kind == "finite" and x.a == 0
+                expected_null = {"+": pk == qk == "infinity",
+                                 "*": (zero(p) and qk == "infinity") or (pk == "infinity" and zero(q)),
+                                 "/": (zero(p) and zero(q)) or (pk == qk == "infinity")}[name]
+                assert (r.kind == "null") == expected_null, (p, name, q, r)
+                for k in (2, -3):           # well defined on classes: scaling p scales the result
+                    r2 = f(C.Pair(k * p.a, k * p.b), q)
+                    assert (r2.a, r2.b) == (k * r.a, k * r.b)
+                n += 1
+    return f"pairs in [-4, 4]², {n} operations"
+
+
 def prop015():
     for fmt in (I.MINI8, I.BINARY16, I.BINARY32, I.BINARY64):
         z = I.FP(fmt, "finite")
@@ -247,7 +286,7 @@ def prop042():
 
 for ident, fn in [("GIN-PROP-001", prop001), ("GIN-PROP-002", prop002), ("GIN-PROP-003", prop003), ("GIN-PROP-004", prop004),
                   ("GIN-PROP-005", prop005), ("GIN-PROP-006", prop006), ("GIN-PROP-008", prop008), ("GIN-PROP-009", prop009),
-                  ("GIN-PROP-010", prop010), ("GIN-THM-001", thm001), ("GIN-THM-002", thm002), ("GIN-THM-003", thm003),
+                  ("GIN-PROP-010", prop010), ("GIN-THM-001", thm001), ("GIN-THM-002", thm002), ("GIN-THM-003", thm003), ("GIN-THM-006", thm006),
                   ("GIN-PROP-015", prop015), ("GIN-PROP-021", prop021), ("GIN-PROP-023", prop023), ("GIN-PROP-030", prop030),
                   ("GIN-PROP-031", prop031), ("GIN-PROP-040", prop040), ("GIN-PROP-041", prop041), ("GIN-PROP-042", prop042)]:
     check(ident, fn)

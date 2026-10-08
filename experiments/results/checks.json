@@ -58,6 +58,10 @@
    "ok": true,
    "detail": "Z/n, n < 60"
   },
+  "GIN-THM-006": {
+   "ok": true,
+   "detail": "pairs in [-4, 4]², 19200 operations"
+  },
   "GIN-PROP-015": {
    "ok": true,
    "detail": "four formats, both signs"

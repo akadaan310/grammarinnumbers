@@ -79,6 +79,15 @@ class TestConverse(unittest.TestCase):
         self.assertEqual(C.modular_inverse(3, 7).value, 5)
         self.assertEqual(C.modular_inverse(2, 6).kind, C.NONE)
 
+    def test_pairs_projective_line(self):
+        inf, zero, one = C.pair_of("∞"), C.pair_of(0), C.pair_of(1)
+        self.assertEqual(str(C.pair_div(one, zero)), "∞")
+        for v in (C.pair_div(zero, zero), C.pair_mul(zero, inf), C.pair_add(inf, inf), C.pair_div(inf, inf)):
+            self.assertEqual(v.kind, "null")
+        self.assertEqual(str(C.pair_div(one, inf)), "0")
+        self.assertTrue(C.related(C.Pair(1, 0), C.Pair(0, 0)) and C.related(C.Pair(0, 0), C.Pair(0, 1)))
+        self.assertFalse(C.related(C.Pair(1, 0), C.Pair(0, 1)))
+
     def test_zero_inverse_collapses(self):
         for n in range(1, 30):
             has = C.zero_inverse_collapses(list(range(n)), lambda x, y: (x + y) % n, lambda x, y: x * y % n, 0, 1 % n)
