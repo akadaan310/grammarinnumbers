@@ -113,6 +113,15 @@
   "verification": "metadata-verified",
   "verification_note": "JSTOR stable 2589182 and DOI checked by web search, 2026-10-09"
  },
+ "cantor1891": {
+  "label": "Cantor 1891",
+  "authors": "G. Cantor",
+  "year": "1891",
+  "title": "Über eine elementare Frage der Mannigfaltigkeitslehre",
+  "venue": "Jahresbericht der Deutschen Mathematiker-Vereinigung 1 (1890–91):75–78",
+  "verification": "metadata-verified",
+  "verification_note": "Bibliographic metadata checked by web search (2026-10-09); some bibliographies date it 1892. Secondary sources state that the diagonal argument there uses two-symbol sequences, not decimal expansions. Full text not read."
+ },
  "carlstrom2004": {
   "label": "Carlström 2004",
   "authors": "J. Carlström",
@@ -225,6 +234,16 @@
   "venue": "c. 300 BCE; e.g. T. L. Heath (trans.), Cambridge University Press 1908",
   "verification": "unverified",
   "verification_note": "Metadata from the collaborator's knowledge; not checked against records in session 1."
+ },
+ "fips197": {
+  "label": "FIPS 197",
+  "authors": "National Institute of Standards and Technology",
+  "year": "2001 (updated 2023)",
+  "title": "Advanced Encryption Standard (AES), FIPS PUB 197 (197-upd1)",
+  "venue": "NIST, Gaithersburg, MD",
+  "doi": "10.6028/NIST.FIPS.197-upd1",
+  "verification": "metadata-verified",
+  "verification_note": "Publication and update metadata checked against NIST CSRC pages (2026-10-09); the 2023 update is editorial. The field polynomial x⁸+x⁴+x³+x+1 is used from general knowledge, and every field product quoted in the book is computed by the book's own code."
  },
  "forslund1995": {
   "label": "Forslund 1995",
@@ -490,6 +509,15 @@
   "verification": "metadata-verified",
   "verification_note": "Bibliographic metadata checked by web search against publisher, DBLP, institutional or library records (2026-10-08); full text not read."
  },
+ "moore1966": {
+  "label": "Moore 1966",
+  "authors": "R. E. Moore",
+  "year": "1966",
+  "title": "Interval Analysis",
+  "venue": "Prentice-Hall, Englewood Cliffs, NJ (Series in Automatic Computation)",
+  "verification": "metadata-verified",
+  "verification_note": "Bibliographic metadata checked by web search against library catalogues (2026-10-09); full text not read."
+ },
  "peano1889": {
   "label": "Peano 1889",
   "authors": "G. Peano",
@@ -583,6 +611,15 @@
   "verification": "metadata-verified",
   "verification_note": "Bibliographic metadata checked by web search against publisher, DBLP, institutional or library records (2026-10-08); full text not read."
  },
+ "smith1962": {
+  "label": "Smith 1962",
+  "authors": "R. L. Smith",
+  "year": "1962",
+  "title": "Algorithm 116: Complex division",
+  "venue": "Communications of the ACM 5(8):435",
+  "verification": "metadata-verified",
+  "verification_note": "Bibliographic metadata checked by web search against DBLP (2026-10-09); method described from secondary sources (Baudin & Smith, arXiv:1210.4539); full text not read."
+ },
  "smullyan1961": {
   "label": "Smullyan 1961",
   "authors": "R. M. Smullyan",
@@ -612,5 +649,15 @@
   "venue": "Journal of Computational Physics 1(3):397–405",
   "verification": "metadata-verified",
   "verification_note": "Bibliographic metadata checked by web search against publisher, DBLP, institutional or library records (2026-10-08); full text not read."
+ },
+ "turing1936": {
+  "label": "Turing 1936",
+  "authors": "A. M. Turing",
+  "year": "1936",
+  "title": "On computable numbers, with an application to the Entscheidungsproblem",
+  "venue": "Proceedings of the London Mathematical Society (2) 42(1):230–265 (issued 1936, volume dated 1937); correction ibid. 43:544–546",
+  "doi": "10.1112/plms/s2-42.1.230",
+  "verification": "metadata-verified",
+  "verification_note": "Bibliographic metadata checked by web search against library and bibliography records (2026-10-09); full text not read."
  }
 }

@@ -419,3 +419,24 @@ Addition and comparison are in AC⁰ (carry = OR over j of g_j ∧ p_{j+1} ∧ �
 
 ### GIN-PROP-068 The Calkin–Wilf enumeration of the positive rationals *(Proposition; classical: Calkin & Wilf 2000)*
 With Stern's diatomic sequence s, n ↦ s(n)/s(n+1) (n ≥ 1) is a bijection ℕ⁺ → ℚ⁺ onto reduced fractions; the binary length of n equals the sum of the continued-fraction partial quotients of s(n)/s(n+1). *Check.* First 4,000 terms distinct and reduced; length identity for n < 4001; 11/12 and 12 first appear at 4094 and 4095 (book, Chapter 27).
+
+### GIN-HIST-007 √2 is irrational *(Historical result: classical)*
+No rational c satisfies c² = 2; in the SDK, sqrt(2) is no-solution in ℚ and non-unique (selected) in ℝ. Book, Chapter 28.
+
+### GIN-HIST-008 The reals are uncountable *(Historical result: classical, Cantor 1891)*
+Diagonal argument (Cantor's own version uses two-symbol sequences). Consequence used in the book: the reals with a finite description form a countable subset. Book, Chapter 28.
+
+### GIN-PROP-069 Equality of computable reals is undecidable; inequality semi-decidable *(Proposition; classical, proof written here by reduction from halting)*
+Turing 1936 framework. The SDK's ℝ domain illustrates: sqrt(2)·sqrt(2) − 2 evaluates to ≈1e−39 flagged approximate. Book, Chapter 28.
+
+### GIN-PROP-070 ℂ has no order compatible with its field operations *(Proposition; classical, proof written here)*
+Squares are non-negative in any ordered field; 1 ≥ 0 and i² = −1 ≥ 0 contradict. Book, Chapter 28.
+
+### GIN-OBS-019 Naive complex division fails on representable inputs *(Empirical observation)*
+CPython 3.13, x86-64: textbook (a+bi)/(c+di) on x + xi over itself gives nan+nanj for x = 1e300 (c²+d² overflows) and ZeroDivisionError for x = 1e−300 (underflows to 0; Python float division signals); Smith's algorithm (1962) and CPython's built-in division return 1. Book, Chapter 28.
+
+### GIN-PROP-071 Unit or zero divisor in a finite commutative ring *(Proposition; classical, proof written here)*
+c ↦ bc is a bijection (b a unit) or has a non-trivial kernel (b a zero divisor), never both; fails for infinite rings (2 in ℤ). Census: ℤ/12, ℤ/30, ℤ/31, ℤ/256 have φ(n) units and n−1−φ(n) zero divisors. Book, Chapter 29.
+
+### GIN-PROP-072 Newton iteration for inverses modulo 2^w; exact division *(Proposition; classical, proof written here)*
+x' = x(2 − ax) doubles the correct low bits; from x₀ = a (a² ≡ 1 mod 8) it needs 4 steps for w = 32, 5 for w = 64. If d odd and d | x, x/d = x·d⁻¹ mod 2^w. *Check.* a ∈ {3, 7, 12345}, w ∈ {32, 64} (book, Chapter 29).

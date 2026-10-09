@@ -169,3 +169,12 @@ For an expression evaluated in a machine domain and in the exact domain it imple
 
 ### GIN-DEF-091 Annihilator; zero divisor *[standard]*
 Ann(b) = {t ∈ R : bt = 0}; b ≠ 0 with Ann(b) ≠ {0} is a zero divisor. The kernel of c ↦ bc, hence the kernel condition of division (GIN-THM-001). Book, Chapter 16.
+
+### GIN-DEF-092 Complete ordered field *[classical]*
+An ordered field in which every non-empty bounded-above subset has a least upper bound; unique up to unique isomorphism (ℝ). Book, Chapter 28.
+
+### GIN-DEF-093 The field GF(2ⁿ) *[classical]*
+Polynomials over 𝔽₂ of degree < n modulo an irreducible m(x); AES uses m = x⁸+x⁴+x³+x+1 (0x11B). In GF(2⁸) 0x57·0x83 = 0xC1 and 0x53·0xCA = 0x01 (computed). Book, Chapter 29.
+
+### GIN-DEF-094 p-adic integers *[classical]*
+Compatible sequences x_k ∈ ℤ/p^k, equivalently infinite left-extending base-p numerals; machine words are truncations of 2-adic integers (PROP-050). Book, Chapter 29.
