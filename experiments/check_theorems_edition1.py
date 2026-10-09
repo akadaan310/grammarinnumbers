@@ -78,7 +78,52 @@ def prop057():
     return f"{n} additions in bases 2..7"
 
 
-CHECKS = [("GIN-PROP-057", prop057), ("GIN-PROP-050", prop050), ("GIN-PROP-051", prop051), ("GIN-PROP-052", prop052)]
+def prop060():
+    for K_ in range(1, 7):
+        # completion relation: (a, b) ~ (c, d) iff a + d + k = b + c + k for some k (saturating sums)
+        sat = lambda x, y: min(x + y, K_)
+        pairs = [(a, b) for a in range(K_ + 1) for b in range(K_ + 1)]
+        rel = lambda p, q: any(sat(sat(p[0], q[1]), k) == sat(sat(p[1], q[0]), k) for k in range(K_ + 1))
+        # every element n, i.e. the pair (n, 0), is related to the zero pair (0, 0)
+        assert all(rel((n, 0), (0, 0)) for n in range(K_ + 1))
+    return "K = 1..6: every (n, 0) is identified with (0, 0)"
+
+
+def prop061():
+    n = 0
+    for w in range(1, 9):
+        M = 1 << w
+        for a in range(M):
+            for b in range(M):
+                t = a + (M - 1 - b) + 1
+                assert t % M == (a - b) % M and (t >> w) == (1 if a >= b else 0)
+                n += 1
+    return f"{n} pairs, widths 1..8"
+
+
+def prop062():
+    lo, hi = -128, 127
+    sat = lambda x: max(lo, min(hi, x))
+    R = range(lo, hi + 1)
+    bad = sum(sat(sat(a + b) + c) != sat(a + sat(b + c)) for a in R for b in R for c in R)
+    assert bad == 4177792, bad
+    assert all(sat(a + b) == sat(b + a) for a in R for b in R)
+    assert not any(sat(-128 + b) == 0 for b in R)
+    assert sat(2 * sat(100 - 100)) == 0 and sat(sat(200) + sat(-200)) == -1
+    return "2^24 triples: 4177792 non-associative"
+
+
+def prop064():
+    for n in range(1, 40):
+        phi = lambda m: sum(math.gcd(k, m) == 1 for k in range(1, m + 1))
+        solv = sum(1 for a in range(n) for b in range(n) if C.divide_mod(a, b, n).kind != C.NONE)
+        uniq = sum(1 for a in range(n) for b in range(n) if C.divide_mod(a, b, n).kind == C.UNIQUE)
+        assert solv == sum(d * phi(d) for d in range(1, n + 1) if n % d == 0), n
+        assert uniq == n * phi(n), n
+    return "n < 40"
+
+
+CHECKS = [("GIN-PROP-064", prop064), ("GIN-PROP-062", prop062), ("GIN-PROP-060", prop060), ("GIN-PROP-061", prop061), ("GIN-PROP-057", prop057), ("GIN-PROP-050", prop050), ("GIN-PROP-051", prop051), ("GIN-PROP-052", prop052)]
 
 if __name__ == "__main__":
     for ident, fn in CHECKS:

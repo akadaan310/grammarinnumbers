@@ -37,6 +37,16 @@
   "verification_note": "Bibliographic metadata checked by web search against publisher, DBLP, institutional or library records (2026-10-08); full text not read.",
   "doi": "10.1145/1219092.1219095"
  },
+ "bergstraponse2015": {
+  "label": "Bergstra & Ponse 2015",
+  "authors": "J. A. Bergstra, A. Ponse",
+  "year": "2015",
+  "title": "Division by zero in common meadows",
+  "venue": "Software, Services, and Systems, LNCS 8950, Springer, 46–61",
+  "doi": "10.1007/978-3-319-15545-6_6",
+  "verification": "metadata-verified",
+  "verification_note": "DOI and venue from the reference list of the Wheel theory article, checked 2026-10-09; arXiv:1406.6878"
+ },
  "bgvn1946": {
   "label": "Burks, Goldstine & von Neumann 1946",
   "authors": "A. W. Burks, H. H. Goldstine, J. von Neumann",
@@ -254,6 +264,16 @@
   "verification": "secondary-only",
   "verification_note": "Standard/specification document; edition and section cited from the document's public version; not re-checked in session 1."
  },
+ "granlund1994": {
+  "label": "Granlund & Montgomery 1994",
+  "authors": "T. Granlund, P. L. Montgomery",
+  "year": "1994",
+  "title": "Division by invariant integers using multiplication",
+  "venue": "Proceedings of PLDI 1994, ACM SIGPLAN Notices 29(6), 61–72",
+  "url": "https://gmplib.org/~tege/divcnst-pldi94.pdf",
+  "verification": "metadata-verified",
+  "verification_note": "authors, title, venue, volume and pages checked against the author-hosted PDF and citing sources by web search, 2026-10-09; DOI not confirmed"
+ },
  "harvey2021": {
   "label": "Harvey & van der Hoeven 2021",
   "authors": "D. Harvey, J. van der Hoeven",
@@ -300,6 +320,16 @@
   "venue": "Intel",
   "verification": "secondary-only",
   "verification_note": "Standard/specification document; edition and section cited from the document's public version; not re-checked in session 1."
+ },
+ "isabelle_fields": {
+  "label": "Isabelle/HOL Fields",
+  "authors": "The Isabelle developers",
+  "year": "2024",
+  "title": "HOL/Fields.thy: the division_ring class (axiom inverse_zero: inverse 0 = 0; lemma divide_zero)",
+  "venue": "Isabelle/HOL theory library",
+  "url": "https://isabelle.in.tum.de/repos/isabelle/file/tip/src/HOL/Fields.thy",
+  "verification": "secondary-only",
+  "verification_note": "axiom and lemma names checked in repository views of Fields.thy found by web search, 2026-10-09; the exact current revision was not pinned"
  },
  "isoc17": {
   "label": "ISO C17",
@@ -428,8 +458,8 @@
   "title": "The Lean mathematical library",
   "year": "2020",
   "venue": "Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs (CPP 2020), 367–381",
-  "verification": "unverified",
-  "verification_note": "Metadata from the collaborator's knowledge; not checked against records in session 1.",
+  "verification": "secondary-only",
+  "verification_note": "the convention 0⁻¹ = 0 and lemma inv_zero checked in mathlib documentation (Mathlib/Algebra/Field/Defs) found by web search, 2026-10-09; the citation describes the library, not a specific paper",
   "doi": "10.1145/3372885.3373824",
   "note": "The convention 0⁻¹ = 0 was confirmed in mathlib's online documentation (Mathlib.Algebra.GroupWithZero), 2026-10-08."
  },

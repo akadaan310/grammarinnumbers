@@ -35,3 +35,5 @@ Each entry is a constructed or measured case in which a plausible claim about ar
 |---|---|---|---|---|
 | GIN-NEG-018 | A bit pattern determines a value. | 0xFFFFFFFF is −1, 4294967295 or a binary32 NaN; 0x40490FDB is 1078530011 and the binary32 approximation 13176795/2²² of π. | the encoding (type) is not stored in the bits | PROP-050, book Ch. 2 |
 | GIN-NEG-019 | Solution sets of converse problems are always cosets of a kernel. | In ℤ/8, c·c = 1 has 4 solutions {1,3,5,7} and c·c = 4 has 2 solutions {2,6}: different sizes, so not cosets of one subgroup. | squaring is not a homomorphism; GIN-THM-007 needs linearity | book Ch. 9 |
+| GIN-NEG-020 | Adjoining negatives to any machine addition yields the integers. | The group completion of saturating addition on {0,…,K} is trivial: K ⊞ x = K forces every element to 0. | non-cancellative monoid | PROP-060, book Ch. 12 |
+| GIN-NEG-021 | Saturating addition is associative. | 8-bit signed: (100 ⊞ 100) ⊞ (−100) = 27 but 100 ⊞ (100 ⊞ (−100)) = 100; 24.90% of all triples fail. | clamping loses information | PROP-062, book Ch. 13 |

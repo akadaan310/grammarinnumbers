@@ -34,3 +34,13 @@ The closure of ℚ in ℝ under field operations and square roots of positive el
 
 ### GIN-OPEN-011 Mechanized proofs
 Formalize GIN-THM-001…006 and GIN-PROP-006 in a proof assistant. Note that Lean's mathlib uses the totalization 0⁻¹ = 0, so the formal statements must be phrased with explicit admissibility hypotheses — itself a test of the converse vocabulary.
+
+## First edition (session 2) additions and status changes
+
+### GIN-OPEN-012 Hardware confirmation of the emulated ISA results
+GIN-EXP-014 measured AArch64 and RISC-V division and tininess under QEMU. Repeat on physical processors (several AArch64 cores; at least one RISC-V core with the F/D extensions) to separate the architecture's specified behaviour from the emulator's implementation of it. *Status of GIN-OPEN-009:* partially addressed (emulator only).
+
+### GIN-OPEN-013 An AI-only baseline for execution prediction
+GIN-EXP-013 compared the SDK's contract models with two naive predictors. The mandate's AI-only baseline — a language model asked to predict the outcome of each of the 845 × 7 cases without tools, and then with access to `python3 -m ginsdk inspect` — was not run, because no model API was available to the experiment environment. Protocol: same corpus and scoring; report accuracy by language and by failure class; record prompts and model versions; repeat over samples to estimate variance.
+
+*Status of GIN-OPEN-008 (segment calculus):* answered in the negative sense by GIN-PROP-051 — a calculus exists and is the classical calculus of paths and 1-chains over ℤ/2; no new content.

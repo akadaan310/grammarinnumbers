@@ -45,3 +45,7 @@ Status values: **open**, **supported** (evidence agrees, no counterevidence, not
 | GIN-H-035 | MAX + 1 gives MIN under wraparound for every width. | EXP-012 | **established** (definition of wraparound) | exp012.json |
 | GIN-H-036 | Every indeterminate form of projective arithmetic on pairs is the null pair (0, 0), the unique pair that cannot be an element. | check_theorems | **established** | THM-006 |
 | GIN-H-037 | Optimizing compilers delete a zero test that follows a division by the tested variable. | EXP-004 | **partly supported**: clang 18 does, gcc 13.3 does not | OBS-008, NEG-004 |
+| GIN-H-038 | The SDK's AArch64 and RISC-V division models agree with an independent implementation of the ISAs. | EXP-014 | **supported** (QEMU 8.2.2, 8/8 each; emulator, not hardware) | IMP-008 |
+| GIN-H-039 | Tininess detection is ISA-dependent. | EXP-014 | **supported**: QEMU-AArch64 before rounding; QEMU-RISC-V and x86-64 hardware after rounding | OBS-018 |
+| GIN-H-040 | Contract models predict real execution where naive mental models fail. | EXP-013 | **supported** on 845 cases × 7 toolchains | OBS-017 |
+| GIN-H-041 | Every total division fails the converse law; partial ones keep it where defined. | EXP-015 | **established** on the implemented samples; follows from THM-003 for rings | THM-004, IMP-007 |

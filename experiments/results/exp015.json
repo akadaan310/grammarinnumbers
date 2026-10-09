@@ -1,0 +1,692 @@
+{
+ "experiment": "GIN-EXP-015",
+ "hypotheses": [
+  "GIN-H-041"
+ ],
+ "seed": null,
+ "environment": {
+  "python": "3.13.16",
+  "implementation": "CPython",
+  "machine": "x86_64",
+  "system": "Linux 6.18.44-fc-v80",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz"
+ },
+ "data": {
+  "systems": {
+   "field": {
+    "name": "field ℚ (division restricted to b ≠ 0)",
+    "1/0": "undefined",
+    "0/0": "undefined",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 49,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 343,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 343,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 7,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 7,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 6,
+      "fail": 0,
+      "undefined": 1,
+      "counterexample": null
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 42,
+      "fail": 0,
+      "undefined": 7,
+      "counterexample": null
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 252,
+      "fail": 0,
+      "undefined": 91,
+      "counterexample": null
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 6,
+      "fail": 0,
+      "undefined": 1,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 294,
+      "fail": 0,
+      "undefined": 49,
+      "counterexample": null
+     }
+    ]
+   },
+   "meadow": {
+    "name": "meadow ℚ (x/0 = 0)",
+    "1/0": "0",
+    "0/0": "0",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 49,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 343,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 343,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 7,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 7,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 6,
+      "fail": 1,
+      "undefined": 0,
+      "counterexample": "0: 0 ≠ 1"
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 43,
+      "fail": 6,
+      "undefined": 0,
+      "counterexample": "1, 0: 0 ≠ 1"
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 343,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 7,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 343,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     }
+    ]
+   },
+   "wheel": {
+    "name": "wheel of fractions of ℤ (Carlström)",
+    "1/0": "∞",
+    "0/0": "⊥",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 64,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 512,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 467,
+      "fail": 45,
+      "undefined": 0,
+      "counterexample": "∞, 0, 1: ∞ ≠ ⊥"
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 6,
+      "fail": 2,
+      "undefined": 0,
+      "counterexample": "∞: ⊥ ≠ 0"
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 6,
+      "fail": 2,
+      "undefined": 0,
+      "counterexample": "∞: ⊥ ≠ 0"
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 5,
+      "fail": 3,
+      "undefined": 0,
+      "counterexample": "0: ⊥ ≠ 1"
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 43,
+      "fail": 21,
+      "undefined": 0,
+      "counterexample": "0, 0: ⊥ ≠ 0"
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 512,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 8,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 467,
+      "fail": 45,
+      "undefined": 0,
+      "counterexample": "0, 1, 0: ∞ ≠ ⊥"
+     }
+    ]
+   },
+   "projective": {
+    "name": "projective line ℚ ∪ {∞}",
+    "1/0": "∞",
+    "0/0": "undefined",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 35,
+      "fail": 0,
+      "undefined": 1,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 200,
+      "fail": 0,
+      "undefined": 16,
+      "counterexample": null
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 165,
+      "fail": 0,
+      "undefined": 51,
+      "counterexample": null
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 5,
+      "fail": 0,
+      "undefined": 1,
+      "counterexample": null
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 5,
+      "fail": 0,
+      "undefined": 1,
+      "counterexample": null
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 4,
+      "fail": 0,
+      "undefined": 2,
+      "counterexample": null
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 24,
+      "fail": 0,
+      "undefined": 12,
+      "counterexample": null
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 186,
+      "fail": 0,
+      "undefined": 30,
+      "counterexample": null
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 6,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 165,
+      "fail": 0,
+      "undefined": 51,
+      "counterexample": null
+     }
+    ]
+   },
+   "extended": {
+    "name": "extended rationals ℚ ∪ {−∞, +∞}",
+    "1/0": "undefined",
+    "0/0": "undefined",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 47,
+      "fail": 0,
+      "undefined": 2,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 307,
+      "fail": 0,
+      "undefined": 36,
+      "counterexample": null
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 253,
+      "fail": 0,
+      "undefined": 90,
+      "counterexample": null
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 5,
+      "fail": 0,
+      "undefined": 2,
+      "counterexample": null
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 5,
+      "fail": 0,
+      "undefined": 2,
+      "counterexample": null
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 4,
+      "fail": 0,
+      "undefined": 3,
+      "counterexample": null
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 28,
+      "fail": 0,
+      "undefined": 21,
+      "counterexample": null
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 212,
+      "fail": 0,
+      "undefined": 131,
+      "counterexample": null
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 4,
+      "fail": 0,
+      "undefined": 3,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 238,
+      "fail": 0,
+      "undefined": 105,
+      "counterexample": null
+     }
+    ]
+   },
+   "ieee16": {
+    "name": "IEEE 754 binary16",
+    "1/0": "Infinity",
+    "0/0": "NaN",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 121,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 1323,
+      "fail": 8,
+      "undefined": 0,
+      "counterexample": "1, -1, 0.1: 0.1 ≠ 0.1001"
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 1237,
+      "fail": 94,
+      "undefined": 0,
+      "counterexample": "0, 0, -1: -0 ≠ 0"
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 7,
+      "fail": 4,
+      "undefined": 0,
+      "counterexample": "-1: -0 ≠ 0"
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 9,
+      "fail": 2,
+      "undefined": 0,
+      "counterexample": "Infinity: NaN ≠ 0"
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 7,
+      "fail": 4,
+      "undefined": 0,
+      "counterexample": "0: NaN ≠ 1"
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 72,
+      "fail": 49,
+      "undefined": 0,
+      "counterexample": "0, 0: NaN ≠ 0"
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 1264,
+      "fail": 67,
+      "undefined": 0,
+      "counterexample": "1, 2, 65504: 7.6e-06 ≠ 0"
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 10,
+      "fail": 1,
+      "undefined": 0,
+      "counterexample": "65504: Infinity ≠ 65504"
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 1208,
+      "fail": 123,
+      "undefined": 0,
+      "counterexample": "0, 1, 0: Infinity ≠ NaN"
+     }
+    ]
+   },
+   "riscv8": {
+    "name": "8-bit RISC-V DIV (x/0 = −1)",
+    "1/0": "-1",
+    "0/0": "-1",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 64,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 512,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 512,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 8,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 8,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 7,
+      "fail": 1,
+      "undefined": 0,
+      "counterexample": "0: -1 ≠ 1"
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 29,
+      "fail": 35,
+      "undefined": 0,
+      "counterexample": "1, 0: 0 ≠ 1"
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 401,
+      "fail": 111,
+      "undefined": 0,
+      "counterexample": "0, 0, -1: 1 ≠ -1"
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 2,
+      "fail": 6,
+      "undefined": 0,
+      "counterexample": "0: -1 ≠ 0"
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 372,
+      "fail": 140,
+      "undefined": 0,
+      "counterexample": "0, 0, 0: -1 ≠ -2"
+     }
+    ]
+   },
+   "aarch64_8": {
+    "name": "8-bit AArch64 SDIV (x/0 = 0)",
+    "1/0": "0",
+    "0/0": "0",
+    "laws": [
+     {
+      "law": "x + y = y + x",
+      "hold": 64,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "(x + y) + z = x + (y + z)",
+      "hold": 512,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x·(y + z) = x·y + x·z",
+      "hold": 512,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "0·x = 0",
+      "hold": 8,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x − x = 0",
+      "hold": 8,
+      "fail": 0,
+      "undefined": 0,
+      "counterexample": null
+     },
+     {
+      "law": "x / x = 1",
+      "hold": 7,
+      "fail": 1,
+      "undefined": 0,
+      "counterexample": "0: 0 ≠ 1"
+     },
+     {
+      "law": "y·(x / y) = x   (the converse reading)",
+      "hold": 29,
+      "fail": 35,
+      "undefined": 0,
+      "counterexample": "1, 0: 0 ≠ 1"
+     },
+     {
+      "law": "(x / y) / z = x / (y·z)",
+      "hold": 489,
+      "fail": 23,
+      "undefined": 0,
+      "counterexample": "100, 2, 100: 0 ≠ -1"
+     },
+     {
+      "law": "1 / (1 / x) = x",
+      "hold": 3,
+      "fail": 5,
+      "undefined": 0,
+      "counterexample": "2: 0 ≠ 2"
+     },
+     {
+      "law": "(x + y) / z = x / z + y / z",
+      "hold": 436,
+      "fail": 76,
+      "undefined": 0,
+      "counterexample": "1, 1, 2: 1 ≠ 0"
+     }
+    ]
+   }
+  },
+  "wheel_axioms": {
+   "+ commutative": [
+    64,
+    64
+   ],
+   "+ associative": [
+    512,
+    512
+   ],
+   "0 + x = x": [
+    8,
+    8
+   ],
+   "· commutative": [
+    64,
+    64
+   ],
+   "· associative": [
+    512,
+    512
+   ],
+   "1 · x = x": [
+    8,
+    8
+   ],
+   "//x = x": [
+    8,
+    8
+   ],
+   "/(xy) = /x /y": [
+    64,
+    64
+   ],
+   "(x+y)z + 0z = xz + yz": [
+    512,
+    512
+   ],
+   "(x+yz)/y = x/y + z + 0y": [
+    512,
+    512
+   ],
+   "0·0 = 0": [
+    1,
+    1
+   ],
+   "(x+0y)z = xz + 0y": [
+    512,
+    512
+   ],
+   "/(x+0y) = /x + 0y": [
+    64,
+    64
+   ],
+   "0/0 + x = 0/0": [
+    8,
+    8
+   ]
+  }
+ }
+}

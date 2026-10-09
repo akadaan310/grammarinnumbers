@@ -166,3 +166,6 @@ For an operator ∘ and a domain (family) D: the precondition under which a ∘ 
 
 ### GIN-DEF-081 Machine–mathematics relation *[GiN, provisional]*
 For an expression evaluated in a machine domain and in the exact domain it implements (ℤ for machine integers, ℚ for floating point and Python), the classification of the pair of outcomes: agrees, rounded, wrapped, totalized (a value where mathematics has none), selected (a quotient-with-remainder where the exact quotient does not exist), different-selection, special-datum, overflowed-to-special, signalled, undefined, differs. Implemented by `ginsdk.contracts.inspect` (schema `gin-inspect/1`) and by `gin-core.js`. Book, Chapters 8 and 39.
+
+### GIN-DEF-091 Annihilator; zero divisor *[standard]*
+Ann(b) = {t ∈ R : bt = 0}; b ≠ 0 with Ann(b) ≠ {0} is a zero divisor. The kernel of c ↦ bc, hence the kernel condition of division (GIN-THM-001). Book, Chapter 16.
