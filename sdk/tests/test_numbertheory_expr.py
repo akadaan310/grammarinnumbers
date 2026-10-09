@@ -126,5 +126,23 @@ class TestExpr(unittest.TestCase):
         self.assertEqual(t["children"][1]["label"], "*")
 
 
+class TestDirichlet(unittest.TestCase):
+    def test_dirichlet_ring(self):
+        from fractions import Fraction
+        from ginsdk import numbertheory as nt
+        N = 300
+        one = nt.table(lambda n: 1, N)
+        ident = nt.table(lambda n: n, N)
+        eps = nt.table(lambda n: 1 if n == 1 else 0, N)
+        mu = nt.table(nt.mobius, N)
+        assert nt.dirichlet(mu, one) == eps
+        assert nt.dirichlet(nt.table(nt.phi, N), one) == ident
+        assert nt.dirichlet(one, ident) == nt.table(nt.sigma, N)
+        kind, g = nt.dirichlet_divide(eps, one)
+        assert kind == "unique" and g == [Fraction(x) for x in mu]
+        assert nt.dirichlet_divide(eps, nt.table(lambda n: 0 if n == 1 else 1, N))[0] == "not-solved"
+        assert nt.is_multiplicative(nt.table(nt.phi, 100)) and not nt.is_multiplicative(nt.table(lambda n: n + 1, 100))
+
+
 if __name__ == "__main__":
     unittest.main()

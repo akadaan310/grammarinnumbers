@@ -440,3 +440,35 @@ c ↦ bc is a bijection (b a unit) or has a non-trivial kernel (b a zero divisor
 
 ### GIN-PROP-072 Newton iteration for inverses modulo 2^w; exact division *(Proposition; classical, proof written here)*
 x' = x(2 − ax) doubles the correct low bits; from x₀ = a (a² ≡ 1 mod 8) it needs 4 steps for w = 32, 5 for w = 64. If d odd and d | x, x/d = x·d⁻¹ mod 2^w. *Check.* a ∈ {3, 7, 12345}, w ∈ {32, 64} (book, Chapter 29).
+
+### GIN-PROP-073 The divisibility lattice *(Proposition; classical, proof written here)*
+(ℕ, |) is a lattice with meet gcd, join lcm, least element 1, greatest element 0; atoms are the primes. Divisors of 60: 12 elements, 20 covering pairs (a 3×2×2 grid). Book, Chapter 30.
+
+### GIN-HIST-009 Euclid's lemma *(Historical result: classical; proof via Bézout written here)*
+p | ab ⇒ p | a or p | b. Book, Chapter 30.
+
+### GIN-HIST-010 The fundamental theorem of arithmetic *(Historical result: classical)*
+Existence and uniqueness of prime factorization; ℕ_{>0} under × is the free commutative monoid on the primes. Book, Chapter 30.
+
+### GIN-HIST-011 Infinitely many primes *(Historical result: Euclid, Elements IX.20)*
+Read as an algorithm; the smallest-factor variant gives the Euclid–Mullin sequence 2, 3, 7, 43, 13, 53, 5, 6221671 (computed). π(x)/(x/ln x) = 1.1513, 1.1605, 1.1320, 1.1043, 1.0845 at x = 10²…10⁶; largest gap below 10⁶ is 114 (492113–492227). Book, Chapter 30.
+
+### GIN-HIST-012 Euler's theorem; Fermat's little theorem *(Historical result: classical)*
+gcd(a, n) = 1 ⇒ a^φ(n) ≡ 1 (mod n); proof by permutation of the unit group written here. Book, Chapter 31.
+
+### GIN-HIST-013 Wilson's theorem *(Historical result: classical)*
+n ≥ 2 is prime iff (n−1)! ≡ −1 (mod n): exact but infeasible as a test ((n−1)! has 5,565,721 digits for n = 1,000,003). Book, Chapter 31.
+
+### GIN-HIST-014 Moduli with primitive roots *(Historical result: classical, Gauss)*
+ℤ/n has a primitive root iff n ∈ {1, 2, 4, p^k, 2p^k}, p an odd prime. *Check.* Exhaustive search agrees for 2 ≤ n < 400. Book, Chapter 31.
+
+### GIN-PROP-074 The discrete logarithm is the converse of a homomorphism *(Proposition; elementary, proved here; packaging of classical facts)*
+For g of order d mod p, x ↦ g^x : ℤ/(p−1) → (ℤ/p)^× has kernel dℤ/(p−1); g^x ≡ b has 0 solutions (b ∉ ⟨g⟩) or (p−1)/d. *Check.* Census mod 11 over all 100 pairs: {0: 37, 1: 40, 2: 20, 5: 2, 10: 1}, as predicted. Book, Chapter 31.
+
+### GIN-HIST-015 Euler's criterion *(Historical result: classical)*
+For odd prime p ∤ a, a is a square mod p iff a^((p−1)/2) ≡ 1. *Check.* p = 23, all units. Book, Chapter 31.
+### GIN-PROP-075 Units and division in the Dirichlet ring *(Proposition; classical facts, proof written here; reading of Möbius inversion as division by 1 is GiN's)*
+Over a field, f is a unit iff f(1) ≠ 0; the ring has no zero divisors, so f * g = h has at most one solution for f ≠ 0; over ℤ, units are f(1) = ±1. `ginsdk.numbertheory.dirichlet`, `dirichlet_divide`. *Check.* μ = ε/1, φ = id/1 on 1..30; τ = 1*1, σ = 1*id, φ*1 = id, μ*1 = ε on 1..10⁴; one convolution on 1..10⁴ costs Σ τ(n) = 93,668 multiplications. Book, Chapter 32.
+
+### GIN-OBS-020 Averages of arithmetic functions, measured *(Empirical observation; classical asymptotics)*
+Σ_{n≤x} τ(n) − (x ln x + (2γ−1)x) = 6.8, 20.3, 14.3 at x = 10³, 10⁴, 10⁵; Σ φ / (3x²/π²) = 1.00075, 1.000037, 1.000005; coprime fraction of 10⁵ random pairs 0.6089 (16-bit), 0.6078 (64-bit) vs 6/π² = 0.6079 (seed 32); up to 10⁴: perfect 6, 28, 496, 8128; 2,488 abundant, 7,508 deficient. Book, Chapter 32.

@@ -178,3 +178,9 @@ Polynomials over 𝔽₂ of degree < n modulo an irreducible m(x); AES uses m = 
 
 ### GIN-DEF-094 p-adic integers *[classical]*
 Compatible sequences x_k ∈ ℤ/p^k, equivalently infinite left-extending base-p numerals; machine words are truncations of 2-adic integers (PROP-050). Book, Chapter 29.
+
+### GIN-DEF-095 Divisibility as admissibility *[classical; reading is GiN's]*
+b | a iff the converse problem bc = a has a solution in ℤ; 0 | 0 is true although 0/0 has no unique answer; `a % b == 0` changes the question at b = 0. Book, Chapter 30.
+
+### GIN-DEF-096 Dirichlet convolution; the Dirichlet ring *[classical]*
+(f * g)(n) = Σ_{d|n} f(d) g(n/d); arithmetic functions with + and * form a commutative ring with identity ε. Book, Chapter 32.

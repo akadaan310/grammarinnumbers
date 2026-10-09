@@ -8,6 +8,16 @@
   "verification": "metadata-verified",
   "verification_note": "Bibliographic metadata checked by web search against publisher, DBLP, institutional or library records (2026-10-08); full text not read."
  },
+ "apostol1976": {
+  "label": "Apostol 1976",
+  "authors": "T. M. Apostol",
+  "year": "1976",
+  "title": "Introduction to Analytic Number Theory",
+  "venue": "Springer, Undergraduate Texts in Mathematics, ISBN 978-0-387-90163-3",
+  "doi": "10.1007/978-1-4757-5579-4",
+  "verification": "metadata-verified",
+  "verification_note": "Metadata checked against the Springer record (2026-10-09); cited for classical results only; full text not read."
+ },
  "armarm": {
   "label": "Arm ARM",
   "authors": "Arm Ltd.",
@@ -264,6 +274,15 @@
   "verification": "metadata-verified",
   "verification_note": "journal, volume, issue and pages checked by web search, 2026-10-09; includes the extension of the parity lower bound to multiplication"
  },
+ "gauss1801": {
+  "label": "Gauss 1801",
+  "authors": "C. F. Gauss",
+  "year": "1801",
+  "title": "Disquisitiones Arithmeticae",
+  "venue": "G. Fleischer, Leipzig",
+  "verification": "metadata-verified",
+  "verification_note": "Metadata checked against library catalogues (2026-10-09). The claim that ≡ first appears in print in article 2 is taken from the MacTutor 'Earliest uses of symbols of number theory' page (secondary). Full text not read."
+ },
  "godel1931": {
   "label": "Gödel 1931",
   "authors": "K. Gödel",
@@ -301,6 +320,15 @@
   "url": "https://gmplib.org/~tege/divcnst-pldi94.pdf",
   "verification": "metadata-verified",
   "verification_note": "authors, title, venue, volume and pages checked against the author-hosted PDF and citing sources by web search, 2026-10-09; DOI not confirmed"
+ },
+ "hardywright2008": {
+  "label": "Hardy & Wright 2008",
+  "authors": "G. H. Hardy, E. M. Wright; revised by D. R. Heath-Brown, J. H. Silverman",
+  "year": "2008",
+  "title": "An Introduction to the Theory of Numbers (6th edition)",
+  "venue": "Oxford University Press, ISBN 978-0-19-921985-8",
+  "verification": "metadata-verified",
+  "verification_note": "Edition metadata checked by web search against publisher and library records (2026-10-09); cited for classical results only; full text not read."
  },
  "harvey2021": {
   "label": "Harvey & van der Hoeven 2021",
