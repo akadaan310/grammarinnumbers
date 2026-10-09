@@ -160,3 +160,9 @@ Introduced while writing the first edition of the book. Same conventions as abov
 
 ### GIN-DEF-090 Layered analysis of an arithmetic request *[GiN, methodological]*
 For an expression e in a domain D, the answers, in order, to: (1) objects, (2) symbols and numerals, (3) syntax, (4) semantics, (5) admissibility, (6) state transition, (7) representation, (8) algorithm, (9) machine execution, (10) correctness invariants, (11) cost under a stated model, (12) empirical verification, (13) limits and counterexamples. Book, Chapter 1. The list is a checklist, not a theory; layers 1–4 are logic, 8, 10, 11 algorithm analysis, 9 architecture.
+
+### GIN-DEF-080 Operation contract *[GiN, provisional]*
+For an operator ∘ and a domain (family) D: the precondition under which a ∘ b is admissible in D; the defining equation of the result; the failure classes (outcome statuses, GIN-DEF-062) possible when the precondition fails; the cost model. Machine-readable form: schema `gin-contracts/1` (`ginsdk.contracts`). Book, Chapter 8.
+
+### GIN-DEF-081 Machine–mathematics relation *[GiN, provisional]*
+For an expression evaluated in a machine domain and in the exact domain it implements (ℤ for machine integers, ℚ for floating point and Python), the classification of the pair of outcomes: agrees, rounded, wrapped, totalized (a value where mathematics has none), selected (a quotient-with-remainder where the exact quotient does not exist), different-selection, special-datum, overflowed-to-special, signalled, undefined, differs. Implemented by `ginsdk.contracts.inspect` (schema `gin-inspect/1`) and by `gin-core.js`. Book, Chapters 8 and 39.

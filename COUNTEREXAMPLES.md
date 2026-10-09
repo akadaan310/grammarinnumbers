@@ -28,3 +28,10 @@ Each entry is a constructed or measured case in which a plausible claim about ar
 - **GIN-REJ-002** (session-1 working assumption) "The simulator need not model signaling NaNs to match hardware flags." Rejected by EXP-005: all 101 initial flag mismatches were operations on signaling NaNs, where hardware raises *invalid*. Kept as evidence that the experiment can find defects in the instrument.
 - **GIN-REJ-003** "Balanced evaluation of numerals is asymptotically cheaper than Horner's rule in bit cost." Rejected for schoolbook multiplication (NEG-008); the surviving form needs a subquadratic multiplication.
 - **GIN-REJ-004** "Compilers delete post-division zero tests" as a general statement (NEG-004).
+
+## First edition (session 2) additions
+
+| ID | Plausible claim | Counterexample | Failure mode | Source |
+|---|---|---|---|---|
+| GIN-NEG-018 | A bit pattern determines a value. | 0xFFFFFFFF is −1, 4294967295 or a binary32 NaN; 0x40490FDB is 1078530011 and the binary32 approximation 13176795/2²² of π. | the encoding (type) is not stored in the bits | PROP-050, book Ch. 2 |
+| GIN-NEG-019 | Solution sets of converse problems are always cosets of a kernel. | In ℤ/8, c·c = 1 has 4 solutions {1,3,5,7} and c·c = 4 has 2 solutions {2,6}: different sizes, so not cosets of one subgroup. | squaring is not a homomorphism; GIN-THM-007 needs linearity | book Ch. 9 |

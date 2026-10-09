@@ -1,0 +1,30 @@
+{
+ "experiment": "GIN-CHECKS-EDITION1",
+ "hypotheses": [],
+ "seed": null,
+ "environment": {
+  "python": "3.13.16",
+  "implementation": "CPython",
+  "machine": "x86_64",
+  "system": "Linux 6.18.44-fc-v80",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz"
+ },
+ "data": {
+  "GIN-PROP-057": {
+   "ok": true,
+   "detail": "61922 additions in bases 2..7"
+  },
+  "GIN-PROP-050": {
+   "ok": true,
+   "detail": "binary16 and binary8 enumerated; binary32 patterns decoded"
+  },
+  "GIN-PROP-051": {
+   "ok": true,
+   "detail": "286 glued pairs with endpoints in [-6, 6]"
+  },
+  "GIN-PROP-052": {
+   "ok": true,
+   "detail": "w = 1 .. 12"
+  }
+ }
+}

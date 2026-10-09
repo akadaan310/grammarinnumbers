@@ -75,7 +75,8 @@ const loadData = (n) => (fs.existsSync(path.join(dataDir, n)) ? readJSON(path.jo
 const sdkRef = loadData("sdk_reference.json");
 const contracts = loadData("contracts.json");
 const ledgerIds = new Set(loadData("ledger_ids.json") || []);
-const cgtIds = new Set(loadData("cgt_ids.json") || []);
+const cgtAnchors = loadData("cgt_ids.json") || {};
+const cgtIds = new Set(Object.keys(cgtAnchors));
 
 const LEDGER = [["results", "RESULTS.md", "Results ledger"], ["definitions", "DEFINITIONS.md", "Definitions"], ["hypotheses", "HYPOTHESES.md", "Hypotheses"],
   ["counterexamples", "COUNTEREXAMPLES.md", "Counterexamples and rejected hypotheses"], ["open-problems", "OPEN_PROBLEMS.md", "Open problems"],
@@ -213,7 +214,7 @@ function makeMd(ctx) {
     tok.content = content; tok.map = [start, line + 1];
     state.line = line + 1;
     return true;
-  });
+  }, { alt: ["paragraph", "reference", "blockquote", "list"] });   // display math may interrupt a paragraph
   md.renderer.rules.math_block = (tokens, i) => {
     let tex = tokens[i].content.trim();
     const where = `${ctx.slug}:${(tokens[i].map?.[0] ?? 0) + ctx.offset + 1}`;
@@ -317,9 +318,8 @@ function define(label, entry, where) {
 }
 
 function cgtUrl(id) {
-  const kind = id.split("-")[1];
-  const page = { DEF: "definitions", H: "hypotheses", NEG: "counterexamples", REJ: "counterexamples", OPEN: "open-problems", EXP: "experiments", D: "decisions" }[kind] || "results";
-  return `${CGT_SITE}/ledger/${page}.html#${id}`;
+  // the page of the CGT website's ledger that anchors this identifier (data/cgt_ids.json, from the CGT build)
+  return `${CGT_SITE}/ledger/${cgtAnchors[id] || "results"}.html#${id}`;
 }
 
 function renderCommand({ cmd, arg }, ctx) {

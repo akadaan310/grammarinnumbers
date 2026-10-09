@@ -124,9 +124,17 @@ def main():
     dump("contracts.json", contracts.contracts_document())
     dump("ledger_ids.json", ledger_ids(LEDGER_FILES, "GIN"))
     cgt = os.environ.get("CGT_REPO")
-    if cgt and os.path.isdir(cgt):
-        files = [os.path.join(cgt, f) for f in os.listdir(cgt) if f.endswith(".md")]
-        dump("cgt_ids.json", ledger_ids(files, "CGT"))
+    if cgt and os.path.isdir(os.path.join(cgt, "book", "dist", "ledger")):
+        # map each CGT identifier to the ledger page of the CGT website that anchors it
+        led = os.path.join(cgt, "book", "dist", "ledger")
+        anchors = {}
+        for f in sorted(os.listdir(led)):
+            if f.endswith(".html") and f != "index.html":
+                for i in re.findall(r'id="(CGT-[A-Z]+-\d+[a-z]?)"', open(os.path.join(led, f), encoding="utf8").read()):
+                    anchors.setdefault(i, f[:-5])
+        dump("cgt_ids.json", anchors)
+    elif cgt:
+        print("CGT_REPO given but its book has not been built (book/dist/ledger missing): cgt_ids.json kept")
     dump("lab_fixtures.json", lab_fixtures())
     dump("experiments.json", experiments())
     print(f"exported book/data (ginsdk {ginsdk.__version__})")

@@ -117,5 +117,30 @@ class TestCanonicalizeConvert(unittest.TestCase):
         self.assertEqual(numeral_table(0)["bijective base 2"], "ε")
 
 
+class TestOtherBases(unittest.TestCase):
+    def test_negabinary_names_every_integer_once(self):
+        from ginsdk.numerals import NEGABINARY as G
+        seen = {}
+        import itertools
+        for L in range(0, 9):
+            for w in itertools.product((0, 1), repeat=L):
+                if w and w[0] == 0:
+                    continue
+                v = G.denote(w)
+                self.assertNotIn(v, seen)
+                seen[v] = w
+        for n in range(-80, 81):
+            self.assertEqual(G.denote(G.address(n)), n)
+
+    def test_hyperbinary_counts_are_stern(self):
+        from ginsdk.numerals import REDUNDANT_BINARY as R
+        s = [0, 1]
+        for k in range(2, 70):
+            s.append(s[k // 2] if k % 2 == 0 else s[k // 2] + s[k // 2 + 1])
+        for n in range(60):
+            hb = sum(1 for w in R.words_denoting(n, 7) if not w or w[0] != 0)
+            self.assertEqual(hb, s[n + 1], n)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -306,6 +306,7 @@ What session 1 has produced, measured against the mandate's list:
 | GIN-REI-008 | Positional notation is CGT's M-SHARE (grammar compression) applied to unary numerals (GIN-PROP-007). |
 | GIN-REI-009 | Long division is a finite transition system on remainders; periodic decimals are its cycles (GIN-PROP-009). |
 | GIN-REI-010 | The segment notation a{I}b is formal notation for a marked path, without new content (§B). |
+| GIN-REI-011 | Representations trade operations against each other: unary, positional, prime-exponent vectors and residue (CRT) representations are each exact, with different operations cheap (book, Chapter 7). Classical facts about algorithms read as properties of grammars. |
 
 ## I. Conjecture
 
@@ -318,3 +319,55 @@ CGT's five mechanisms (CGT-DEF-009) should be extended by **M-ASSOC**: when a co
 | C-001 | The first evaluator treated exponents as elements of ℤ/n, so 0^−1 in ℤ/6 evaluated as 0⁵ = 0. Exponents are now integers acting on the domain (GIN-NEG-013). |
 | C-002 | The IEEE simulator first treated all NaNs as quiet; GIN-EXP-005 found 101 flag mismatches, all on signaling-NaN operands. Signaling NaNs are now modelled (GIN-REJ-002). |
 | C-003 | The simulator's docstring first claimed AArch64 detects tininess after rounding; this was unverified and is removed. The x86-64 claim is now measured (GIN-OBS-009). |
+
+## K. First edition (session 2, 2026-10-09): entries added while writing the book
+
+Same conventions as above. "Proved here" statements of this section are checked by `experiments/check_theorems_edition1.py` (results in `experiments/results/checks_edition1.json`). Unless stated otherwise every entry is classical or elementary; none is claimed as new.
+
+### GIN-HIST-002 Dedekind's categoricity theorem *(Historical result: Dedekind 1888)*
+Any two successor algebras are isomorphic by a unique isomorphism. Proof via the recursion theorem (book, Chapter 2). This is what justifies "the" natural numbers; GiN's four-layer model rests on it (values are what all representations of a successor term have in common).
+
+### GIN-PROP-050 Encoding and decoding are not mutually inverse *(Proposition; elementary, proved here)*
+dec ∘ enc = id on the domain of enc; enc ∘ dec ≠ id in general: binary64 has 2⁵³ − 2 NaN patterns decoding to one datum and two patterns (±0) decoding to the value 0; the 32-bit pattern 0xFFFFFFFF is −1 (two's complement), 4294967295 (unsigned) and a NaN (binary32). *Check.* NaN and zero pattern counts by enumeration for binary16 and the 1-4-3 format, and by formula for binary32/64.
+
+### GIN-PROP-051 Gluing segments; the boundary of a glued segment *(Proposition; trivial, proved here; a REINTERPRETATION of 1-chains)*
+For a{I}b and b{J}c, gluing gives a{I,b,J}c; gluing is associative where defined; ∂(σ ⊕ τ) = ∂σ △ ∂τ (symmetric difference, i.e. the boundary of 1-chains over Z/2); every segment is uniquely a glued sequence of empty-interior segments. Answers the "calculus" half of GIN-OPEN-008: a calculus exists and it is the classical calculus of paths and chains. *Check.* All segments with endpoints in [−6, 6].
+
+### GIN-PROP-052 Fixed-width successor violates exactly one Peano axiom *(Proposition; elementary, proved here)*
+On W = {0,…,2ʷ−1} with s(x) = (x+1) mod 2ʷ: s is injective and induction holds, but 0 = s(2ʷ−1). The transition system is one cycle of length 2ʷ; the predecessor is total; overflow is a step across the seam. *Check.* w ≤ 12.
+
+### GIN-HIST-003 The recursion theorem *(Historical result: Dedekind 1888)*
+For x₀ ∈ X and g: ℕ × X → X there is exactly one f with f(0) = x₀, f(Sn) = g(n, f(n)). Needs all three Peano axioms; it fails on fixed-width words (GIN-PROP-052), where "count up" definitions are inconsistent across the seam. Book, Chapter 4.
+
+### GIN-HIST-004 The Peano laws of addition *(Historical result: classical; Peano 1889, Grassmann)*
+0 + a = a, Sa + b = S(a + b), commutativity and associativity, proved by induction from the primitive-recursive definitions (book, Chapter 4). The derivations of a + b and b + a have different lengths (b + 1 and a + 1 rule applications): a law asserts that different computations agree in value.
+
+### GIN-IMP-004 Peano rule counts are witnessed by term rewriting *(Implementation result)*
+`ginsdk.peano.rewrite` normalizes add/mul terms by the defining equations (leftmost-outermost). The number of rewrite steps equals the counts of GIN-PROP-003 (n + 1 and mn + 2n + 1) for all m, n < 12 (book, Chapter 4) and < 7 in the SDK tests.
+
+### GIN-PROP-053 The length of a canonical numeral *(Proposition; classical)*
+For b ≥ 2 and n ≥ 1 the canonical base-b numeral has ⌊log_b n⌋ + 1 digits. The input size of a number is the length of its numeral, Θ(log n); algorithms taking n steps on input n are exponential in input size. Book, Chapter 5.
+
+### GIN-PROP-054 Hyperbinary representations are counted by Stern's sequence *(Reproduced result: classical, Calkin & Wilf 2000)*
+The words over {0,1,2} without leading zero with base-2 value n number s(n+1), Stern's diatomic sequence. Proof by the recurrences h(2k+1) = h(k), h(2k+2) = h(k) + h(k+1) (book, Chapter 6). Reproduced by enumeration for n < 60 (SDK test `TestOtherBases`). Used in the book to show that redundant digit sets make numerals non-unique even without leading zeros.
+
+### GIN-IMP-005 Negative bases in the SDK *(Implementation result)*
+`ginsdk.numerals.DigitGrammar` accepts bases ≤ −2; `NEGABINARY` (base −2, digits 0, 1) names each integer in [−80, 80] by a unique word without leading zeros, and the value map is injective on all such words of length ≤ 8 (SDK tests).
+
+### GIN-PROP-055 Divisibility automata *(Proposition; classical)*
+For base b ≥ 2 and modulus m ≥ 1, the DFA on residues {0,…,m−1} with r →d (br + d) mod m accepts exactly the base-b numerals of multiples of m (the digit grammar reduced mod m). *Check.* Base 2, n < 4000, m < 20 (book, Chapter 7). A special case of the regularity statements of GIN-THM-005.
+
+### GIN-PROP-056 The four evaluation layers are independent *(Proposition; by exhibited witnesses, proved here)*
+Witnesses: `0.5 + 1` in ℤ (well formed, ill-typed); `1 / 0` in ℚ (typed, no solution); `(−2147483647 − 1) / −1` in int32 x86-64 (unique solution 2147483648 in ℤ, trap at execution); `1 / 0` in int32 AArch64 (no solution, executes to 0); `2147483648 − 1` (ill-typed in int32, a value in Python); `2 ^ 10` in binary64 (admissible in ℚ, unsupported as a basic IEEE operation). Refines CGT-PROP-002 by the typing layer. Book, Chapter 8.
+
+### GIN-THM-007 Converse of a homomorphism *(Theorem; classical linear algebra)*
+For a homomorphism f: G → H of abelian groups, {c : f(c) = a} is empty or c₀ + ker f: existence iff a ∈ f(G) (image condition); when non-empty it has |ker f| elements (kernel condition). The general form behind GIN-THM-001 (division in rings), subtraction, modular inverses and linear Diophantine equations. Book, Chapter 9.
+
+### GIN-PROP-057 Correctness of column addition; the carry is at most 1 *(Proposition; classical, proof written here)*
+In any base b, column addition keeps the invariant Σ_{j≤i} s_j bʲ + c_{i+1} b^{i+1} = Σ_{j≤i}(a_j + b_j) bʲ and every carry is 0 or 1; for k addends the carry is at most k − 1. Book, Chapter 10. *Check.* Bases 2–7, all pairs of 3-digit numerals.
+
+### GIN-PROP-058 Addition needs linear time on numerals *(Proposition; classical adversary argument)*
+Computing the binary numeral of x + y from L-bit numerals requires reading all 2L input bits in the worst case: Θ(L) bit operations sequentially; with parallel processors O(log L) depth (GIN-PROP-020). Book, Chapter 10.
+
+### GIN-PROP-059 Addition needs logarithmic depth *(Proposition; classical)*
+A fan-in-2 circuit computing the carry out of n-bit addition has depth ≥ ⌈log₂ 2n⌉, because the carry out depends on all 2n inputs. At n = 256 the bound is 9; the measured Kogge–Stone depth is 17, Brent–Kung 30, ripple 511 (GIN-EXP-006). Book, Chapter 11.

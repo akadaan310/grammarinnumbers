@@ -68,8 +68,8 @@ class DigitGrammar:
 
     def __init__(self, base: int, digits: Iterable[int], name: str | None = None,
                  symbols: dict[int, str] | None = None) -> None:
-        if base < 1:
-            raise ValueError("base must be ≥ 1")
+        if base in (0, -1):
+            raise ValueError("base must be ≥ 1 or ≤ −2")
         self.base = base
         self.digits = tuple(sorted(set(digits)))
         if not self.digits:
@@ -130,8 +130,8 @@ class DigitGrammar:
     # -- addresses (canonical numerals) -----------------------------------------
     def is_complete_residue_system(self) -> bool:
         """True iff the digits are pairwise incongruent mod b and cover every residue."""
-        b = self.base
-        return len(self.digits) == b and len({d % b for d in self.digits}) == b
+        b = abs(self.base)
+        return b >= 2 and len(self.digits) == b and len({d % b for d in self.digits}) == b
 
     def expand(self, n: int, max_digits: int = 10_000) -> tuple[Word, str]:
         """Digit expansion of ``n`` by the residue algorithm, least significant digit first.
@@ -245,6 +245,8 @@ UNARY = bijective(1)
 BINARY = standard(2)
 DECIMAL = standard(10)
 BALANCED_TERNARY = DigitGrammar(3, (-1, 0, 1), name="balanced ternary", symbols={-1: "T", 0: "0", 1: "1"})
+NEGABINARY = DigitGrammar(-2, (0, 1), name="base −2 (negabinary)")
+REDUNDANT_BINARY = DigitGrammar(2, (0, 1, 2), name="redundant binary (digits 0, 1, 2)")
 
 
 # ---------------------------------------------------------------------------
