@@ -236,6 +236,15 @@
   "verification_note": "Standard/specification document; edition and section cited from the document's public version; not re-checked in session 1.",
   "note": "Cited via OEIS A214679; not consulted."
  },
+ "furst1984": {
+  "label": "Furst, Saxe & Sipser 1984",
+  "authors": "M. Furst, J. B. Saxe, M. Sipser",
+  "year": "1984",
+  "title": "Parity, circuits, and the polynomial-time hierarchy",
+  "venue": "Mathematical Systems Theory 17(1), 13–27",
+  "verification": "metadata-verified",
+  "verification_note": "journal, volume, issue and pages checked by web search, 2026-10-09; includes the extension of the parity lower bound to multiplication"
+ },
  "godel1931": {
   "label": "Gödel 1931",
   "authors": "K. Gödel",
@@ -292,6 +301,15 @@
   "venue": "In Number Theory and Analysis (Papers in honor of Edmund Landau), Plenum, 87–96",
   "verification": "unverified",
   "verification_note": "Metadata from the collaborator's knowledge; not checked against records in session 1."
+ },
+ "hesse2002": {
+  "label": "Hesse, Allender & Barrington 2002",
+  "authors": "W. Hesse, E. Allender, D. A. M. Barrington",
+  "year": "2002",
+  "title": "Uniform constant-depth threshold circuits for division and iterated multiplication",
+  "venue": "Journal of Computer and System Sciences 65(4), 695–716; corrigendum 80(2), 496–497 (2014)",
+  "verification": "metadata-verified",
+  "verification_note": "checked by web search, 2026-10-09, including the 2014 corrigendum to Corollary 6.6"
  },
  "hodgson1983": {
   "label": "Hodgson 1983",

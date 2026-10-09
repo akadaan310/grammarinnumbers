@@ -410,3 +410,9 @@ For b ≠ 0, a = qb + r with |r| < |b| has two solutions when b ∤ a and one wh
 
 ### GIN-PROP-066 Division by an invariant integer using multiplication *(Proposition; classical: Granlund & Montgomery 1994; proof written here)*
 For 0 ≤ x < 2^N, M = ⌈2^{N+s}/d⌉ with Md − 2^{N+s} ≤ 2^s: ⌊xM/2^{N+s}⌋ = ⌊x/d⌋. Instance N = 32, d = 7, s = 3, M = 4908534053. *Check.* All x < 2²⁰, 200,000 random and the top 1,000 32-bit values (book, Chapter 19).
+
+### GIN-PROP-067 Signed overflow is a disagreement of carries *(Proposition; classical, proof written here)*
+For w-bit two's-complement addition, the exact sum is out of range iff the carry into the top position differs from the carry out of it (equivalently: same-sign operands, result of the other sign). *Check.* All pairs for w = 2…8 (book, Chapter 21).
+
+### GIN-HIST-006 The circuit complexity of the four operations *(Historical result: classical)*
+Addition and comparison are in AC⁰ (carry = OR over j of g_j ∧ p_{j+1} ∧ … ∧ p_{i−1}); multiplication is not in AC⁰ (Furst, Saxe & Sipser 1984, via parity); multiplication, division and iterated multiplication are in TC⁰, division in uniform TC⁰ (Hesse, Allender & Barrington 2002; corrigendum 2014). The circuit-level twin of GIN-THM-005. Book, Chapter 22.
