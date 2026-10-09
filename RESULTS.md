@@ -416,3 +416,6 @@ For w-bit two's-complement addition, the exact sum is out of range iff the carry
 
 ### GIN-HIST-006 The circuit complexity of the four operations *(Historical result: classical)*
 Addition and comparison are in AC⁰ (carry = OR over j of g_j ∧ p_{j+1} ∧ … ∧ p_{i−1}); multiplication is not in AC⁰ (Furst, Saxe & Sipser 1984, via parity); multiplication, division and iterated multiplication are in TC⁰, division in uniform TC⁰ (Hesse, Allender & Barrington 2002; corrigendum 2014). The circuit-level twin of GIN-THM-005. Book, Chapter 22.
+
+### GIN-PROP-068 The Calkin–Wilf enumeration of the positive rationals *(Proposition; classical: Calkin & Wilf 2000)*
+With Stern's diatomic sequence s, n ↦ s(n)/s(n+1) (n ≥ 1) is a bijection ℕ⁺ → ℚ⁺ onto reduced fractions; the binary length of n equals the sum of the continued-fraction partial quotients of s(n)/s(n+1). *Check.* First 4,000 terms distinct and reduced; length identity for n < 4001; 11/12 and 12 first appear at 4094 and 4095 (book, Chapter 27).

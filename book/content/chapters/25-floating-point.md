@@ -101,7 +101,7 @@ In lowest terms the denominator of $d/10^k$ is $2^i 5^j$; a binary fraction need
 
 Of the 99 two-digit decimals $0.01, \ldots, 0.99$, exactly three — $0.25$, $0.5$, $0.75$ — are binary64 numbers. Of the 999 three-digit ones, seven. The decimal fractions people type are almost never the numbers a binary computer stores.
 
-## Laws that hold, laws that fail {#sec:laws}
+## Laws that hold, laws that fail {#sec:fp-laws}
 
 Correct rounding guarantees that each single operation is as accurate as the format allows. It does not make floating-point arithmetic a field.
 

@@ -14,7 +14,7 @@ epigraph: "A word of thirty-two bits is not a number. It is a numeral in a finit
 - Interpret bit tricks such as `x & (x - 1)` as operations on numerals.
 :::
 
-## Words and encodings {#sec:words}
+## Words and encodings {#sec:machine-words}
 
 A $w$-bit word is a string in $\{0, 1\}^w$. Read as an unsigned binary numeral it denotes a number in $[0, 2^w)$. To represent negative numbers, an *encoding* (Definition GIN-DEF-003) must be chosen, and several have been used.
 
