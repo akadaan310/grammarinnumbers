@@ -86,5 +86,36 @@ class TestNumerals(unittest.TestCase):
         self.assertEqual(N.periodic_expansion(Fraction(-7, 6), 10), "−1.1(6)")
 
 
+
+class TestCanonicalizeConvert(unittest.TestCase):
+    def test_canonicalize(self):
+        from ginsdk.numerals import canonicalize
+        r = canonicalize("0042")
+        self.assertEqual((r["value"], r["canonical"], r["was_canonical"], r["leading_zeros"]), (42, "42", False, 2))
+        self.assertTrue(canonicalize("0")["was_canonical"])
+        self.assertEqual(canonicalize("00")["leading_zeros"], 1)
+        self.assertEqual(canonicalize("101", 2)["value"], 5)
+        with self.assertRaises(ValueError):
+            canonicalize("12", 2)
+        with self.assertRaises(ValueError):
+            canonicalize("")
+
+    def test_convert_roundtrip(self):
+        from ginsdk.numerals import convert
+        self.assertEqual(convert("2", 10, 2), "10")
+        self.assertEqual(convert("ff", 16, 10), "255")
+        for n in range(0, 2000, 7):
+            for b in (2, 3, 7, 16, 36):
+                self.assertEqual(int(convert(str(n), 10, b), b), n)
+                self.assertEqual(convert(convert(str(n), 10, b), b, 10), str(n))
+
+    def test_numeral_table(self):
+        from ginsdk.numerals import numeral_table
+        t = numeral_table(4)
+        self.assertEqual(t["binary"], "100")
+        self.assertEqual(t["unary (bijective base 1)"], "SSSS")
+        self.assertEqual(numeral_table(0)["bijective base 2"], "ε")
+
+
 if __name__ == "__main__":
     unittest.main()

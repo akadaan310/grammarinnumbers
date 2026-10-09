@@ -1,0 +1,348 @@
+{
+ "experiment": "GIN-EXP-014",
+ "hypotheses": [
+  "GIN-H-038",
+  "GIN-H-039"
+ ],
+ "seed": null,
+ "environment": {
+  "python": "3.13.16",
+  "implementation": "CPython",
+  "machine": "x86_64",
+  "system": "Linux 6.18.44-fc-v80",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz"
+ },
+ "data": {
+  "versions": {
+   "clang": "Ubuntu clang version 18.1.3 (1ubuntu1)",
+   "qemu-aarch64": "qemu-aarch64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)",
+   "qemu-riscv64": "qemu-riscv64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)",
+   "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+  },
+  "evidence": "emulator (QEMU user mode) for AArch64 and RISC-V; native hardware for x86-64",
+  "aarch64": {
+   "int": [
+    {
+     "a": 1,
+     "b": 0,
+     "quotient": 0,
+     "remainder": 1,
+     "udiv": 0,
+     "urem": 1,
+     "model_quotient": 0,
+     "model_remainder": 1,
+     "model_udiv": 0,
+     "model_urem": 1,
+     "agree": true
+    },
+    {
+     "a": 0,
+     "b": 0,
+     "quotient": 0,
+     "remainder": 0,
+     "udiv": 0,
+     "urem": 0,
+     "model_quotient": 0,
+     "model_remainder": 0,
+     "model_udiv": 0,
+     "model_urem": 0,
+     "agree": true
+    },
+    {
+     "a": -7,
+     "b": 0,
+     "quotient": 0,
+     "remainder": -7,
+     "udiv": 0,
+     "urem": 4294967289,
+     "model_quotient": 0,
+     "model_remainder": -7,
+     "model_udiv": 0,
+     "model_urem": 4294967289,
+     "agree": true
+    },
+    {
+     "a": -2147483648,
+     "b": -1,
+     "quotient": -2147483648,
+     "remainder": 0,
+     "udiv": 0,
+     "urem": 2147483648,
+     "model_quotient": -2147483648,
+     "model_remainder": 0,
+     "model_udiv": 0,
+     "model_urem": 2147483648,
+     "agree": true
+    },
+    {
+     "a": -7,
+     "b": 2,
+     "quotient": -3,
+     "remainder": -1,
+     "udiv": 2147483644,
+     "urem": 1,
+     "model_quotient": -3,
+     "model_remainder": -1,
+     "model_udiv": 2147483644,
+     "model_urem": 1,
+     "agree": true
+    },
+    {
+     "a": 7,
+     "b": -2,
+     "quotient": -3,
+     "remainder": 1,
+     "udiv": 0,
+     "urem": 7,
+     "model_quotient": -3,
+     "model_remainder": 1,
+     "model_udiv": 0,
+     "model_urem": 7,
+     "agree": true
+    },
+    {
+     "a": 7,
+     "b": 2,
+     "quotient": 3,
+     "remainder": 1,
+     "udiv": 3,
+     "urem": 1,
+     "model_quotient": 3,
+     "model_remainder": 1,
+     "model_udiv": 3,
+     "model_urem": 1,
+     "agree": true
+    },
+    {
+     "a": 2147483647,
+     "b": 1,
+     "quotient": 2147483647,
+     "remainder": 0,
+     "udiv": 2147483647,
+     "urem": 0,
+     "model_quotient": 2147483647,
+     "model_remainder": 0,
+     "model_udiv": 2147483647,
+     "model_urem": 0,
+     "agree": true
+    }
+   ],
+   "fdiv64": [
+    {
+     "case": "1/0",
+     "bits": "0x7ff0000000000000",
+     "flags": [
+      "divideByZero"
+     ]
+    },
+    {
+     "case": "0/0",
+     "bits": "0x7ff8000000000000",
+     "flags": [
+      "invalid"
+     ]
+    },
+    {
+     "case": "-1/0",
+     "bits": "0xfff0000000000000",
+     "flags": [
+      "divideByZero"
+     ]
+    },
+    {
+     "case": "1e308/1e-10",
+     "bits": "0x7ff0000000000000",
+     "flags": [
+      "inexact",
+      "overflow"
+     ]
+    },
+    {
+     "case": "2.2250738585072014e-308/0.5",
+     "bits": "0x0020000000000000",
+     "flags": []
+    },
+    {
+     "case": "0/1",
+     "bits": "0x0000000000000000",
+     "flags": []
+    }
+   ],
+   "tiny": {
+    "bits": "0x0000000000800000",
+    "flags": [
+     "inexact",
+     "underflow"
+    ]
+   },
+   "exit": 0,
+   "model_agreement": "8/8",
+   "tininess": "before rounding"
+  },
+  "riscv64": {
+   "int": [
+    {
+     "a": 1,
+     "b": 0,
+     "quotient": -1,
+     "remainder": 1,
+     "udiv": 4294967295,
+     "urem": 1,
+     "model_quotient": -1,
+     "model_remainder": 1,
+     "model_udiv": 4294967295,
+     "model_urem": 1,
+     "agree": true
+    },
+    {
+     "a": 0,
+     "b": 0,
+     "quotient": -1,
+     "remainder": 0,
+     "udiv": 4294967295,
+     "urem": 0,
+     "model_quotient": -1,
+     "model_remainder": 0,
+     "model_udiv": 4294967295,
+     "model_urem": 0,
+     "agree": true
+    },
+    {
+     "a": -7,
+     "b": 0,
+     "quotient": -1,
+     "remainder": -7,
+     "udiv": 4294967295,
+     "urem": 4294967289,
+     "model_quotient": -1,
+     "model_remainder": -7,
+     "model_udiv": 4294967295,
+     "model_urem": 4294967289,
+     "agree": true
+    },
+    {
+     "a": -2147483648,
+     "b": -1,
+     "quotient": -2147483648,
+     "remainder": 0,
+     "udiv": 0,
+     "urem": 2147483648,
+     "model_quotient": -2147483648,
+     "model_remainder": 0,
+     "model_udiv": 0,
+     "model_urem": 2147483648,
+     "agree": true
+    },
+    {
+     "a": -7,
+     "b": 2,
+     "quotient": -3,
+     "remainder": -1,
+     "udiv": 2147483644,
+     "urem": 1,
+     "model_quotient": -3,
+     "model_remainder": -1,
+     "model_udiv": 2147483644,
+     "model_urem": 1,
+     "agree": true
+    },
+    {
+     "a": 7,
+     "b": -2,
+     "quotient": -3,
+     "remainder": 1,
+     "udiv": 0,
+     "urem": 7,
+     "model_quotient": -3,
+     "model_remainder": 1,
+     "model_udiv": 0,
+     "model_urem": 7,
+     "agree": true
+    },
+    {
+     "a": 7,
+     "b": 2,
+     "quotient": 3,
+     "remainder": 1,
+     "udiv": 3,
+     "urem": 1,
+     "model_quotient": 3,
+     "model_remainder": 1,
+     "model_udiv": 3,
+     "model_urem": 1,
+     "agree": true
+    },
+    {
+     "a": 2147483647,
+     "b": 1,
+     "quotient": 2147483647,
+     "remainder": 0,
+     "udiv": 2147483647,
+     "urem": 0,
+     "model_quotient": 2147483647,
+     "model_remainder": 0,
+     "model_udiv": 2147483647,
+     "model_urem": 0,
+     "agree": true
+    }
+   ],
+   "fdiv64": [
+    {
+     "case": "1/0",
+     "bits": "0x7ff0000000000000",
+     "flags": [
+      "divideByZero"
+     ]
+    },
+    {
+     "case": "0/0",
+     "bits": "0x7ff8000000000000",
+     "flags": [
+      "invalid"
+     ]
+    },
+    {
+     "case": "-1/0",
+     "bits": "0xfff0000000000000",
+     "flags": [
+      "divideByZero"
+     ]
+    },
+    {
+     "case": "1e308/1e-10",
+     "bits": "0x7ff0000000000000",
+     "flags": [
+      "inexact",
+      "overflow"
+     ]
+    },
+    {
+     "case": "2.2250738585072014e-308/0.5",
+     "bits": "0x0020000000000000",
+     "flags": []
+    },
+    {
+     "case": "0/1",
+     "bits": "0x0000000000000000",
+     "flags": []
+    }
+   ],
+   "tiny": {
+    "bits": "0x0000000000800000",
+    "flags": [
+     "inexact"
+    ]
+   },
+   "exit": 0,
+   "model_agreement": "8/8",
+   "tininess": "after rounding"
+  },
+  "x86_64_tiny": {
+   "bits": "0x00800000",
+   "flags": [
+    "inexact"
+   ],
+   "tininess": "after rounding"
+  }
+ }
+}

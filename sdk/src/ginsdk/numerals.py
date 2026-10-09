@@ -350,3 +350,49 @@ def periodic_expansion(q, base: int = 10) -> str:
         return f"{sign}{int_digits}." + "".join(frac)
     k = seen[rem]
     return f"{sign}{int_digits}." + "".join(frac[:k]) + "(" + "".join(frac[k:]) + ")"
+
+
+# Parsing, canonicalization and base conversion of written numerals -------------------
+def canonicalize(text: str, b: int = 10) -> dict:
+    """Parse a written standard base-``b`` numeral and return its canonical form.
+
+    Returns a record with the digit word, its value, the canonical numeral (the
+    address, written ``"0"`` for the empty address by the usual convention), whether
+    the input was already canonical, and why not (leading zeros).  Raises
+    ValueError for symbols that are not digits of base ``b``.
+    """
+    g = standard(b)
+    t = text.strip().lower()
+    if not t:
+        raise ValueError("the empty string is not a written numeral (the empty word is zero's address, conventionally written 0)")
+    word = g.parse(t)
+    value = g.denote(word)
+    addr = g.address(value)
+    written = g.render(addr) if addr else "0"
+    lead = len(word) - len(addr) - (1 if not addr else 0)
+    return {"input": text, "base": b, "value": value, "canonical": written, "address": g.render(addr),
+            "was_canonical": t == written, "leading_zeros": max(lead, 0),
+            "note": "" if t == written else f"{max(lead, 0)} leading zero(s) removed; leading zeros do not change the value (GIN-PROP-001)"}
+
+
+def convert(text: str, b_from: int, b_to: int) -> str:
+    """Convert a written standard numeral from base ``b_from`` to base ``b_to``.
+
+    The value is the invariant; only the word changes: ``convert("2", 10, 2) == "10"``.
+    """
+    v = canonicalize(text, b_from)["value"]
+    g = standard(b_to)
+    a = g.address(v)
+    return g.render(a) if a else "0"
+
+
+def numeral_table(n: int) -> dict[str, str]:
+    """The numerals of a natural number ``n`` in several digit grammars (Chapter 6)."""
+    if n < 0:
+        raise ValueError("numeral_table is defined for natural numbers")
+    rows = {"unary (bijective base 1)": UNARY.render(UNARY.address(n)) if n <= 64 else f"S^{n}",
+            "bijective base 2": bijective(2).render(bijective(2).address(n)),
+            "binary": convert(str(n), 10, 2), "ternary": convert(str(n), 10, 3),
+            "balanced ternary": BALANCED_TERNARY.render(BALANCED_TERNARY.address(n)),
+            "decimal": str(n), "hexadecimal": convert(str(n), 10, 16)}
+    return rows

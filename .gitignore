@@ -5,4 +5,3 @@ book/node_modules/
 book/dist/
 experiments/machine/build/
 .pytest_cache/
-book/package-lock.json

@@ -1,0 +1,4 @@
+[
+ {"term": "admissible", "short": "An expression is admissible when every operation in it has exactly one result in the chosen domain.", "definition": "An expression is **admissible** in a domain when every operation in it has exactly one result there. For an inverse operation this means the converse problem has exactly one solution."},
+ {"term": "totalization", "aliases": ["totalized"], "short": "A value supplied by convention where the mathematics supplies none.", "definition": "A **totalization** supplies a value, by convention, where the defining equation has no solution or no unique solution — for example AArch64 returning $0$ for integer division by zero, or meadows defining $0^{-1} = 0$. The value is consistent but is not a solution."}
+]

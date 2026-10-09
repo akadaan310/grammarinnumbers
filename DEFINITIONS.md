@@ -153,3 +153,10 @@ The result of evaluating an expression in a domain: a status (value, special dat
 
 ### GIN-DEF-070 Bit-cost model *[standard]*
 Operands are measured by bit length L. A *word operation* acts on w-bit limbs (here w = 32): add/subtract-with-carry, limb product, two-by-one-limb quotient estimate, limb comparison. Unit-cost arithmetic is used only for operands of bounded length, and the bound is stated.
+
+## J. First-edition definitions (session 2, 2026-10-09)
+
+Introduced while writing the first edition of the book. Same conventions as above.
+
+### GIN-DEF-090 Layered analysis of an arithmetic request *[GiN, methodological]*
+For an expression e in a domain D, the answers, in order, to: (1) objects, (2) symbols and numerals, (3) syntax, (4) semantics, (5) admissibility, (6) state transition, (7) representation, (8) algorithm, (9) machine execution, (10) correctness invariants, (11) cost under a stated model, (12) empirical verification, (13) limits and counterexamples. Book, Chapter 1. The list is a checklist, not a theory; layers 1–4 are logic, 8, 10, 11 algorithm analysis, 9 architecture.
