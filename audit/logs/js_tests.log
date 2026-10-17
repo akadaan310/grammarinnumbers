@@ -1,0 +1,38 @@
+
+> gin-book@1.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: every fixture outcome: status, layer, displayed value, IEEE flags
+ok 1 - every fixture outcome: status, layer, displayed value, IEEE flags
+  ---
+  duration_ms: 48.95619
+  type: 'test'
+  ...
+# Subtest: machine-versus-mathematics relations agree with ginsdk.contracts.inspect
+ok 2 - machine-versus-mathematics relations agree with ginsdk.contracts.inspect
+  ---
+  duration_ms: 9.561522
+  type: 'test'
+  ...
+# Subtest: exact rounding: binary64 agrees with the host's IEEE arithmetic on random operands
+ok 3 - exact rounding: binary64 agrees with the host's IEEE arithmetic on random operands
+  ---
+  duration_ms: 203.732441
+  type: 'test'
+  ...
+# Subtest: Python repr and IEEE display formats
+ok 4 - Python repr and IEEE display formats
+  ---
+  duration_ms: 4.160901
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 379.035051

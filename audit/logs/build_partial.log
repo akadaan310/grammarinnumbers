@@ -1,0 +1,37 @@
+
+> gin-book@1.0.0 prebuild
+> python3 tools/export_data.py
+
+exported book/data (ginsdk 1.0.0)
+
+> gin-book@1.0.0 build
+> node tools/build.mjs
+
+warning: book.json: chapter file missing (partial build): 33-euclid.md
+warning: book.json: chapter file missing (partial build): 34-exponentiation.md
+warning: book.json: chapter file missing (partial build): 35-primality.md
+warning: book.json: chapter file missing (partial build): 36-cost-models.md
+warning: book.json: chapter file missing (partial build): 37-measured-complexity.md
+warning: book.json: chapter file missing (partial build): 38-cgt.md
+warning: book.json: chapter file missing (partial build): 39-interfaces.md
+warning: book.json: chapter file missing (partial build): 40-sdk.md
+warning: book.json: chapter file missing (partial build): 41-findings.md
+warning: book.json: chapter file missing (partial build): 42-open-problems.md
+warning: book.json: chapter file missing (partial build): a-notation.md
+warning: book.json: chapter file missing (partial build): b-reproducibility.md
+warning: book.json: chapter file missing (partial build): c-ledger-guide.md
+warning: 01-question: unknown chapter 39-interfaces
+warning: 01-question: unknown chapter 41-findings
+warning: 01-question: unknown chapter 36-cost-models
+warning: 01-question: unknown chapter b-reproducibility
+warning: 01-question: unknown chapter 40-sdk
+warning: 01-question: unknown chapter 38-cgt
+warning: 01-question: unknown chapter 42-open-problems
+warning: 02-four-layers: unknown chapter 37-measured-complexity
+warning: 04-recursion: unknown chapter 36-cost-models
+warning: 04-recursion: unknown chapter 34-exponentiation
+warning: 05-positional: unknown chapter 37-measured-complexity
+warning: 10-addition: unknown chapter 36-cost-models
+warning: 22-circuits: unknown chapter 36-cost-models
+warning: downloads: no PDF published: run `npm run pdf` and commit book/site/downloads/
+ok: 32 chapters, 136 formal items, 429 labels, 57/73 references cited, 92 executed examples, content version 5d0eb44cfdb7 -> dist/

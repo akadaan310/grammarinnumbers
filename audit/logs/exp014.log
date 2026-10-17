@@ -1,0 +1,7 @@
+EXP-014 aarch64 8/8 before rounding | riscv64 8/8 after rounding | x86-64 after rounding
+  aarch64 1/0 -> [(0, 1), (0, 0), (0, -7)] fdiv flags [('1/0', ['divideByZero']), ('0/0', ['invalid']), ('-1/0', ['divideByZero']), ('1e308/1e-10', ['inexact', 'overflow']), ('2.2250738585072014e-308/0.5', []), ('0/1', [])]
+  riscv64 1/0 -> [(-1, 1), (-1, 0), (-1, -7)] fdiv flags [('1/0', ['divideByZero']), ('0/0', ['invalid']), ('-1/0', ['divideByZero']), ('1e308/1e-10', ['inexact', 'overflow']), ('2.2250738585072014e-308/0.5', []), ('0/1', [])]
+
+real	0m0.694s
+user	0m0.312s
+sys	0m0.165s

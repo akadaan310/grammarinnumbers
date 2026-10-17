@@ -1,0 +1,62 @@
+
+> gin-book@1.0.0 verify
+> npm run build && npm test && npm run examples && node tools/linkcheck.mjs
+
+
+> gin-book@1.0.0 prebuild
+> python3 tools/export_data.py
+
+exported book/data (ginsdk 1.0.0)
+
+> gin-book@1.0.0 build
+> node tools/build.mjs
+
+warning: downloads: no PDF published: run `npm run pdf` and commit book/site/downloads/
+ERROR: book.json: chapter file missing: 33-euclid.md
+ERROR: book.json: chapter file missing: 34-exponentiation.md
+ERROR: book.json: chapter file missing: 35-primality.md
+ERROR: book.json: chapter file missing: 36-cost-models.md
+ERROR: book.json: chapter file missing: 37-measured-complexity.md
+ERROR: book.json: chapter file missing: 38-cgt.md
+ERROR: book.json: chapter file missing: 39-interfaces.md
+ERROR: book.json: chapter file missing: 40-sdk.md
+ERROR: book.json: chapter file missing: 41-findings.md
+ERROR: book.json: chapter file missing: 42-open-problems.md
+ERROR: book.json: chapter file missing: a-notation.md
+ERROR: book.json: chapter file missing: b-reproducibility.md
+ERROR: book.json: chapter file missing: c-ledger-guide.md
+ERROR: 01-question: unknown chapter 39-interfaces
+ERROR: 01-question: unknown chapter 41-findings
+ERROR: 01-question: unknown chapter 36-cost-models
+ERROR: 01-question: unknown chapter b-reproducibility
+ERROR: 01-question: unknown chapter 40-sdk
+ERROR: 01-question: unknown chapter 38-cgt
+ERROR: 01-question: unknown chapter 42-open-problems
+ERROR: 02-four-layers: unknown chapter 37-measured-complexity
+ERROR: 04-recursion: unknown chapter 36-cost-models
+ERROR: 04-recursion: unknown chapter 34-exponentiation
+ERROR: 05-positional: unknown chapter 37-measured-complexity
+ERROR: 10-addition: unknown chapter 36-cost-models
+ERROR: 22-circuits: unknown chapter 36-cost-models
+ERROR: bibliography.json: entry agp1994 is never cited
+ERROR: bibliography.json: entry cgt2026 is never cited
+ERROR: bibliography.json: entry cobham1969 is never cited
+ERROR: bibliography.json: entry dixon1970 is never cited
+ERROR: bibliography.json: entry euclid is never cited
+ERROR: bibliography.json: entry goldberg1991 is never cited
+ERROR: bibliography.json: entry heilbronn1969 is never cited
+ERROR: bibliography.json: entry korselt1899 is never cited
+ERROR: bibliography.json: entry lame1844 is never cited
+ERROR: bibliography.json: entry miller1976 is never cited
+ERROR: bibliography.json: entry pollard1975 is never cited
+ERROR: bibliography.json: entry porter1975 is never cited
+ERROR: bibliography.json: entry psw1980 is never cited
+ERROR: bibliography.json: entry rabin1980 is never cited
+ERROR: bibliography.json: entry sorenson2017 is never cited
+ERROR: bibliography.json: entry stein1967 is never cited
+
+42 integrity error(s); build FAILED.
+
+real	0m2.209s
+user	0m2.359s
+sys	0m0.762s

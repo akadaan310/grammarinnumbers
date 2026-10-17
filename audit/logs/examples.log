@@ -1,0 +1,9 @@
+
+> gin-book@1.0.0 examples
+> python3 tools/check_examples.py
+
+92/92 examples reproduce their printed output
+
+real	0m22.727s
+user	0m21.352s
+sys	0m1.186s

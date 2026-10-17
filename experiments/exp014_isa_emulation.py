@@ -96,8 +96,10 @@ def main():
                          "qemu-riscv64": tool_version(["qemu-riscv64", "--version"]), "gcc": tool_version(["gcc", "--version"])},
             "evidence": "emulator (QEMU user mode) for AArch64 and RISC-V; native hardware for x86-64"}
     if missing:
-        data["skipped"] = f"missing tools: {', '.join(missing)}"
-        print("EXP-014 skipped:", data["skipped"])
+        # NOT RUN: never overwrite recorded evidence with a skip (audit issue A-03).
+        print(f"EXP-014 NOT RUN (missing tools: {', '.join(missing)}); committed results/exp014.json left unchanged."
+              " To reproduce: install clang, lld and qemu-user (e.g. apt-get install qemu-user lld), then rerun.")
+        return
     else:
         data["aarch64"] = run_isa("aarch64")
         data["riscv64"] = run_isa("riscv64")

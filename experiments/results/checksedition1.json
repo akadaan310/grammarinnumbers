@@ -6,10 +6,26 @@
   "python": "3.13.16",
   "implementation": "CPython",
   "machine": "x86_64",
-  "system": "Linux 6.18.44-fc-v80",
+  "system": "Linux 6.18.44-fc-v139",
   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz"
  },
  "data": {
+  "GIN-PROP-064": {
+   "ok": true,
+   "detail": "n < 40"
+  },
+  "GIN-PROP-062": {
+   "ok": true,
+   "detail": "2^24 triples: 4177792 non-associative"
+  },
+  "GIN-PROP-060": {
+   "ok": true,
+   "detail": "K = 1..6: every (n, 0) is identified with (0, 0)"
+  },
+  "GIN-PROP-061": {
+   "ok": true,
+   "detail": "87380 pairs, widths 1..8"
+  },
   "GIN-PROP-057": {
    "ok": true,
    "detail": "61922 additions in bases 2..7"

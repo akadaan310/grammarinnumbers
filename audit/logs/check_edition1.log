@@ -1,0 +1,8 @@
+GIN-PROP-064: ok — n < 40
+GIN-PROP-062: ok — 2^24 triples: 4177792 non-associative
+GIN-PROP-060: ok — K = 1..6: every (n, 0) is identified with (0, 0)
+GIN-PROP-061: ok — 87380 pairs, widths 1..8
+GIN-PROP-057: ok — 61922 additions in bases 2..7
+GIN-PROP-050: ok — binary16 and binary8 enumerated; binary32 patterns decoded
+GIN-PROP-051: ok — 286 glued pairs with endpoints in [-6, 6]
+GIN-PROP-052: ok — w = 1 .. 12
