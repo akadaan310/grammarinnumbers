@@ -69,14 +69,17 @@ A **machine state** assigns bit strings to registers and memory, together with s
 The four definitions give four layers, and between them four maps:
 
 $$
-\underbrace{\text{numeral}}_{\text{word}} \xrightarrow{\ \text{denotation}\ } \underbrace{\text{value}}_{\text{element}} \xrightarrow{\ \text{encoding (partial)}\ } \underbrace{\text{bit string}}_{w \text{ bits}} \xrightarrow{\ \text{decoding (total)}\ } \text{value} \cup \text{special data}, \qquad \text{state} \xrightarrow{\ \text{execution}\ } \text{state}.
+\begin{gathered}
+\underbrace{\text{numeral}}_{\text{word}} \xrightarrow{\ \text{denotation}\ } \underbrace{\text{value}}_{\text{element}} \xrightarrow{\ \text{encoding (partial)}\ } \underbrace{\text{bit string}}_{w \text{ bits}}, \\[4pt]
+\text{bit string} \xrightarrow{\ \text{decoding (total)}\ } \text{value} \cup \text{special data}, \qquad \text{state} \xrightarrow{\ \text{execution}\ } \text{state}.
+\end{gathered}
 $$
 
 A claim about arithmetic names its layer. "$1 + 1 = 2$" is a statement about values. "$1 + 1 = 10_2$" is the same statement about values, with the right-hand side written in a different numeral system. "`0x7FFFFFFF + 1` is `0x80000000`" is a statement about encodings under wraparound. "After `add eax, 1` the overflow flag is set" is a statement about machine states. The statements are related, but they are not the same statement, and a proof of one is not a proof of another.
 
 ## Encodings are partial; decodings forget {#sec:encodings}
 
-The asymmetry between encoding and decoding in Definition \ref{def:encoding} is deliberate. An encoding is *partial* because a fixed number of bits can name only finitely many values: $2^{53}+1$ is an integer, but it has no binary64 encoding (\chapref{25-floating-point}). A decoding is *total* because every bit pattern must be read as *something* — and the something need not be a value.
+The asymmetry between encoding and decoding in \ref{def:encoding} is deliberate. An encoding is *partial* because a fixed number of bits can name only finitely many values: $2^{53}+1$ is an integer, but it has no binary64 encoding (\chapref{25-floating-point}). A decoding is *total* because every bit pattern must be read as *something* — and the something need not be a value.
 
 ::: proposition {#prop:enc-dec title="Encoding and decoding are not inverse to each other" status="proved-here" ledger="GIN-PROP-050"}
 For every encoding, $\dec(\enc(v)) = v$ for every $v$ in the domain of $\enc$. The other composite is not the identity in general:
@@ -156,7 +159,7 @@ binary32      16777216   {'datum': '16777216', 'sign': '0', 'exponent': '1001011
 In binary32 the sum $2^{24} + 1$ is not representable: the format has 24 significant bits, and $2^{24}+1$ needs 25. The exact sum is rounded to the nearest representable number, which — a tie between $2^{24}$ and $2^{24}+2$, broken towards the even significand — is $2^{24}$ itself. The equation $x + 1 = x$ has a solution in binary32. Chapter 25 explains why, and which other familiar laws fail.
 
 ::: exercise {#ex:fl-readings}
-Give the reading (row of the table in §\ref{sec:twelve}) of "3" in each sentence: (a) "Turn to page 3." (b) "The array has 3 elements." (c) "`x = 3` sets the register to 3." (d) "In $\Z/3$, $3 = 0$." (e) "`3` is not a base-2 digit."
+Give the reading (row of the table in \ref{sec:twelve}) of "3" in each sentence: (a) "Turn to page 3." (b) "The array has 3 elements." (c) "`x = 3` sets the register to 3." (d) "In $\Z/3$, $3 = 0$." (e) "`3` is not a base-2 digit."
 :::
 
 ::: solution {of="ex:fl-readings"}
@@ -188,7 +191,7 @@ As stated it conflates layers. Value layer: "$10^{400}$ is a natural number" —
 :::
 
 ::: exercise {#ex:fl-cross}
-In Python, `float(2**53 + 1) == float(2**53)` is `True`. Which crossing of §\ref{sec:crossing} fails, and which property?
+In Python, `float(2**53 + 1) == float(2**53)` is `True`. Which crossing of \ref{sec:crossing} fails, and which property?
 :::
 
 ::: solution {of="ex:fl-cross"}
@@ -198,6 +201,6 @@ The crossing from the value $2^{53} + 1$ (an exact Python integer) to the binary
 ::: summary
 - "3" has at least twelve readings; they agree on the value and diverge on everything else.
 - The four layers are value, numeral, encoding and machine state; the maps between them are denotation, encoding, decoding and execution.
-- Encodings are partial and injective; decodings are total and forget (Proposition \ref{prop:enc-dec}); a bit pattern has no type of its own.
+- Encodings are partial and injective; decodings are total and forget (\ref{prop:enc-dec}); a bit pattern has no type of its own.
 - "A number exists", "two numerals are equal" and "an operation returns a result" each hide assumptions that can fail independently.
 :::

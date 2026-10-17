@@ -86,7 +86,7 @@ For all $a, b, c \in \N$: (i) $0 + a = a$; (ii) $S a + b = S(a + b)$; (iii) $a +
 (i) Induction on $a$: $0 + 0 = 0$ by the first equation; if $0 + a = a$ then $0 + S a = S(0 + a) = S a$. (ii) Induction on $b$: $S a + 0 = S a = S(a + 0)$; if $S a + b = S(a + b)$ then $S a + S b = S(S a + b) = S(S(a + b)) = S(a + S b)$. (iii) Induction on $b$: $a + 0 = a = 0 + a$ by (i); if $a + b = b + a$ then $a + S b = S(a + b) = S(b + a) = S b + a$ by (ii). (iv) Induction on $c$: $(a + b) + 0 = a + b = a + (b + 0)$; and $(a + b) + S c = S((a + b) + c) = S(a + (b + c)) = a + S(b + c) = a + (b + S c)$.
 :::
 
-The proofs are short, but each uses the *structure* of the grammar — what happens at $0$ and what one more step does — and not any picture of objects being combined. The corresponding laws for multiplication, and distributivity, are proved the same way (Exercise \ref{ex:rec-distrib}).
+The proofs are short, but each uses the *structure* of the grammar — what happens at $0$ and what one more step does — and not any picture of objects being combined. The corresponding laws for multiplication, and distributivity, are proved the same way (\ref{ex:rec-distrib}).
 
 ::: remark
 The proofs show something the notation hides: *commutativity is not computational symmetry*. The derivation of $2 + 3$ applies four rules and that of $3 + 2$ three; they reach the same normal form. The equation $2 + 3 = 3 + 2$ asserts that two different computations have the same result. This is the first instance of a theme of the book: an algebraic law is a statement that different evaluation paths agree, and the cost of the paths may differ. Chapter 37 measures how much.
@@ -130,7 +130,7 @@ k = 20 bits: unary addition of n = 1048575 takes 1048576 rules; binary addition 
 ```
 
 ::: implementation {#imp:rewrite title="Rule counts witnessed by rewriting" status="implementation" ledger="GIN-IMP-004"}
-`ginsdk.peano.rewrite` normalizes `add` and `mul` terms by applying the defining equations one at a time, leftmost-outermost. On all $m, n < 12$ the number of rewrite steps equals the counts of Proposition \ref{prop:peano-cost}, and the normal form is the successor term of the exact result.
+`ginsdk.peano.rewrite` normalizes `add` and `mul` terms by applying the defining equations one at a time, leftmost-outermost. On all $m, n < 12$ the number of rewrite steps equals the counts of \ref{prop:peano-cost}, and the normal form is the successor term of the exact result.
 :::
 
 This is the quantitative reason why no one computes in unary, and the reason positional notation exists. It is also a warning about cost statements: "addition costs one step" is true of the move $S$, true of a machine `add` on bounded words, and false — by an exponential factor — of addition on unary numerals of unbounded size. A cost is a property of a *representation* and a *model*, never of an operation alone (\chapref{36-cost-models}).
@@ -180,7 +180,7 @@ They share a definition and nothing else: knowing how to find a least fixed poin
 A unary numeral $S^n0$ is, after deleting the final $0$, a word $S^n$ over a one-letter alphabet, and addition is concatenation: $S^m S^n = S^{m+n}$. More generally, the words over an alphabet $\Sigma$ form a monoid under concatenation, with the empty word $\varepsilon$ as identity, and the *length* map $|\cdot|$ is a homomorphism to $(\N, +, 0)$: $|uv| = |u| + |v|$, $|\varepsilon| = 0$. For a one-letter alphabet the length map is an isomorphism. In algebraic terms, $(\N, +, 0)$ is the free monoid on one generator; the generator is $1$, and every element is uniquely a sum $1 + 1 + \cdots + 1$. This is why, in the next part of the book, numerals with *more* than one letter can compress numbers: a richer alphabet breaks the one-to-one correspondence between length and value.
 
 ::: exercise {#ex:rec-distrib}
-Prove from GIN-DEF-010 and Proposition \ref{prop:add-laws} that $a \cdot (b + c) = a \cdot b + a \cdot c$ (induction on $c$).
+Prove from GIN-DEF-010 and \ref{prop:add-laws} that $a \cdot (b + c) = a \cdot b + a \cdot c$ (induction on $c$).
 :::
 
 ::: solution {of="ex:rec-distrib"}

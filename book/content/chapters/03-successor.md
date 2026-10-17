@@ -59,7 +59,7 @@ There is no state at which $P$ has two solutions. The second kind of failure —
 
 ## The segment notation $a\{I\}b$ {#sec:segment}
 
-In the research mandate for this book, Abed Kadaan proposed writing the progression from $0$ to $4$ as
+In the research mandate for this book, Abed Kadan proposed writing the progression from $0$ to $4$ as
 
 $$
 0\{1, 2, 3\}4,
@@ -127,7 +127,7 @@ Define the partial operation **gluing**: if $\sigma = a\{I\}b$ and $\tau = b\{J\
 :::
 
 ::: remark
-Proposition \ref{prop:segment-gluing} is the one-dimensional case of a classical construction. Segments with empty interior are the *edges* of the path graph; glued sequences are paths; and the boundary rule $\partial(\sigma \oplus \tau) = \partial\sigma \triangle \partial\tau$ is the boundary operator on 1-chains with coefficients in $\Z/2$, where the shared endpoint cancels because $1 + 1 = 0$. The calculus therefore exists, but it is the calculus of paths and chains, known for a century. This is the verdict recorded in the ledger as \ledger{GIN-REI-010}: the notation is *formal* — checkable, diagnosable, composable — and adds *no new mathematics*.
+\ref{prop:segment-gluing} is the one-dimensional case of a classical construction. Segments with empty interior are the *edges* of the path graph; glued sequences are paths; and the boundary rule $\partial(\sigma \oplus \tau) = \partial\sigma \triangle \partial\tau$ is the boundary operator on 1-chains with coefficients in $\Z/2$, where the shared endpoint cancels because $1 + 1 = 0$. The calculus therefore exists, but it is the calculus of paths and chains, known for a century. This is the verdict recorded in the ledger as \ledger{GIN-REI-010}: the notation is *formal* — checkable, diagnosable, composable — and adds *no new mathematics*.
 :::
 
 ::: boundary
@@ -136,7 +136,7 @@ The segment notation is used in this book for display and validation only. No th
 
 ## Counting {#sec:counting}
 
-To *count* a finite set $A$ is to establish a bijection between $A$ and an initial segment of the successor chain. Two conventions are in common use, and they differ by exactly the fencepost of §\ref{sec:segment}:
+To *count* a finite set $A$ is to establish a bijection between $A$ and an initial segment of the successor chain. Two conventions are in common use, and they differ by exactly the fencepost of \ref{sec:segment}:
 
 - counting **from $1$**: a bijection $A \to \{1, \ldots, n\}$, the segment $1\{\ldots\}n$; the last number reached *is* the count $n$;
 - counting **from $0$** (indices, offsets): a bijection $A \to \{0, \ldots, n-1\}$; the count is the first number *not* reached.

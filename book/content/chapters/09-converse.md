@@ -18,7 +18,10 @@ epigraph: "Undefined is not an answer. It is the name of a question that has not
 Every inverse operation of arithmetic is defined by an equation involving a forward operation:
 
 $$
-a - b = c \iff b + c = a, \qquad a / b = c \iff b \cdot c = a, \qquad \sqrt{a} = c \iff c \cdot c = a \ (\text{and } c \ge 0), \qquad \log a = c \iff e^c = a .
+\begin{aligned}
+a - b = c &\iff b + c = a, & a / b = c &\iff b \cdot c = a, \\
+\sqrt{a} = c &\iff c \cdot c = a \ (\text{and } c \ge 0), & \log a = c &\iff e^c = a .
+\end{aligned}
 $$
 
 The left-hand sides are written as if they named a single value. The right-hand sides are equations, and an equation may have no solution, exactly one, or several. This chapter takes the right-hand sides as the definition.
@@ -92,12 +95,12 @@ Let $f : G \to H$ be a homomorphism of abelian groups and $a \in H$. The solutio
 If $f(c_0) = a$, then $f(c) = a \iff f(c - c_0) = 0 \iff c - c_0 \in \ker f$.
 :::
 
-This is the theorem of every first course in linear algebra — the general solution of $Ax = a$ is a particular solution plus the null space — and it is the whole explanation of why there are *two* kinds of inadmissibility for linear converse problems and no others: the image condition can fail (no solution) and the kernel condition can fail (non-unique). Division is the converse of $c \mapsto b \cdot c$, which is additive in $c$; Chapter 16 specializes Theorem \ref{thm:coset} to rings and obtains the classification of $1/0$ and $0/0$.
+This is the theorem of every first course in linear algebra — the general solution of $Ax = a$ is a particular solution plus the null space — and it is the whole explanation of why there are *two* kinds of inadmissibility for linear converse problems and no others: the image condition can fail (no solution) and the kernel condition can fail (non-unique). Division is the converse of $c \mapsto b \cdot c$, which is additive in $c$; Chapter 16 specializes \ref{thm:coset} to rings and obtains the classification of $1/0$ and $0/0$.
 
 For converse problems that are *not* linear, the solution set can have any shape.
 
 ::: counterexample {#neg:nonlinear title="Solution sets of converse problems need not be cosets" status="counterexample" ledger="GIN-NEG-019"}
-In $\Z/8$ the equation $c \cdot c = 1$ has the four solutions $\{1, 3, 5, 7\}$, and $c \cdot c = 4$ has the two solutions $\{2, 6\}$. The two solution sets have different sizes, so they are not cosets of a common subgroup: squaring is not a homomorphism, and Theorem \ref{thm:coset} does not apply.
+In $\Z/8$ the equation $c \cdot c = 1$ has the four solutions $\{1, 3, 5, 7\}$, and $c \cdot c = 4$ has the two solutions $\{2, 6\}$. The two solution sets have different sizes, so they are not cosets of a common subgroup: squaring is not a homomorphism, and \ref{thm:coset} does not apply.
 :::
 
 ```python run
@@ -175,7 +178,7 @@ Classify, with the solution set: (a) $5 - 8$ in $\N$; (b) $6 / 4$ in $\Z/10$; (c
 :::
 
 ::: exercise {#ex:cv-coset}
-Use Theorem \ref{thm:coset} to describe all integer solutions of $6x + 10y = 4$.
+Use \ref{thm:coset} to describe all integer solutions of $6x + 10y = 4$.
 :::
 
 ::: solution {of="ex:cv-coset"}
@@ -183,7 +186,7 @@ The map $(x, y) \mapsto 6x + 10y$ is a homomorphism $\Z^2 \to \Z$ with image $2\
 :::
 
 ::: exercise {#ex:cv-sq}
-How many solutions does $c^2 \equiv 1 \pmod{n}$ have for $n = 2, 4, 8, 16, 15$? Why does Theorem \ref{thm:coset} not predict these counts?
+How many solutions does $c^2 \equiv 1 \pmod{n}$ have for $n = 2, 4, 8, 16, 15$? Why does \ref{thm:coset} not predict these counts?
 :::
 
 ::: solution {of="ex:cv-sq"}

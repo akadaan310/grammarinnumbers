@@ -68,7 +68,7 @@ In bijective notation zero is written only as the empty word. The convention pro
 
 Standard positional notation names only natural numbers; a minus sign is an extra symbol outside the digit grammar. Two classical digit grammars name every integer with digits alone.
 
-**Balanced ternary** uses base $3$ and digits $-1, 0, 1$, written `T`, `0`, `1`. By Proposition \ref{prop:residue-systems} every integer has a unique numeral without leading zeros. Negation is digit-wise: swap `1` and `T`. The Soviet Setun computer (1958) used balanced ternary arithmetic.
+**Balanced ternary** uses base $3$ and digits $-1, 0, 1$, written `T`, `0`, `1`. By \ref{prop:residue-systems} every integer has a unique numeral without leading zeros. Negation is digit-wise: swap `1` and `T`. The Soviet Setun computer (1958) used balanced ternary arithmetic.
 
 **Base $-2$** ("negabinary") uses digits $0, 1$ and the negative base $-2$. The residue algorithm still applies — the last digit is $n \bmod 2$ and the prefix denotes $(n - d)/(-2)$ — and the magnitude of the state strictly decreases once $|n| \ge 2$, so every integer has a unique finite numeral \cite{knuth1997}.
 
@@ -117,7 +117,7 @@ Consequently the bijective base-2 numeral of $n$, with $1 \mapsto L$ and $2 \map
 :::
 
 ::: proof
-$(2x + 1) + 1 = 2(x + 1)$ and $(2x + 2) + 1 = 2(x + 1) + 1$. By induction on words, $\varphi \circ \sem{w} = \sem{h(w)} \circ \varphi$ where $h$ replaces $1$ by $L$ and $2$ by $R$; evaluating at $0$ gives $\sem{w}(0) + 1 = \sem{h(w)}(1)$. Both numerations are bijections from words to their sets of values (Proposition \ref{prop:residue-systems}(3) for the first; uniqueness of tree paths for the second), so the words correspond.
+$(2x + 1) + 1 = 2(x + 1)$ and $(2x + 2) + 1 = 2(x + 1) + 1$. By induction on words, $\varphi \circ \sem{w} = \sem{h(w)} \circ \varphi$ where $h$ replaces $1$ by $L$ and $2$ by $R$; evaluating at $0$ gives $\sem{w}(0) + 1 = \sem{h(w)}(1)$. Both numerations are bijections from words to their sets of values (\ref{prop:residue-systems}(3) for the first; uniqueness of tree paths for the second), so the words correspond.
 :::
 
 ```python run
@@ -186,7 +186,7 @@ List all hyperbinary representations of $6$ and check the count against $s(7)$.
 :::
 
 ::: exercise {#ex:dg-slp}
-Give the straight-line program of Proposition \ref{prop:slp} for $a^{13}$ and the corresponding square-and-multiply sequence for $x^{13}$.
+Give the straight-line program of \ref{prop:slp} for $a^{13}$ and the corresponding square-and-multiply sequence for $x^{13}$.
 :::
 
 ::: solution {of="ex:dg-slp"}

@@ -141,7 +141,7 @@ Which of these hold for all $m, n, p \in \N$? (a) $(m \monus n) \monus p = m \mo
 :::
 
 ::: exercise {#ex:sub-flag}
-Using Proposition \ref{prop:hw-sub}, compute the 8-bit result and carry for $a = 5$, $b = 9$. What does the result mean as a signed number?
+Using \ref{prop:hw-sub}, compute the 8-bit result and carry for $a = 5$, $b = 9$. What does the result mean as a signed number?
 :::
 
 ::: solution {of="ex:sub-flag"}

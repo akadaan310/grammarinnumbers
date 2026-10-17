@@ -223,6 +223,7 @@ Last log–log slopes: horner: 1.998, balanced_schoolbook: 1.949, balanced_karat
 | GIN-THM-001 | ok | 30 rings, 5737 pairs |
 | GIN-THM-002 | ok | n ≤ 60 |
 | GIN-THM-003 | ok | Z/n, n < 60 |
+| GIN-THM-006 | ok | pairs in [-4, 4]², 19200 operations |
 | GIN-PROP-015 | ok | four formats, both signs |
 | GIN-PROP-021 | ok | n < 200 |
 | GIN-PROP-023 | ok | n ≤ 6, all dividends |

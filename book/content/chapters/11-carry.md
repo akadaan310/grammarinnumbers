@@ -173,7 +173,7 @@ $3x = x + 2x$: at position $i$ add $x_i$, $x_{i-1}$ and the carry. The state mus
 :::
 
 ::: exercise {#ex:carry-lb}
-What is the lower bound of Proposition \ref{prop:depth-lower} for $n = 64$, and how far from it are the four adders of Observation \ref{obs:adders}?
+What is the lower bound of \ref{prop:depth-lower} for $n = 64$, and how far from it are the four adders of \ref{obs:adders}?
 :::
 
 ::: solution {of="ex:carry-lb"}

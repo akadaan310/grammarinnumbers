@@ -114,21 +114,32 @@ for label, r in [("1/0", pair_div(one, zero)), ("1/∞", pair_div(one, inf)), ("
 
 ## The census {#sec:census}
 
-The claims of the table in §\ref{sec:trilemma} can be checked by computation, on finite samples, for systems that can be implemented exactly. The SDK module `ginsdk.totalized` implements eight of them and evaluates ten laws on every tuple drawn from a fixed sample of each (six to eleven elements, including the special elements of each system). An instance *holds*, *fails*, or is *undefined* (some side is undefined in a partial system). For IEEE binary16, laws compare data: $+0$ and $-0$ are different data, and NaN is treated as equal to NaN.
+The claims of the table in \ref{sec:trilemma} can be checked by computation, on finite samples, for systems that can be implemented exactly. The SDK module `ginsdk.totalized` implements eight of them and evaluates ten laws on every tuple drawn from a fixed sample of each (six to eleven elements, including the special elements of each system). An instance *holds*, *fails*, or is *undefined* (some side is undefined in a partial system). For IEEE binary16, laws compare data: $+0$ and $-0$ are different data, and NaN is treated as equal to NaN.
 
 ::: observation {#obs:census title="Which laws each way of dividing by zero keeps" status="empirical" ledger="GIN-EXP-015"}
 "ok" means no failure and nothing undefined; "ok\*" means no failure, but some instances undefined; "×k" means $k$ failing instances.
 
-| system | $1/0$ | $0/0$ | $(x{+}y){+}z$ | $x(y{+}z)$ | $0x = 0$ | $x - x = 0$ | $x/x = 1$ | $y(x/y) = x$ | $(x/y)/z = x/(yz)$ | $(x{+}y)/z$ |
-|---|---|---|---|---|---|---|---|---|---|---|
-| field $\Q$ | undef. | undef. | ok | ok | ok | ok | ok\* | ok\* | ok\* | ok\* |
-| meadow $\Q$ | $0$ | $0$ | ok | ok | ok | ok | ×1 | ×6 | ok | ok |
-| wheel of $\Z$ | $\infty$ | $\bot$ | ok | ×45 | ×2 | ×2 | ×3 | ×21 | ok | ×45 |
-| projective line | $\infty$ | undef. | ok\* | ok\* | ok\* | ok\* | ok\* | ok\* | ok\* | ok\* |
-| extended rationals | undef. | undef. | ok\* | ok\* | ok\* | ok\* | ok\* | ok\* | ok\* | ok\* |
-| IEEE binary16 | $\infty$ | NaN | ×8 | ×94 | ×4 | ×2 | ×4 | ×49 | ×67 | ×123 |
-| 8-bit RISC-V | $-1$ | $-1$ | ok | ok | ok | ok | ×1 | ×35 | ×111 | ×140 |
-| 8-bit AArch64 | $0$ | $0$ | ok | ok | ok | ok | ×1 | ×35 | ×23 | ×76 |
+| system | $1/0$ | $0/0$ | $(x{+}y){+}z$ | $x(y{+}z)$ | $0x = 0$ |
+| --- | --- | --- | --- | --- | --- |
+| field $\Q$ | undef. | undef. | ok | ok | ok |
+| meadow $\Q$ | $0$ | $0$ | ok | ok | ok |
+| wheel of $\Z$ | $\infty$ | $\bot$ | ok | ×45 | ×2 |
+| projective line | $\infty$ | undef. | ok\* | ok\* | ok\* |
+| extended rationals | undef. | undef. | ok\* | ok\* | ok\* |
+| IEEE binary16 | $\infty$ | NaN | ×8 | ×94 | ×4 |
+| 8-bit RISC-V | $-1$ | $-1$ | ok | ok | ok |
+| 8-bit AArch64 | $0$ | $0$ | ok | ok | ok |
+
+| system | $x - x = 0$ | $x/x = 1$ | $y(x/y) = x$ | $(x/y)/z = x/(yz)$ | $(x{+}y)/z$ |
+| --- | --- | --- | --- | --- | --- |
+| field $\Q$ | ok | ok\* | ok\* | ok\* | ok\* |
+| meadow $\Q$ | ok | ×1 | ×6 | ok | ok |
+| wheel of $\Z$ | ×2 | ×3 | ×21 | ok | ×45 |
+| projective line | ok\* | ok\* | ok\* | ok\* | ok\* |
+| extended rationals | ok\* | ok\* | ok\* | ok\* | ok\* |
+| IEEE binary16 | ×2 | ×4 | ×49 | ×67 | ×123 |
+| 8-bit RISC-V | ok | ×1 | ×35 | ×111 | ×140 |
+| 8-bit AArch64 | ok | ×1 | ×35 | ×23 | ×76 |
 
 Every system that makes division total — meadow, wheel, IEEE, RISC-V, AArch64 — fails the converse law $y(x/y) = x$; every system that keeps it (where defined) leaves some quotients undefined. The census is exact and reproducible (`experiments/exp015_law_census.py`).
 :::
@@ -173,7 +184,7 @@ Classify by route (A, B, C or signal): (a) SQL's `1 / 0`, which raises an error 
 :::
 
 ::: exercise {#ex:ext-pairs}
-Compute in pairs: $(\infty + 1) \cdot 0$ and $\infty \cdot (1 + 0)$, and explain the result with Theorem \ref{thm:pairs}.
+Compute in pairs: $(\infty + 1) \cdot 0$ and $\infty \cdot (1 + 0)$, and explain the result with \ref{thm:pairs}.
 :::
 
 ::: solution {of="ex:ext-pairs"}

@@ -39,7 +39,7 @@ const wide = await page.evaluate(() => [...document.querySelectorAll(".katex-dis
 if (wide.length) { console.error(`${wide.length} element(s) wider than the print text block:\n  ${wide.join("\n  ")}`); await browser.close(); srv.close(); process.exit(1); }
 await page.pdf({ path: out, format: "A4", printBackground: false, displayHeaderFooter: true, outline: true, tagged: true,
   headerTemplate: "<span></span>",
-  footerTemplate: `<div style="font-size:7.5px;width:100%;text-align:center;color:#666;font-family:serif">${book.title} — Abed Kadaan — ${book.edition} — content ${build.content_version} — <span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
+  footerTemplate: `<div style="font-size:7.5px;width:100%;text-align:center;color:#666;font-family:serif">${book.title} — ${book.author} — ${book.edition} — content ${build.content_version} — <span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   margin: { top: "18mm", bottom: "20mm", left: "20mm", right: "20mm" } });
 await browser.close(); srv.close();
 
@@ -53,12 +53,16 @@ const text = execFileSync("pdftotext", ["-layout", out, "-"], { maxBuffer: 1 << 
 const flat = text.replace(/\s+/g, " ");
 if (text.includes("�")) fail("extracted text contains U+FFFD (a glyph could not be mapped)");
 if (!flat.includes(`content ${build.content_version}`) && !flat.includes(build.content_version)) fail(`content version ${build.content_version} not found in the PDF`);
-const strip = (s) => s.replace(/\$[^$]*\$/g, "").replace(/[*_`]/g, "").replace(/\s+/g, " ").trim();
+// Normalize: lower case, letters and digits only. A title is found when every math-free
+// segment of it (split at $...$) of two or more words occurs in the normalized PDF text.
+const norm = (s) => s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+const ntext = " " + norm(text) + " ";
 const missing = [];
 for (const f of fs.readdirSync(path.resolve("content", "chapters"))) {
   const t = (fs.readFileSync(path.resolve("content", "chapters", f), "utf8").match(/^title:\s*"?(.*?)"?$/m) || [])[1] || "";
-  const probe = strip(t).split(" ").filter((w) => /^[A-Za-z]{4,}$/.test(w)).slice(0, 3).join(" ");
-  if (probe && !flat.includes(probe)) missing.push(`${f}: «${probe}»`);
+  const segments = t.split(/\$[^$]*\$/).map(norm).filter((x) => x.split(" ").length >= 2);
+  const lost = segments.filter((seg) => !ntext.includes(" " + seg + " "));
+  if (!segments.length || lost.length) missing.push(`${f}: «${lost.join(" | ") || t}»`);
 }
 if (!flat.includes("Bibliography")) missing.push("Bibliography");
 if (missing.length) fail(`chapter titles not found in the extracted text:\n  ${missing.join("\n  ")}`);

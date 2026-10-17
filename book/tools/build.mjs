@@ -471,7 +471,7 @@ for (const [k, b] of Object.entries(bib)) {
 // ------------------------------------------------------------------ templates
 const NAV = [["index.html", "Home"], ["contents.html", "Contents"], ["lab.html", "Laboratory"], ["theorems.html", "Results"],
   ["ledger/index.html", "Ledger"], ["sdk.html", "SDK"], ["contracts.html", "Contracts"], ["status.html", "Status"]];
-const PROGRAM = `<a class="program-link" href="${CGT_SITE}/">Abed Kadaan · research program</a>`;
+const PROGRAM = `<a class="program-link" href="${CGT_SITE}/">${esc(book.author)} · research program</a>`;
 
 function page({ title, rel, body, active, description = "", toc = "", bodyClass = "" }) {
   const nav = NAV.map(([u, t]) => `<a href="${rel}${u}"${active === u ? ' aria-current="page"' : ""}>${t}</a>`).join("");
@@ -504,7 +504,7 @@ ${toc}
 ${body}
 </main>
 <footer class="site-footer">
-  <p><strong>${esc(book.title)}</strong> — ${esc(book.edition)} · content version <code>${CONTENT_VERSION}</code> · build <code>${esc(GIT_COMMIT)}</code>. By ${esc(book.author)}, ${esc(book.role)}. ${PROGRAM} · <a href="${CGT_SITE}/books/computational-grammar-theory/">Computational Grammar Theory</a> (the first publication of the program).</p>
+  <p><strong>${esc(book.title)}</strong> — ${esc(book.edition)} · content version <code>${CONTENT_VERSION}</code> · build <code>${esc(GIT_COMMIT)}</code>. By ${esc(book.author)}, ${esc(book.role)}. ${PROGRAM} · <a href="${CGT_SITE}/">Computational Grammar Theory</a> (the first publication of the program).</p>
   <p class="status-note">${esc(book.status)} <a href="${rel}status.html">Publication status and limitations</a> · <a href="${REPO_URL}/issues">Report an erratum</a>.</p>
 </footer>
 <script src="${rel}assets/js/site.js" defer></script>
@@ -578,7 +578,7 @@ function homeBody() {
   <p>${s.chapters} chapters and ${s.appendices} appendices; ${s.defs} definitions; ${s.results} theorems, propositions, lemmas and corollaries; ${s.obs} empirical and implementation results; ${s.neg} counterexamples; ${s.open} conjectures and open problems; ${s.examples} executed code examples; ${s.refs} references. Every formal claim carries an evidence badge and a ledger identifier.</p>
   <p><span class="status status-proved-here">Proved here</span> <span class="status status-classical">Classical result</span> <span class="status status-reinterpretation">Reinterpretation</span> <span class="status status-empirical">Empirical observation</span> <span class="status status-implementation">Implementation result</span> <span class="status status-conjecture">Conjecture</span></p></div>
   <div class="home-card"><h2>Honest about novelty</h2><p>Almost all mathematics in this book is classical, and it is labelled so. The contribution is a framework, a vocabulary of failure (image vs kernel), executable reference semantics, and cross-validated measurements of real machines. See the <a href="status.html">publication status</a> and the <a href="ledger/results.html">results ledger</a>.</p></div>
-  <div class="home-card"><h2>The research program</h2><p>This is the second publication of a research program by ${esc(book.author)}. The first, <a href="${CGT_SITE}/books/computational-grammar-theory/"><cite>Computational Grammar Theory</cite></a>, studies the grammar of computational structures. This book descends beneath them, to number itself. The two are independent: each has its own numbering, ledger and evidence.</p></div>
+  <div class="home-card"><h2>The research program</h2><p>This is the second publication of a research program by ${esc(book.author)}. The first, <a href="${CGT_SITE}/"><cite>Computational Grammar Theory</cite></a>, studies the grammar of computational structures. This book descends beneath them, to number itself. The two are independent: each has its own numbering, ledger and evidence.</p></div>
 </section>
 <section class="home-start"><h2>Contents at a glance</h2>${contentsBody("")}</section>`;
 }
@@ -698,7 +698,7 @@ write("glossary.html", page({ title: `Glossary — ${book.title}`, rel: "", body
 write("bibliography.html", page({ title: `Bibliography — ${book.title}`, rel: "", body: bibliographyBody() }));
 write("sdk.html", page({ title: `SDK reference — ${book.title}`, rel: "", body: sdkBody(), active: "sdk.html" }));
 write("contracts.html", page({ title: `Operation contracts — ${book.title}`, rel: "", body: contractsBody(), active: "contracts.html" }));
-const PAGES = { researcher: "Abed Kadaan", status: "Publication status", lab: "Arithmetic laboratory", "math-tests": "Mathematical typography tests", edition: "Edition history" };
+const PAGES = { researcher: book.author, status: "Publication status", lab: "Arithmetic laboratory", "math-tests": "Mathematical typography tests", edition: "Edition history" };
 for (const [name, title] of Object.entries(PAGES)) {
   if (!fs.existsSync(path.join(CONTENT, "pages", `${name}.md`))) { err("pages", `missing page ${name}.md`); continue; }
   write(`${name}.html`, page({ title: `${title} — ${book.title}`, rel: "", body: readPage(name), active: { lab: "lab.html", status: "status.html" }[name], bodyClass: name === "lab" ? "lab-page" : "" }));
@@ -721,7 +721,7 @@ for (const L of usedLedger) if (!allLedgerAnchors.has(L)) err("ledger", `ledger 
 // ------------------------------------------------------------------ print edition (single page) for PDF export
 const toPrint = (html) => html.replace(/href="\.\.\/chapters\/([\w-]+)\.html#/g, 'href="#').replace(/href="\.\.\/chapters\/([\w-]+)\.html"/g, 'href="#ch-$1"')
   .replace(/href="\.\.\/bibliography\.html#/g, 'href="#b-').replace(/href="\.\.\/glossary\.html#/g, 'href="#g-').replace(/href="\.\.\//g, `href="${REPO_URL}/blob/HEAD/book/`)
-  .replace(/<section class="env env-demo"[\s\S]*?<div class="demo-fallback">/g, '<section class="env env-demo print-demo"><div class="env-head"><span class="env-name">Laboratory (online edition)</span></div><div><div class="demo-fallback">');
+  .replace(/<section class="env env-demo"[\s\S]*?<div class="demo-fallback">/g, '<section class="env env-demo print-demo"><div class="env-head"><span class="env-name">Laboratory (website edition)</span></div><div><div class="demo-fallback">');
 const s0 = stats();
 const today = new Date().toISOString().slice(0, 10);
 const printBody = `<section class="print-title">
@@ -732,7 +732,7 @@ const printBody = `<section class="print-title">
 </section>
 <section class="print-colophon">
 <p><strong>${esc(book.title)}: ${esc(book.subtitle)}</strong>. ${esc(book.author)}, ${esc(book.role)}. ${esc(book.edition)}.</p>
-<p>Content version <code>${CONTENT_VERSION}</code> (SHA-256 prefix of the canonical sources); source build <code>${esc(GIT_COMMIT)}</code>; generated ${today} from <code>book/content</code> by <code>book/tools/build.mjs</code> and <code>book/tools/pdf.mjs</code>. The online edition at <code>${CGT_SITE}/books/grammar-in-numbers/</code> is built from the same sources and prints the same content version in its footer.</p>
+<p>Content version <code>${CONTENT_VERSION}</code> (SHA-256 prefix of the canonical sources); source build <code>${esc(GIT_COMMIT)}</code>; generated ${today} from <code>book/content</code> by <code>book/tools/build.mjs</code> and <code>book/tools/pdf.mjs</code>. A website edition built from the same sources prints the same content version in its footer; this build does not deploy it, and no online edition is implied by this PDF.</p>
 <p><strong>Publication status.</strong> ${esc(book.status)}</p>
 <p><strong>What this book claims, and what it does not.</strong> ${esc(book.claims || "")}</p>
 <p>This edition: ${s0.chapters} chapters, ${s0.appendices} appendices, ${s0.defs} definitions, ${s0.results} proved or cited results, ${s0.obs} empirical and implementation results, ${s0.neg} counterexamples, ${s0.open} conjectures and open problems, ${s0.examples} executed code examples, ${s0.refs} references.</p>
@@ -746,7 +746,7 @@ ${book.parts.map((p) => {
   return `<section class="print-part"><p class="part-no">${p.appendix ? "" : `Part ${esc(p.id)}`}</p><h1 class="part-title">${esc(p.title)}</h1>${p.blurb ? `<p class="part-blurb">${esc(p.blurb)}</p>` : ""}</section>` +
     chs.map(({ ch, html, ctx }) => `<article class="chapter print-chapter" id="ch-${ch.slug}"><header class="chapter-opener"><p class="chapter-number">${ch.appendix ? "Appendix" : "Chapter"} ${ch.number}</p><h1>${ctx.mdInline.renderInline(ch.meta.title)}</h1>${ch.meta.epigraph ? `<p class="epigraph">${ctx.mdInline.renderInline(ch.meta.epigraph)}</p>` : ""}</header>${toPrint(html)}</article>`).join("\n");
 }).join("\n")}
-<section class="print-back" id="print-theorems">${theoremsBody("#").replace(/href="#chapters\/[\w-]+\.html#/g, 'href="#').replace(/href="#ledger\/[\w-]+\.html#/g, `href="${CGT_SITE}/books/grammar-in-numbers/ledger/results.html#`).replace(/<div class="filter"[\s\S]*?<\/div>/, "")}</section>
+<section class="print-back" id="print-theorems">${theoremsBody("#").replace(/href="#chapters\/[\w-]+\.html#/g, 'href="#').replace(/href="#ledger\/[\w-]+\.html#[^"]*"/g, `href="${REPO_URL}/blob/HEAD/RESULTS.md"`).replace(/<div class="filter"[\s\S]*?<\/div>/, "")}</section>
 <section class="print-back" id="print-glossary">${glossaryBody(true).replace(/href="chapters\/[\w-]+\.html#/g, 'href="#')}</section>
 <section class="print-back print-bib" id="print-bib">${bibliographyBody(true)}</section>`;
 write("print.html", page({ title: `${book.title} — print edition`, rel: "", body: printBody, bodyClass: "print-edition" }));

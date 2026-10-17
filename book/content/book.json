@@ -2,7 +2,7 @@
   "title": "Grammar in Numbers",
   "subtitle": "Arithmetic, Number Theory, and the Computational Grammar of Number",
   "kicker": "The second publication of a research program",
-  "author": "Abed Kadaan",
+  "author": "Abed Kadan",
   "role": "Founding Principal Researcher",
   "edition": "First edition (1.0), October 2026",
   "status": "A research monograph. Not peer reviewed. Proofs marked “proved here” are self-checked and checked by computation on small cases; nearly all of the mathematics is classical, and it is labelled so. Machine claims name their toolchain and say whether they were measured, emulated or taken from a specification.",

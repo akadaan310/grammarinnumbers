@@ -144,13 +144,14 @@
  },
  "cgt2026": {
   "label": "Kadaan (CGT) 2026",
-  "authors": "A. Kadaan (research program); Claude (research assistant)",
+  "authors": "A. Kadaan",
   "title": "Computational Grammar Theory: Structure, Operation, and the Cost of Resolution — research ledger and working edition 0.1",
   "year": "2026",
   "venue": "github.com/akadaan310/computationalgrammartheory (read-only reference, commit b3a29f3)",
   "verification": "metadata-verified",
   "verification_note": "Bibliographic metadata checked by web search against publisher, DBLP, institutional or library records (2026-10-08); full text not read.",
-  "url": "https://github.com/akadaan310/computationalgrammartheory"
+  "url": "https://github.com/akadaan310/computationalgrammartheory",
+  "note": "Cited under the byline it was published with. Abed Kadaan and Abed Kadan (this book's author) are the same researcher (decision GIN-D-017). The CGT ledger records that it was developed with an AI research assistant."
  },
  "charikar2005": {
   "label": "Charikar et al. 2005",

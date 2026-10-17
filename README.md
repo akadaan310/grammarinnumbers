@@ -2,22 +2,29 @@
 
 **Arithmetic, Number Theory, and the Computational Grammar of Number**
 
-Founding Principal Researcher: **Abed Kadaan**. Parent research program: [Computational Grammar Theory](https://github.com/akadaan310/computationalgrammartheory) (CGT), used here as a read-only reference corpus.
+Founding Principal Researcher: **Abed Kadan**. Parent research program: [Computational Grammar Theory](https://github.com/akadaan310/computationalgrammartheory) (CGT), used here as a read-only reference corpus.
 
-An independent research publication that asks: *what is the computational grammar of number?* It does not treat `1 + 1 = 2` or `6 / 3 = 2` as primitive notation. For every expression it asks what the objects, symbols, states, admissible operations and transitions are, what is preserved, what it costs in bit operations, what machinery implements it, and — when an expression asks for a transition the grammar does not admit — exactly *which* condition fails.
+An independent **research monograph** (not peer reviewed) that asks: *what is the computational grammar of number?* For every arithmetic expression it asks what the objects, symbols, states, admissible operations and transitions are, what is preserved, what it costs in bit operations, what machinery implements it, and — when an expression asks for a transition the grammar does not admit — exactly *which* condition fails.
 
-## Findings of session 1 in brief
+## State of this branch (2026-10-17)
 
-- **Numerals are programs.** A positional numeral is a word of moves x ↦ b·x + d applied to 0; its value is its denotation (CGT syntax vs semantics). The canonical numeral is a CGT grammatical address, and **zero's address is the empty word** (GIN-PROP-002). CGT's heap numeration of binary trees **is bijective binary shifted by one** (GIN-PROP-006). Positional notation is grammar compression of the unary successor term, with the same shape as square-and-multiply exponentiation (GIN-PROP-007).
-- **Inverse operations are converses, and "undefined" has two kinds.** In any commutative ring the solutions of b·c = a are empty or a coset of Ann(b) (GIN-THM-001). So **1/0 is an image failure** (no c with 0·c = 1) and **0/0 is a kernel failure** (every c satisfies 0·c = 0), while **0/1 = 0** passes both tests. The same classification covers 0 − 1 in ℕ, 7/2 in ℤ, √−1 in ℝ, 2/4 in ℤ/6, modular inverses and the CRT.
-- **Every way of giving 1/0 a value gives something up** (GIN-THM-003/004): the ring laws (projective line, wheels, extended reals), the converse reading of division (IEEE ∞, meadows, Lean's mathlib, AArch64 returning 0, RISC-V returning −1), or 0 ≠ 1. In fractions-as-pairs, **all indeterminate forms (0/0, 0·∞, ∞ ± ∞, ∞/∞) compute the single null pair (0, 0)**, which is exactly the pair that cannot be admitted without destroying the equivalence (GIN-THM-006).
-- **Machines disagree, measurably.** On one x86-64 host, `1/0` traps, raises, panics, returns ∞, or is rejected at compile time depending on the language; clang deletes a zero test after a division while gcc keeps it; Python raises on `1.0/0.0` where IEEE says ∞ (GIN-EXP-004). A reference IEEE 754 simulator matches the CPU **bit for bit and flag for flag** on 80,600 cases, and shows the host detects tininess after rounding (GIN-EXP-005).
-- **A divider that never tests its divisor returns all ones** on division by zero — exactly the RISC-V choice (GIN-PROP-023).
-- **Addition is finite-state; multiplication is not** (GIN-THM-005, classical): the carry automaton's three-element monoid {kill, propagate, generate} is what carry-lookahead adders compute in parallel.
-- **What is new?** Honestly: a framework and a set of cross-validated artefacts, not new theorems. Every proved statement is classical or elementary; the closest candidates for unrecorded statements (GIN-PROP-006, the pair-level form of GIN-THM-006) are probably folklore. See `RESULTS.md` §G.
+- **Book:** first complete edition (1.0) — 42 chapters and 3 appendices, a website and a print edition generated from the same sources. Strict build, 121 executed examples, laboratory-vs-SDK tests and link check pass. Print edition: `book/site/downloads/grammar-in-numbers.pdf` (page count, SHA-256 and content version in `pdf.json`). The website is **not deployed**.
+- **SDK:** `ginsdk` 1.0 (Python, standard library only), 74 tests.
+- **Evidence:** experiments EXP-001 – 015 and 33 exhaustive theorem checks, re-run in a clean environment by the October 2026 audit (`AUDIT_2026-10.md`).
+- **Status and limits:** `PUBLICATION_STATUS.md`; history: `EDITION_HISTORY.md`. The 53-page PDF of 2026-10-08 was a compilation of the research ledger, not this book; it is archived unchanged in `archive/`.
+- **Research frontier:** *The Number* — a separate, falsifiable research lane in `research/the-number/` (identifiers `NUM-*`), not part of the edition's claims.
+
+## Findings in brief (details: `RESULTS.md`, book Chapter 41)
+
+- **Numerals are programs**: a positional numeral is a word of moves x ↦ b·x + d applied to 0; zero's canonical numeral is the empty word (GIN-PROP-002); CGT's heap numeration is bijective binary shifted by one (GIN-PROP-006).
+- **Inverse operations are converses, and "undefined" has two kinds**: solutions of b·c = a in a commutative ring are empty or a coset of Ann(b) (GIN-THM-001); 1/0 fails the image condition, 0/0 the kernel condition, and 0/1 = 0 passes both.
+- **Every way of giving 1/0 a value gives something up** (GIN-THM-003/004); with fractions as pairs, every indeterminate form computes the null pair (0, 0) (GIN-THM-006).
+- **Machines disagree, measurably**: seven toolchains on one host answer 1/0 in seven ways; clang deletes a post-division zero test, gcc keeps it; an IEEE 754 simulator matches the CPU's results and flags on 80,600 cases.
+- **Contract models predict real execution** in every covered case where naive "mathematical" predictors fail on a quarter of cases (EXP-013) — a validation of coverage, not an independent discovery; the AI-only baseline was not run.
+- **What is new?** A framing, a vocabulary of failure, executable semantics and measurements — not new theorems, algorithms or complexity results. No priority is claimed.
 
 ## Navigate
-`RESEARCH_CHARTER.md` · `PROVENANCE.md` · `CGT_CONCEPT_MAP.md` · `DEFINITIONS.md` · `NUMBER_GRAMMAR.md` · `ARITHMETIC_GRAMMAR.md` · `FORMAL_MODELS.md` · `MACHINE_MODEL.md` · `NUMBER_THEORY.md` · `HYPOTHESES.md` · `EXPERIMENTS.md` · `RESULTS.md` · `COUNTEREXAMPLES.md` · `LITERATURE_REVIEW.md` · `OPEN_PROBLEMS.md` · `BOOK_OUTLINE.md` · `DECISION_LOG.md`
+`AUDIT_2026-10.md` · `PUBLICATION_STATUS.md` · `EDITION_HISTORY.md` · `RESEARCH_CHARTER.md` · `PROVENANCE.md` · `CGT_CONCEPT_MAP.md` · `DEFINITIONS.md` · `NUMBER_GRAMMAR.md` · `ARITHMETIC_GRAMMAR.md` · `FORMAL_MODELS.md` · `MACHINE_MODEL.md` · `NUMBER_THEORY.md` · `HYPOTHESES.md` · `EXPERIMENTS.md` · `RESULTS.md` · `COUNTEREXAMPLES.md` · `LITERATURE_REVIEW.md` · `OPEN_PROBLEMS.md` · `BOOK_OUTLINE.md` · `DECISION_LOG.md`
 
 ## Reproduce
 ```sh
@@ -29,8 +36,9 @@ sh experiments/run_all.sh && cat experiments/results/SUMMARY.md
 python3 experiments/verify_reproduction.py      # re-run and compare counted fields
 
 # The book and website (Node ≥ 18)
-cd book && npm install && npm run verify         # build + JS tests + executed examples + link check
-npm run serve                                    # http://localhost:8080
+cd book && npm ci && npm run verify              # strict build + JS tests + executed examples + link check
+npm run pdf && npm run build                     # print edition with release checks, then rebuild
+npm run serve                                    # http://localhost:8080 (local only)
 ```
 
 ## Layout

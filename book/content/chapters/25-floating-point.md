@@ -171,7 +171,7 @@ List the four-digit decimals in $(0, 1)$ that are binary64 numbers.
 :::
 
 ::: solution {of="ex:fp-decimals"}
-$d/10^4$ with $625 \mid d$: $0.0625, 0.125, 0.1875, \ldots, 0.9375$ — the fifteen multiples of $1/16$, as Proposition \ref{prop:decimals} predicts ($2^4 - 1 = 15$).
+$d/10^4$ with $625 \mid d$: $0.0625, 0.125, 0.1875, \ldots, 0.9375$ — the fifteen multiples of $1/16$, as \ref{prop:decimals} predicts ($2^4 - 1 = 15$).
 :::
 
 ::: summary

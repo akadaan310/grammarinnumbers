@@ -39,14 +39,14 @@ Wraparound sends $\mathrm{MAX} + 1$ to $\mathrm{MIN}$, the step across the seam 
 
 Because no single policy is right for every program, several languages let the programmer choose per operation.
 
-| language | wrap | saturate | check | detect |
-|---|---|---|---|---|
-| Rust | `wrapping_add` | `saturating_add` | `checked_add` → `Option` | `overflowing_add` → (value, flag) |
-| C (GCC, Clang extensions) | unsigned types | — | — | `__builtin_add_overflow` |
-| C23 | unsigned types | — | — | `ckd_add` in `<stdckdint.h>` |
-| Java | default for `int` | — | `Math.addExact` throws | — |
-| Go | default | — | — | `math/bits.Add64` returns the carry |
-| Swift | `&+` | — | default `+` traps | `addingReportingOverflow` |
+| language | how each policy is requested |
+|---|---|
+| Rust | wrap: `wrapping_add`; saturate: `saturating_add`; check: `checked_add` → `Option`; detect: `overflowing_add` → (value, flag) |
+| C (GCC, Clang extensions) | wrap: unsigned types; detect: `__builtin_add_overflow` |
+| C23 | wrap: unsigned types; detect: `ckd_add` in `<stdckdint.h>` |
+| Java | wrap: default for `int`; check: `Math.addExact` throws |
+| Go | wrap: default; detect: `math/bits.Add64` returns the carry |
+| Swift | wrap: `&+`; check: default `+` traps; detect: `addingReportingOverflow` |
 
 Rust's design is the most explicit: the default `+` panics on overflow in debug builds and wraps in release builds — so the *same source* has two meanings depending on a compiler flag — and the four named methods make the intended policy part of the program text. In the vocabulary of this book, the methods name the repair: `wrapping_add` is the *quotient* repair, `saturating_add` a *totalization*, `checked_add` *absorption* into `Option`, and the debug-mode panic a *signal*.
 

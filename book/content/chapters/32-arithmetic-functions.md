@@ -114,7 +114,7 @@ id / 1 = phi: unique True
 epsilon / f with f(1) = 0: not-solved
 ```
 
-The last line is the solver *declining*, not deciding: for $f(1) = 0$ the proposition guarantees at most one solution, and none for $h = \varepsilon$ because $\varepsilon(1) \ne 0$; the SDK's solver reports `not-solved` rather than claiming an answer it has not computed. A complete decision procedure for $f(1) = 0$ is possible on a finite range (the equations become a triangular system shifted by the least $n_0$ with $f(n_0) \ne 0$), and Exercise \ref{ex:af-nonunit} works one case.
+The last line is the solver *declining*, not deciding: for $f(1) = 0$ the proposition guarantees at most one solution, and none for $h = \varepsilon$ because $\varepsilon(1) \ne 0$; the SDK's solver reports `not-solved` rather than claiming an answer it has not computed. A complete decision procedure for $f(1) = 0$ is possible on a finite range (the equations become a triangular system shifted by the least $n_0$ with $f(n_0) \ne 0$), and \ref{ex:af-nonunit} works one case.
 
 ## Averages {#sec:averages}
 
@@ -210,7 +210,7 @@ Let $f(1) = 0$, $f(2) = 1$, and $f(n) = 0$ otherwise. For which $h$ does $f * g 
 :::
 
 ::: solution {of="ex:af-nonunit"}
-$(f * g)(n) = g(n/2)$ if $n$ is even and $0$ if $n$ is odd. So a solution exists iff $h(n) = 0$ for every odd $n$, and then $g(m) = h(2m)$ — unique, as Proposition \ref{prop:dirichlet-units} predicts.
+$(f * g)(n) = g(n/2)$ if $n$ is even and $0$ if $n$ is odd. So a solution exists iff $h(n) = 0$ for every odd $n$, and then $g(m) = h(2m)$ — unique, as \ref{prop:dirichlet-units} predicts.
 :::
 
 ::: summary

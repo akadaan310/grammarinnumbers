@@ -1,0 +1,11 @@
+
+> gin-book@1.0.0 prebuild
+> python3 tools/export_data.py
+
+exported book/data (ginsdk 1.0.0)
+
+> gin-book@1.0.0 build
+> node tools/build.mjs
+
+warning: downloads: no PDF published: run `npm run pdf` and commit book/site/downloads/
+ok: 45 chapters, 154 formal items, 537 labels, 73/73 references cited, 121 executed examples, content version da4d5426be3b -> dist/

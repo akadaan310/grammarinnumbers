@@ -283,11 +283,11 @@ Show that the sequence $x_0 = 1$, $x_{n+1} = (x_n + 2/x_n)/2$ consists of ration
 :::
 
 ::: solution {of="ex:rc-cauchy"}
-Each step applies field operations to rationals. For $n \ge 1$, $x_n \ge \sqrt{2}$ (AM–GM) and $x_{n+1} - \sqrt{2} = (x_n - \sqrt{2})^2 / (2x_n)$, so the error squares (divided by about $2\sqrt{2}$) at each step: the sequence converges to $\sqrt{2}$, hence is Cauchy, and its limit is not rational (Proposition \ref{prop:sqrt2}). The number of correct digits roughly doubles: about $2k$. This is Newton's method; it is how arbitrary-precision libraries compute square roots.
+Each step applies field operations to rationals. For $n \ge 1$, $x_n \ge \sqrt{2}$ (AM–GM) and $x_{n+1} - \sqrt{2} = (x_n - \sqrt{2})^2 / (2x_n)$, so the error squares (divided by about $2\sqrt{2}$) at each step: the sequence converges to $\sqrt{2}$, hence is Cauchy, and its limit is not rational (\ref{prop:sqrt2}). The number of correct digits roughly doubles: about $2k$. This is Newton's method; it is how arbitrary-precision libraries compute square roots.
 :::
 
 ::: exercise {#ex:rc-order}
-Exhibit an order on $\C$ that is total (for example, lexicographic on $(\mathrm{Re}, \mathrm{Im})$) and say which of the two compatibility conditions of Proposition \ref{prop:no-order-c} it satisfies.
+Exhibit an order on $\C$ that is total (for example, lexicographic on $(\mathrm{Re}, \mathrm{Im})$) and say which of the two compatibility conditions of \ref{prop:no-order-c} it satisfies.
 :::
 
 ::: solution {of="ex:rc-order"}

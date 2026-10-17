@@ -102,14 +102,14 @@ The **canonical numeral** $\addr(n)$ of a value $n$ in a digit grammar is the sh
 
 The word *address* is deliberate. In Computational Grammar Theory, the address of an element of a structure is the shortlex-least word of moves that reaches it from the root (\cgt{CGT-DEF-006}); a canonical numeral is exactly the address of a number in the structure whose moves are the digits. The grammar of positional notation *is* an address grammar. For numbers, the founding observation of CGT — that an address can carry the operations needed to compute with the element it names — is the familiar fact that one computes with numbers by manipulating their numerals.
 
-Apply Definition \ref{def:canonical} to the number zero and something curious appears.
+Apply \ref{def:canonical} to the number zero and something curious appears.
 
 ::: proposition {#prop:zero-address title="Zero's canonical numeral is the empty word" status="reinterpretation" ledger="GIN-PROP-002"}
 In every digit grammar, $\addr(0) = \varepsilon$. In standard base $b$ the words denoting $0$ are exactly $\varepsilon, 0, 00, 000, \ldots$, and the written numeral `0` is the shortest *non-empty* one — a conventional, non-canonical spelling of the empty address.
 :::
 
 ::: proof
-$\varepsilon$ is the shortlex-least of all words and $\sem{\varepsilon}(0) = 0$. The second claim is Proposition \ref{prop:numeral-number} with $n = 0$.
+$\varepsilon$ is the shortlex-least of all words and $\sem{\varepsilon}(0) = 0$. The second claim is \ref{prop:numeral-number} with $n = 0$.
 :::
 
 Why, then, do we write `0`? Because an empty word cannot be seen. The zero digit has two distinct jobs in positional notation, and the grammar separates them:

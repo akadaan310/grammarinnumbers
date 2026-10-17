@@ -28,7 +28,7 @@ None of this is new mathematics. The point of this book is that it is not *visib
 
 ## The research question {#sec:question}
 
-The book investigates one question, formulated by Abed Kadaan as the founding question of this publication:
+The book investigates one question, formulated by Abed Kadan as the founding question of this publication:
 
 > **Can numerical objects, arithmetic operations, number representations and numerical algorithms be understood as computational grammars whose admissible transitions, semantics, representations and costs can be formally specified and experimentally validated?**
 
@@ -152,7 +152,7 @@ The parts build on each other, but readers with different purposes can take diff
 Every chapter ends with exercises, most with solutions that can be expanded.
 
 ::: exercise {#ex:q-six}
-For each of the six expressions of §\ref{sec:six}, say whether it asks for a value, makes a claim, or both; and if it asks for a value, say whether the integers supply exactly one.
+For each of the six expressions of \ref{sec:six}, say whether it asks for a value, makes a claim, or both; and if it asks for a value, say whether the integers supply exactly one.
 :::
 
 ::: solution {of="ex:q-six"}
@@ -160,7 +160,7 @@ $1+1$ asks for a value; ℤ supplies exactly one ($2$). $0/1$ asks for a value; 
 :::
 
 ::: exercise {#ex:q-layers}
-Write the thirteen-layer table of §\ref{sec:thirteen} for the expression $6 / 3$. Which layer would change if the expression were $6 / 4$ evaluated in ℤ?
+Write the thirteen-layer table of \ref{sec:thirteen} for the expression $6 / 3$. Which layer would change if the expression were $6 / 4$ evaluated in ℤ?
 :::
 
 ::: solution {of="ex:q-layers"}
@@ -184,7 +184,7 @@ Any error in the prose that does not change the program's output: for instance, 
 :::
 
 ::: exercise {#ex:q-evidence}
-Classify each statement with one of the labels of §\ref{sec:evidence}: (a) "In ℤ/6 the equation $4c = 2$ has exactly two solutions." (b) "On this host, `1.0/0.0` in Python raises ZeroDivisionError." (c) "Positional notation is a compression of unary notation." (d) "Every finite integral domain is a field."
+Classify each statement with one of the labels of \ref{sec:evidence}: (a) "In ℤ/6 the equation $4c = 2$ has exactly two solutions." (b) "On this host, `1.0/0.0` in Python raises ZeroDivisionError." (c) "Positional notation is a compression of unary notation." (d) "Every finite integral domain is a field."
 :::
 
 ::: solution {of="ex:q-evidence"}

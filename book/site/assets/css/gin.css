@@ -343,6 +343,7 @@ svg.lab-svg .lbl{font-size:10px;fill:var(--ink-3)}
 .outcome-failed{color:var(--ink-3)}
 
 @media print{
+  .ledger-id{white-space:nowrap}
   :root{--paper:#fff;--card:#fff;--paper-2:#f6f6f6;--ink:#111;--ink-2:#222;--ink-3:#444}
   .env-demo.print-demo{display:block!important;background:#fff;border:1px dashed #999}
   .print-colophon{break-before:page;font-size:9.5pt}

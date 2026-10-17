@@ -41,6 +41,22 @@
   "GIN-PROP-052": {
    "ok": true,
    "detail": "w = 1 .. 12"
+  },
+  "GIN-PROP-076": {
+   "ok": true,
+   "detail": "all odd a < 2^10, all b < 2^10"
+  },
+  "GIN-HIST-018": {
+   "ok": true,
+   "detail": "21 values reached by chains of length <= 5"
+  },
+  "GIN-NEG-024": {
+   "ok": true,
+   "detail": "1426 violations for n < 30, all with non-unit base"
+  },
+  "GIN-HIST-019": {
+   "ok": true,
+   "detail": "odd composites 9 <= n <= 1500"
   }
  }
 }

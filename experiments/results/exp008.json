@@ -9,8 +9,8 @@
   "python": "3.13.16",
   "implementation": "CPython",
   "machine": "x86_64",
-  "system": "Linux 6.18.44-fc-v80",
-  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz"
+  "system": "Linux 6.18.44-fc-v139",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz"
  },
  "data": {
   "limb_bits": 32,
@@ -27,8 +27,8 @@
     "gcd_euclid": 130,
     "gcd_binary": 123,
     "powmod_L_bit_exponent": 2320,
-    "cpython_mul_s": 1.2355499848126783e-07,
-    "cpython_divmod_s": 2.474749999237247e-07
+    "cpython_mul_s": 6.106999990151963e-08,
+    "cpython_divmod_s": 1.1401499932617299e-07
    },
    {
     "bits": 128,
@@ -42,8 +42,8 @@
     "gcd_euclid": 476,
     "gcd_binary": 416,
     "powmod_L_bit_exponent": 14483,
-    "cpython_mul_s": 8.212500006266055e-08,
-    "cpython_divmod_s": 1.7111500028477166e-07
+    "cpython_mul_s": 7.436000032612355e-08,
+    "cpython_divmod_s": 1.567399999657937e-07
    },
    {
     "bits": 256,
@@ -57,8 +57,8 @@
     "gcd_euclid": 1582,
     "gcd_binary": 1712,
     "powmod_L_bit_exponent": 109761,
-    "cpython_mul_s": 1.3573499927588272e-07,
-    "cpython_divmod_s": 3.3196499998666696e-07
+    "cpython_mul_s": 1.226450001468038e-07,
+    "cpython_divmod_s": 2.923749991623481e-07
    },
    {
     "bits": 512,
@@ -72,8 +72,8 @@
     "gcd_euclid": 6085,
     "gcd_binary": 6383,
     "powmod_L_bit_exponent": 828405,
-    "cpython_mul_s": 3.459399999883317e-07,
-    "cpython_divmod_s": 7.341900004576019e-07
+    "cpython_mul_s": 3.1420500022250055e-07,
+    "cpython_divmod_s": 8.549100004984211e-07
    },
    {
     "bits": 1024,
@@ -86,8 +86,8 @@
     "divmod_2L_by_L": 2167,
     "gcd_euclid": 22000,
     "gcd_binary": 23717,
-    "cpython_mul_s": 1.1405750001358684e-06,
-    "cpython_divmod_s": 2.2963199990044814e-06
+    "cpython_mul_s": 1.0422599996218196e-06,
+    "cpython_divmod_s": 2.5210449996393434e-06
    },
    {
     "bits": 2048,
@@ -100,8 +100,8 @@
     "divmod_2L_by_L": 8399,
     "gcd_euclid": 81034,
     "gcd_binary": 96745,
-    "cpython_mul_s": 4.682539999976143e-06,
-    "cpython_divmod_s": 8.107020000807097e-06
+    "cpython_mul_s": 4.446789999974499e-06,
+    "cpython_divmod_s": 8.4721299992907e-06
    },
    {
     "bits": 4096,
@@ -114,8 +114,8 @@
     "divmod_2L_by_L": 33200,
     "gcd_euclid": 326516,
     "gcd_binary": 374281,
-    "cpython_mul_s": 2.14718250003898e-05,
-    "cpython_divmod_s": 3.299304000165648e-05
+    "cpython_mul_s": 1.3425495000092269e-05,
+    "cpython_divmod_s": 3.1434260000651194e-05
    },
    {
     "bits": 8192,
@@ -126,8 +126,8 @@
     "mul_schoolbook": 131072,
     "mul_karatsuba": 56771,
     "divmod_2L_by_L": 131928,
-    "cpython_mul_s": 4.503955500013035e-05,
-    "cpython_divmod_s": 0.0001240356299990708
+    "cpython_mul_s": 4.104741499986631e-05,
+    "cpython_divmod_s": 0.00012172554000017044
    },
    {
     "bits": 16384,
@@ -138,8 +138,8 @@
     "mul_schoolbook": 524288,
     "mul_karatsuba": 172598,
     "divmod_2L_by_L": 526069,
-    "cpython_mul_s": 0.0001420119500016881,
-    "cpython_divmod_s": 0.0003296586649980782
+    "cpython_mul_s": 0.00012465185999985807,
+    "cpython_divmod_s": 0.0003004714399992281
    }
   ],
   "loglog_slopes": {

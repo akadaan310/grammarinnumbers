@@ -1,0 +1,5 @@
+
+> gin-book@1.0.0 pdf
+> node tools/pdf.mjs
+
+wrote grammar-in-numbers.pdf: 351 pages, 8.2 MB, 97705 words extracted, 61 fonts (all embedded), content 1012346eb355

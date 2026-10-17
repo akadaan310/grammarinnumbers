@@ -123,7 +123,60 @@ def prop064():
     return "n < 40"
 
 
-CHECKS = [("GIN-PROP-064", prop064), ("GIN-PROP-062", prop062), ("GIN-PROP-060", prop060), ("GIN-PROP-061", prop061), ("GIN-PROP-057", prop057), ("GIN-PROP-050", prop050), ("GIN-PROP-051", prop051), ("GIN-PROP-052", prop052)]
+def prop076():
+    """Binary gcd: each main-loop iteration at least halves a*b; subtractions <= log2(ab) + 1."""
+    for a in range(1, 1 << 10, 2):
+        for b in range(1, 1 << 10):
+            x, y = a, b
+            subs = 0
+            while y:
+                while y % 2 == 0:
+                    y //= 2
+                if x > y:
+                    x, y = y, x
+                before = x * y
+                y -= x
+                subs += 1
+                if y:
+                    z = y
+                    while z % 2 == 0:
+                        z //= 2
+                    assert x * z * 2 <= before, (a, b)
+            assert x == math.gcd(a, b) and subs <= math.log2(a * b) + 1, (a, b, subs)
+    return "all odd a < 2^10, all b < 2^10"
+
+
+def hist018():
+    """Doubling bound: every addition chain for e has length >= ceil(log2 e); BFS over all chains up to length 5."""
+    best = {}
+    frontier = [(1,)]
+    for length in range(0, 6):
+        for ch in frontier:
+            best.setdefault(ch[-1], length)
+        frontier = [ch + (s,) for ch in frontier for s in {a + b for a in ch for b in ch} if s > ch[-1]]
+    for e, l in best.items():
+        assert l >= math.ceil(math.log2(e)), (e, l)
+    return f"{len(best)} values reached by chains of length <= 5"
+
+
+def neg024():
+    bad = [(a, e, n) for n in range(2, 30) for a in range(n) for e in range(1, 3 * n) if pow(a, e, n) != pow(a, e % T.phi(n), n)]
+    assert bad and all(math.gcd(a, n) > 1 for a, e, n in bad)
+    assert pow(2, 3, 4) == 0 and pow(2, 3 % T.phi(4), 4) == 2
+    return f"{len(bad)} violations for n < 30, all with non-unit base"
+
+
+def hist019():
+    for n in range(9, 1501, 2):
+        if T.is_prime(n):
+            continue
+        liars = sum(1 for a in range(1, n) if T.strong_probable_prime(n, a))
+        bound = T.phi(n) / 4 if n > 9 else (n - 1) / 4
+        assert liars <= bound, (n, liars)
+    return "odd composites 9 <= n <= 1500"
+
+
+CHECKS = [("GIN-PROP-064", prop064), ("GIN-PROP-062", prop062), ("GIN-PROP-060", prop060), ("GIN-PROP-061", prop061), ("GIN-PROP-057", prop057), ("GIN-PROP-050", prop050), ("GIN-PROP-051", prop051), ("GIN-PROP-052", prop052), ("GIN-PROP-076", prop076), ("GIN-HIST-018", hist018), ("GIN-NEG-024", neg024), ("GIN-HIST-019", hist019)]
 
 if __name__ == "__main__":
     for ident, fn in CHECKS:

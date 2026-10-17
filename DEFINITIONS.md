@@ -184,3 +184,6 @@ b | a iff the converse problem bc = a has a solution in ℤ; 0 | 0 is true altho
 
 ### GIN-DEF-096 Dirichlet convolution; the Dirichlet ring *[classical]*
 (f * g)(n) = Σ_{d|n} f(d) g(n/d); arithmetic functions with + and * form a commutative ring with identity ε. Book, Chapter 32.
+
+### GIN-DEF-097 Three cost models for arithmetic *[classical; separation is this book's reporting rule]*
+Unit cost (every operation costs 1; admissible only for bounded operands), word RAM (w-bit words, w ≥ log₂ n, operations on O(1) words cost 1), bit complexity (bit operations; the growing parameter is the operand length L). Every cost in the book names its model, its growing parameter, and whether it is a bound, an exact count or a measurement. Book, Chapter 36.

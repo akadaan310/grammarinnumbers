@@ -472,3 +472,32 @@ Over a field, f is a unit iff f(1) ≠ 0; the ring has no zero divisors, so f * 
 
 ### GIN-OBS-020 Averages of arithmetic functions, measured *(Empirical observation; classical asymptotics)*
 Σ_{n≤x} τ(n) − (x ln x + (2γ−1)x) = 6.8, 20.3, 14.3 at x = 10³, 10⁴, 10⁵; Σ φ / (3x²/π²) = 1.00075, 1.000037, 1.000005; coprime fraction of 10⁵ random pairs 0.6089 (16-bit), 0.6078 (64-bit) vs 6/π² = 0.6079 (seed 32); up to 10⁴: perfect 6, 28, 496, 8128; 2,488 abundant, 7,508 deficient. Book, Chapter 32.
+
+## L. Completion of the first edition (2026-10-17): entries added with Chapters 33–42
+
+### GIN-HIST-016 Bézout's identity, constructively *(Historical result: classical)*
+For a, b not both 0 the extended Euclidean algorithm returns s, t with sa + tb = gcd(a, b); invariant r_i = s_i a + t_i b on every row. *Check.* 2,000 random pairs below 10⁹ (sdk tests). Book, Chapter 33.
+
+### GIN-HIST-017 The bit cost of Euclid's algorithm *(Historical result: classical; Knuth TAOCP vol. 2 §4.5.3)*
+O(L²) bit operations with schoolbook division, because the logarithms of the quotients sum to at most log a. *Measurement.* Limb operations grow by factors 3.69, 4.03, 3.87 per doubling of L = 256 … 2048 (book Ch. 33). Book, Chapters 33, 36.
+
+### GIN-PROP-076 An iteration bound for the binary gcd *(Proposition; elementary, proved here; likely folklore)*
+On odd a and positive b, each iteration of Stein's main loop (halve b to odd, order, subtract) at least halves the product of the components; hence at most log₂(ab) + 1 subtractions. *Check.* `check_theorems_edition1.py` (all odd a, b < 2¹⁰); on 3,000 random 64-bit pairs the largest ratio subtractions/log₂(ab) was 0.433. Book, Chapter 33.
+
+### GIN-HIST-018 The doubling lower bound for addition chains *(Historical result: classical)*
+Every addition chain for e has length ≥ ⌈log₂ e⌉; binary exponentiation is within a factor 2 of optimal. *Computation.* Shortest chains for e = 15, 23, 31, 127 have lengths 5, 6, 7, 10 against 6, 7, 8, 12 for the binary method. Book, Chapter 34.
+
+### GIN-HIST-019 The Miller–Rabin error bound *(Historical result: Rabin 1980; Monier 1980)*
+For odd composite n > 9 at most φ(n)/4 bases are strong liars. The bound is a probability over random bases for a fixed n, not over n. Book, Chapter 35.
+
+### GIN-OBS-021 Census of strong liars *(Empirical observation; exhaustive computation)*
+Over all 1,831 odd composites 9 ≤ n ≤ 5000, the largest fraction of strong liars among 1 ≤ a < n is exactly 1/4, at n = 9 (consistent with HIST-019). Base-2 Fermat pseudoprimes below 10⁵: 78; Carmichael numbers below 10⁵: 16. Book, Chapter 35.
+
+### GIN-OBS-022 Fitted exponents depend on the range *(Empirical observation)*
+Least-squares log–log slopes of GIN-EXP-008 counts: add 1.000 and schoolbook 2.000 on every range; Karatsuba 2.000 (first four points, below its 16-limb threshold), 1.797 (all), 1.628 (last four) vs log₂3 = 1.585; division 1.708 / 1.891 / 1.990; Euclid gcd 1.838 / 1.875 / 1.912. Spread of Euclid's limb operations over 40 random pairs: 21% (L = 256), 12% (L = 1024) of the median. Book, Chapter 37.
+
+### Corrections made while completing the first edition
+| ID | Correction |
+|---|---|
+| C-004 | 32-bit division on wrapping machines (Java, Go, AArch64, RISC-V models) did not raise the `overflow` flag when the quotient of INT_MIN / −1 wrapped, so `contracts.inspect` classified it as `different-selection` with an explanation (truncation vs Euclidean selection) that is false for that case. Found while writing Chapter 39; fixed in `ginsdk.expr` and `gin-core.js`, regression test `test_division_overflow_is_wrapped`, fixtures regenerated. EXP-013's scores (outcome class and value) are unaffected. |
+| C-005 | `run_all.sh` did not run `check_theorems_edition1.py`, so its committed result file recorded 4 of the 8 checks; and EXP-014 overwrote its committed emulation results with a skip when QEMU was absent. Both fixed (AUDIT_2026-10.md, A-03/A-04). |

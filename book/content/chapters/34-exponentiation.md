@@ -52,7 +52,7 @@ e = 1000 = 1111101000: {'square': 9, 'multiply': 5}  instead of 999 multiplicati
 
 The same correspondence appeared in Chapter 14 as a statement about unary numerals: the binary numeral of $n$ is a straight-line program for the unary word $a^n$, with doublings for squarings and appended letters for multiplications (\ledger{GIN-PROP-007}). Positional notation, repeated squaring and grammar compression are one object seen three ways.
 
-## Right to left, and addition chains {#sec:chains}
+## Right to left, and addition chains {#sec:addition-chains}
 
 The digits can also be read from the least significant end: keep a running square $x, x^2, x^4, \ldots$ and multiply it into the result whenever the digit is `1`. The counts are the same — one squaring per digit after the first and one multiplication per further `1` — and the order of the operations differs. Right-to-left needs one extra register; left-to-right always multiplies by the *same* $x$, which matters when $x$ is small and the accumulator is large, and which makes "windowed" variants (precomputing $x^3, x^5, \ldots$ and reading several digits at a time) natural.
 

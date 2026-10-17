@@ -142,7 +142,7 @@ for e, d in cases:
 2 ^ 10                   binary64       -> unsupported    layer=typing
 ```
 
-Case 4 deserves emphasis. The outcome status is `value`, because AArch64 does produce a value. A program that inspects only the status would conclude that `1 / 0` succeeded. Only by comparing with exact mathematics — where the status is `no-solution` — does one see that the value is a convention, not a quotient. The SDK's `inspect` function performs exactly this comparison (§\ref{sec:inspect}).
+Case 4 deserves emphasis. The outcome status is `value`, because AArch64 does produce a value. A program that inspects only the status would conclude that `1 / 0` succeeded. Only by comparing with exact mathematics — where the status is `no-solution` — does one see that the value is a convention, not a quotient. The SDK's `inspect` function performs exactly this comparison (\ref{sec:inspect}).
 
 ## Operation contracts {#sec:contracts}
 
@@ -207,7 +207,7 @@ For each operation, say whether it is total, functional and closed on the given 
 :::
 
 ::: exercise {#ex:op-parse}
-Give the parse trees of `-3 ^ 2 ^ 2` and `2 * -3 ^ 2` in the grammar of Definition \ref{def:expr-grammar}, and their values in $\Z$.
+Give the parse trees of `-3 ^ 2 ^ 2` and `2 * -3 ^ 2` in the grammar of \ref{def:expr-grammar}, and their values in $\Z$.
 :::
 
 ::: solution {of="ex:op-parse"}

@@ -155,7 +155,7 @@ $1011011_2 = 91$ and $101_2 = 5$. Processing the bits $1, 0, 1, 1, 0, 1, 1$ from
 :::
 
 ::: exercise {#ex:rem-magic}
-Find the smallest $s$ for which Proposition \ref{prop:magic} applies to $N = 8$, $d = 3$, and the corresponding $M$.
+Find the smallest $s$ for which \ref{prop:magic} applies to $N = 8$, $d = 3$, and the corresponding $M$.
 :::
 
 ::: solution {of="ex:rem-magic"}

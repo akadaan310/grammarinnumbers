@@ -137,7 +137,7 @@ for e in ["(0.1 + 0.1) + 0.4", "0.1 + (0.1 + 0.4)", "(1e16 + 1) - 1e16"]:
 The third line is *absorption*: $10^{16} + 1$ is not representable in binary64 (the spacing of representable numbers near $10^{16}$ is $2$), so the $1$ is lost entirely. Addition of floating-point numbers is total, commutative and correctly rounded, and it is not the addition of the real numbers it approximates.
 
 ::: exercise {#ex:add-base3}
-Add $2121_3$ and $1012_3$ with Algorithm \ref{alg:column-add}, listing the carries. Check by converting to decimal.
+Add $2121_3$ and $1012_3$ with \ref{alg:column-add}, listing the carries. Check by converting to decimal.
 :::
 
 ::: solution {of="ex:add-base3"}
@@ -153,7 +153,7 @@ With carry $c \le 2$, a column sum is at most $3(b - 1) + 2 = 3b - 1$, so the ne
 :::
 
 ::: exercise {#ex:add-z2}
-Which of the five readings of §\ref{sec:add-five} give $1 + 1 = 0$, and in which structure?
+Which of the five readings of \ref{sec:add-five} give $1 + 1 = 0$, and in which structure?
 :::
 
 ::: solution {of="ex:add-z2"}

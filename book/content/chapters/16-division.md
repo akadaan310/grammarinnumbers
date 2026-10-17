@@ -152,7 +152,7 @@ For a commutative ring $R$ with $1 \ne 0$, the following are equivalent: (i) for
 :::
 
 ::: proof
-(i) ⇔ (ii) by Theorem \ref{thm:image-kernel}: uniqueness for all $a$ is $\Ann(b) = \{0\}$. (ii) ⇔ (iii): $bc = bc' \iff b(c - c') = 0$. If $R$ is finite and $b \ne 0$, the map $c \mapsto bc$ is injective by (iii), hence surjective, so $bc = 1$ for some $c$.
+(i) ⇔ (ii) by \ref{thm:image-kernel}: uniqueness for all $a$ is $\Ann(b) = \{0\}$. (ii) ⇔ (iii): $bc = bc' \iff b(c - c') = 0$. If $R$ is finite and $b \ne 0$, the map $c \mapsto bc$ is injective by (iii), hence surjective, so $bc = 1$ for some $c$.
 :::
 
 So in $\Z$, $\Q$, $\R$, $\C$ and $\Z/p$, the *only* kernel failure is at $b = 0$, and in fields the *only* image failure is at $b = 0$ too. Division by zero is the one place where a field's division is inadmissible — and there, both conditions fail at once. That is the subject of Chapter 17.
