@@ -113,6 +113,15 @@ class TestExpr(unittest.TestCase):
             if disp is not None:
                 self.assertEqual(o.display, disp, o.headline())
 
+    def test_division_overflow_is_wrapped(self):
+        # regression (2026-10 audit): INT_MIN / -1 on wrapping machines is a wraparound, not a "selection"
+        from ginsdk import contracts
+        for d in ("int32 Java", "int32 Go", "int32 AArch64", "int32 RISC-V"):
+            o = E.evaluate("(-2147483647 - 1) / -1", d)
+            self.assertEqual((o.display, o.flags), ("-2147483648", ["overflow"]), d)
+            self.assertEqual(contracts.inspect("(-2147483647 - 1) / -1", d)["relation"]["kind"], "wrapped", d)
+        self.assertEqual(contracts.inspect("-7 / 2", "int32 Java")["relation"]["kind"], "selected")
+
     def test_every_failure_has_a_reason(self):
         for src in ["1/0", "0/0", "0-1", "sqrt(-4)", "7/2", "1+", "2147483647*2", "x/0", "0^-1"]:
             for o in E.compare(src):

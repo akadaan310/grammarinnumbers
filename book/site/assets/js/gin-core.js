@@ -467,6 +467,8 @@
         const o = DIV[div](a, b);
         if (o.kind === "value") {
           const res = op === "/" || op === "//" ? o.q : (o.r !== null && o.r !== undefined ? o.r : a - b * o.q);
+          // INT_MIN / -1 on a wrapping machine: the exact integer quotient is not representable
+          if (b !== 0n && (op === "/" || op === "//") && tdiv(a, b)[0] !== res) ctx.flags.add("overflow");
           if (b === 0n) ctx.notes.push(`${label} returns ${res} for ${a} ${op} 0 without any signal (${o.note}); this value is not a solution of 0 · c = ${a}`);
           else if (o.note) ctx.notes.push(o.note);
           ctx.step(op, [a, b], res, "specification model"); return res;
