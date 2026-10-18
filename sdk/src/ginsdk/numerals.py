@@ -68,8 +68,8 @@ class DigitGrammar:
 
     def __init__(self, base: int, digits: Iterable[int], name: str | None = None,
                  symbols: dict[int, str] | None = None) -> None:
-        if base < 1:
-            raise ValueError("base must be ≥ 1")
+        if base in (0, -1):
+            raise ValueError("base must be ≥ 1 or ≤ −2")
         self.base = base
         self.digits = tuple(sorted(set(digits)))
         if not self.digits:
@@ -130,8 +130,8 @@ class DigitGrammar:
     # -- addresses (canonical numerals) -----------------------------------------
     def is_complete_residue_system(self) -> bool:
         """True iff the digits are pairwise incongruent mod b and cover every residue."""
-        b = self.base
-        return len(self.digits) == b and len({d % b for d in self.digits}) == b
+        b = abs(self.base)
+        return b >= 2 and len(self.digits) == b and len({d % b for d in self.digits}) == b
 
     def expand(self, n: int, max_digits: int = 10_000) -> tuple[Word, str]:
         """Digit expansion of ``n`` by the residue algorithm, least significant digit first.
@@ -245,6 +245,8 @@ UNARY = bijective(1)
 BINARY = standard(2)
 DECIMAL = standard(10)
 BALANCED_TERNARY = DigitGrammar(3, (-1, 0, 1), name="balanced ternary", symbols={-1: "T", 0: "0", 1: "1"})
+NEGABINARY = DigitGrammar(-2, (0, 1), name="base −2 (negabinary)")
+REDUNDANT_BINARY = DigitGrammar(2, (0, 1, 2), name="redundant binary (digits 0, 1, 2)")
 
 
 # ---------------------------------------------------------------------------
@@ -350,3 +352,49 @@ def periodic_expansion(q, base: int = 10) -> str:
         return f"{sign}{int_digits}." + "".join(frac)
     k = seen[rem]
     return f"{sign}{int_digits}." + "".join(frac[:k]) + "(" + "".join(frac[k:]) + ")"
+
+
+# Parsing, canonicalization and base conversion of written numerals -------------------
+def canonicalize(text: str, b: int = 10) -> dict:
+    """Parse a written standard base-``b`` numeral and return its canonical form.
+
+    Returns a record with the digit word, its value, the canonical numeral (the
+    address, written ``"0"`` for the empty address by the usual convention), whether
+    the input was already canonical, and why not (leading zeros).  Raises
+    ValueError for symbols that are not digits of base ``b``.
+    """
+    g = standard(b)
+    t = text.strip().lower()
+    if not t:
+        raise ValueError("the empty string is not a written numeral (the empty word is zero's address, conventionally written 0)")
+    word = g.parse(t)
+    value = g.denote(word)
+    addr = g.address(value)
+    written = g.render(addr) if addr else "0"
+    lead = len(word) - len(addr) - (1 if not addr else 0)
+    return {"input": text, "base": b, "value": value, "canonical": written, "address": g.render(addr),
+            "was_canonical": t == written, "leading_zeros": max(lead, 0),
+            "note": "" if t == written else f"{max(lead, 0)} leading zero(s) removed; leading zeros do not change the value (GIN-PROP-001)"}
+
+
+def convert(text: str, b_from: int, b_to: int) -> str:
+    """Convert a written standard numeral from base ``b_from`` to base ``b_to``.
+
+    The value is the invariant; only the word changes: ``convert("2", 10, 2) == "10"``.
+    """
+    v = canonicalize(text, b_from)["value"]
+    g = standard(b_to)
+    a = g.address(v)
+    return g.render(a) if a else "0"
+
+
+def numeral_table(n: int) -> dict[str, str]:
+    """The numerals of a natural number ``n`` in several digit grammars (Chapter 6)."""
+    if n < 0:
+        raise ValueError("numeral_table is defined for natural numbers")
+    rows = {"unary (bijective base 1)": UNARY.render(UNARY.address(n)) if n <= 64 else f"S^{n}",
+            "bijective base 2": bijective(2).render(bijective(2).address(n)),
+            "binary": convert(str(n), 10, 2), "ternary": convert(str(n), 10, 3),
+            "balanced ternary": BALANCED_TERNARY.render(BALANCED_TERNARY.address(n)),
+            "decimal": str(n), "hexadecimal": convert(str(n), 10, 16)}
+    return rows

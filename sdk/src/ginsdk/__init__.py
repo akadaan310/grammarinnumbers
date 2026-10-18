@@ -14,14 +14,23 @@ circuits      gate-level adders (ripple and prefix), carry monoid, multiplier, d
 bigint        limb arithmetic with counted word operations (bit complexity)
 numbertheory  Euclid, Bézout, CRT, exponentiation, primality, factorization
 cost          explicit cost counters
+contracts     machine-readable operation contracts; layered inspection; independent verification
+
+Command line: ``python3 -m ginsdk inspect "1 / 0" --domain Q`` (see ``python3 -m ginsdk -h``).
+
+Stable public API (1.x): the names in ``__all__`` below, the module functions
+documented in the book's SDK reference, the ``Outcome`` record of :mod:`ginsdk.expr`,
+and the JSON schemas ``gin-contracts/1`` and ``gin-inspect/1``.
 """
-from . import bigint, circuits, converse, cost, expr, ieee, machine, numbertheory, numerals, peano
+from . import bigint, circuits, contracts, converse, cost, expr, ieee, machine, numbertheory, numerals, peano
+from .contracts import inspect, verify
 from .converse import SolutionSet, divide, divide_mod, square_root, subtract
 from .cost import Cost
 from .expr import compare, evaluate, parse
-from .numerals import BINARY, DECIMAL, UNARY, DigitGrammar, bijective, standard
+from .numerals import BINARY, DECIMAL, UNARY, DigitGrammar, bijective, canonicalize, convert, standard
 
-__version__ = "0.1.0"
-__all__ = ["bigint", "circuits", "converse", "cost", "expr", "ieee", "machine", "numbertheory", "numerals", "peano",
+__version__ = "1.0.0"
+__all__ = ["bigint", "circuits", "contracts", "converse", "cost", "expr", "ieee", "machine", "numbertheory", "numerals", "peano",
            "SolutionSet", "divide", "divide_mod", "square_root", "subtract", "Cost", "compare", "evaluate", "parse",
-           "BINARY", "DECIMAL", "UNARY", "DigitGrammar", "bijective", "standard"]
+           "BINARY", "DECIMAL", "UNARY", "DigitGrammar", "bijective", "standard",
+           "canonicalize", "convert", "inspect", "verify"]

@@ -113,6 +113,24 @@ class TestExpr(unittest.TestCase):
             if disp is not None:
                 self.assertEqual(o.display, disp, o.headline())
 
+    def test_division_overflow_is_wrapped(self):
+        # regression (2026-10 audit): INT_MIN / -1 on wrapping machines is a wraparound, not a "selection"
+        from ginsdk import contracts
+        for d in ("int32 Java", "int32 Go", "int32 AArch64", "int32 RISC-V"):
+            o = E.evaluate("(-2147483647 - 1) / -1", d)
+            self.assertEqual((o.display, o.flags), ("-2147483648", ["overflow"]), d)
+            self.assertEqual(contracts.inspect("(-2147483647 - 1) / -1", d)["relation"]["kind"], "wrapped", d)
+        self.assertEqual(contracts.inspect("-7 / 2", "int32 Java")["relation"]["kind"], "selected")
+
+    def test_numerals_are_ascii_digits(self):
+        # regression (NUM-EXP-003): the SDK tokenizer used Python's Unicode \d and accepted
+        # "٣٤" (and the mixed-script "٣۴") as 34, while the laboratory core rejects them:
+        # the expression grammar's digits are 0-9, as in gin-core.js
+        for s in ("\u0663\u0664", "\u06f3\u06f4", "\u0663\u06f4", "\uff13\uff14"):
+            o = E.evaluate(s, "Z")
+            self.assertEqual((o.status, o.layer), ("syntax-error", "syntax"), s)
+        self.assertEqual(E.evaluate("34", "Z").display, "34")
+
     def test_every_failure_has_a_reason(self):
         for src in ["1/0", "0/0", "0-1", "sqrt(-4)", "7/2", "1+", "2147483647*2", "x/0", "0^-1"]:
             for o in E.compare(src):
@@ -124,6 +142,24 @@ class TestExpr(unittest.TestCase):
         t = E.parse("1 + 2 * 3").tree()
         self.assertEqual(t["label"], "+")
         self.assertEqual(t["children"][1]["label"], "*")
+
+
+class TestDirichlet(unittest.TestCase):
+    def test_dirichlet_ring(self):
+        from fractions import Fraction
+        from ginsdk import numbertheory as nt
+        N = 300
+        one = nt.table(lambda n: 1, N)
+        ident = nt.table(lambda n: n, N)
+        eps = nt.table(lambda n: 1 if n == 1 else 0, N)
+        mu = nt.table(nt.mobius, N)
+        assert nt.dirichlet(mu, one) == eps
+        assert nt.dirichlet(nt.table(nt.phi, N), one) == ident
+        assert nt.dirichlet(one, ident) == nt.table(nt.sigma, N)
+        kind, g = nt.dirichlet_divide(eps, one)
+        assert kind == "unique" and g == [Fraction(x) for x in mu]
+        assert nt.dirichlet_divide(eps, nt.table(lambda n: 0 if n == 1 else 1, N))[0] == "not-solved"
+        assert nt.is_multiplicative(nt.table(nt.phi, 100)) and not nt.is_multiplicative(nt.table(lambda n: n + 1, 100))
 
 
 if __name__ == "__main__":

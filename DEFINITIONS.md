@@ -153,3 +153,37 @@ The result of evaluating an expression in a domain: a status (value, special dat
 
 ### GIN-DEF-070 Bit-cost model *[standard]*
 Operands are measured by bit length L. A *word operation* acts on w-bit limbs (here w = 32): add/subtract-with-carry, limb product, two-by-one-limb quotient estimate, limb comparison. Unit-cost arithmetic is used only for operands of bounded length, and the bound is stated.
+
+## J. First-edition definitions (session 2, 2026-10-09)
+
+Introduced while writing the first edition of the book. Same conventions as above.
+
+### GIN-DEF-090 Layered analysis of an arithmetic request *[GiN, methodological]*
+For an expression e in a domain D, the answers, in order, to: (1) objects, (2) symbols and numerals, (3) syntax, (4) semantics, (5) admissibility, (6) state transition, (7) representation, (8) algorithm, (9) machine execution, (10) correctness invariants, (11) cost under a stated model, (12) empirical verification, (13) limits and counterexamples. Book, Chapter 1. The list is a checklist, not a theory; layers 1–4 are logic, 8, 10, 11 algorithm analysis, 9 architecture.
+
+### GIN-DEF-080 Operation contract *[GiN, provisional]*
+For an operator ∘ and a domain (family) D: the precondition under which a ∘ b is admissible in D; the defining equation of the result; the failure classes (outcome statuses, GIN-DEF-062) possible when the precondition fails; the cost model. Machine-readable form: schema `gin-contracts/1` (`ginsdk.contracts`). Book, Chapter 8.
+
+### GIN-DEF-081 Machine–mathematics relation *[GiN, provisional]*
+For an expression evaluated in a machine domain and in the exact domain it implements (ℤ for machine integers, ℚ for floating point and Python), the classification of the pair of outcomes: agrees, rounded, wrapped, totalized (a value where mathematics has none), selected (a quotient-with-remainder where the exact quotient does not exist), different-selection, special-datum, overflowed-to-special, signalled, undefined, differs. Implemented by `ginsdk.contracts.inspect` (schema `gin-inspect/1`) and by `gin-core.js`. Book, Chapters 8 and 39.
+
+### GIN-DEF-091 Annihilator; zero divisor *[standard]*
+Ann(b) = {t ∈ R : bt = 0}; b ≠ 0 with Ann(b) ≠ {0} is a zero divisor. The kernel of c ↦ bc, hence the kernel condition of division (GIN-THM-001). Book, Chapter 16.
+
+### GIN-DEF-092 Complete ordered field *[classical]*
+An ordered field in which every non-empty bounded-above subset has a least upper bound; unique up to unique isomorphism (ℝ). Book, Chapter 28.
+
+### GIN-DEF-093 The field GF(2ⁿ) *[classical]*
+Polynomials over 𝔽₂ of degree < n modulo an irreducible m(x); AES uses m = x⁸+x⁴+x³+x+1 (0x11B). In GF(2⁸) 0x57·0x83 = 0xC1 and 0x53·0xCA = 0x01 (computed). Book, Chapter 29.
+
+### GIN-DEF-094 p-adic integers *[classical]*
+Compatible sequences x_k ∈ ℤ/p^k, equivalently infinite left-extending base-p numerals; machine words are truncations of 2-adic integers (PROP-050). Book, Chapter 29.
+
+### GIN-DEF-095 Divisibility as admissibility *[classical; reading is GiN's]*
+b | a iff the converse problem bc = a has a solution in ℤ; 0 | 0 is true although 0/0 has no unique answer; `a % b == 0` changes the question at b = 0. Book, Chapter 30.
+
+### GIN-DEF-096 Dirichlet convolution; the Dirichlet ring *[classical]*
+(f * g)(n) = Σ_{d|n} f(d) g(n/d); arithmetic functions with + and * form a commutative ring with identity ε. Book, Chapter 32.
+
+### GIN-DEF-097 Three cost models for arithmetic *[classical; separation is this book's reporting rule]*
+Unit cost (every operation costs 1; admissible only for bounded operands), word RAM (w-bit words, w ≥ log₂ n, operations on O(1) words cost 1), bit complexity (bit operations; the growing parameter is the operand length L). Every cost in the book names its model, its growing parameter, and whether it is a bound, an exact count or a measurement. Book, Chapter 36.

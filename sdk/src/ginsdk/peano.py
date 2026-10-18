@@ -101,6 +101,70 @@ def monus(m: int, n: int, cost: Cost | None = None) -> int:
     return acc
 
 
+# ---------------------------------------------------------------------------
+# Genuine term rewriting (witnesses the rule counts above on small inputs)
+# ---------------------------------------------------------------------------
+# A term is "0", ("S", t), ("add", t, u), ("mul", t, u).  rewrite() applies the
+# defining equations one at a time (leftmost-outermost redex first) and records
+# every step, so that the counts charged by add() and mul() can be checked
+# against an actual derivation rather than a formula.
+def num(n: int):
+    t = "0"
+    for _ in range(n):
+        t = ("S", t)
+    return t
+
+
+def show(t) -> str:
+    if t == "0":
+        return "0"
+    if t[0] == "S":
+        k, u = 0, t
+        while u != "0" and u[0] == "S":
+            k, u = k + 1, u[1]
+        return ("S" * k + "0") if u == "0" else "S" * k + "(" + show(u) + ")"
+    return f"{t[0]}({show(t[1])}, {show(t[2])})"
+
+
+def _step(t):
+    """One rewrite step at the leftmost-outermost redex; returns (term, rule) or None."""
+    if t == "0":
+        return None
+    if t[0] == "S":
+        r = _step(t[1])
+        return None if r is None else (("S", r[0]), r[1])
+    op, a, b = t
+    if op == "add":
+        if b == "0":
+            return a, "add(m, 0) = m"
+        if b[0] == "S":
+            return ("S", ("add", a, b[1])), "add(m, S n) = S(add(m, n))"
+    if op == "mul":
+        if b == "0":
+            return "0", "mul(m, 0) = 0"
+        if b[0] == "S":
+            return ("add", ("mul", a, b[1]), a), "mul(m, S n) = add(mul(m, n), m)"
+    for i in (1, 2):                       # no rule applies at the root: rewrite inside, left first
+        r = _step(t[i])
+        if r is not None:
+            new = list(t)
+            new[i] = r[0]
+            return tuple(new), r[1]
+    return None
+
+
+def rewrite(t, max_steps: int = 100_000) -> tuple[object, list[tuple[str, str]]]:
+    """Normalize a term by the defining equations; return (normal form, [(rule, term after)])."""
+    trace = []
+    while len(trace) < max_steps:
+        r = _step(t)
+        if r is None:
+            return t, trace
+        t = r[0]
+        trace.append((r[1], show(t)))
+    raise RuntimeError("no normal form within max_steps")
+
+
 def church(n: int) -> Callable[[Callable], Callable]:
     """Church numeral: n ↦ (f ↦ f∘…∘f, n times). Number as the grammar of iteration."""
     def numeral(f):
@@ -195,7 +259,7 @@ def parse_segment(text: str) -> SegmentParse:
         return SegmentParse(False, None, f"boundary: need a < b, got {a} ≥ {b}")
     expected = list(range(a + 1, b))
     if inner == expected:
-        return SegmentParse(True, Segment(a, b), f"segment from {a} to {b}: {b - a} successor transitions, interior of size {b - a - 1}")
+        return SegmentParse(True, Segment(a, b), f"segment from {a} to {b}: {b - a} successor transition{'s' if b - a != 1 else ''}, interior of size {b - a - 1}")
     missing = sorted(set(expected) - set(inner))
     extra = sorted(set(inner) - set(expected))
     if missing or extra:

@@ -1,0 +1,110 @@
+== exp001_numerals.py
+EXP-001 done: {'standard base 2': True, 'standard base 3': True, 'standard base 10': True} heap mismatches 0 2c mismatches 0
+== exp002_increment_carries.py
+EXP-002 done: flip mismatches 0 carry chain rows [(4, -0.8003), (8, -0.8407), (16, -0.809), (32, -0.6987), (64, -0.6937), (128, -0.7153), (256, -0.6567), (512, -0.7077), (1024, -0.7007), (2048, -0.739), (4096, -0.729)]
+== exp003_converse_census.py
+EXP-003 done: violations 0 True True
+== exp004_machine_division.py
+EXP-004 done; model agreement: {'x86 model: 1/0 traps': True, 'x86 model: MIN/-1 traps': True, 'x86 model: -7/2 = -3': True, 'Java model: MIN/-1 = MIN': True, 'Java model: 1/0 exception': True, 'Rust model: 1/0 panics': True, 'Rust model: MIN/-1 panics (debug)': True, 'Rust model: MIN/-1 panics (release)': True, 'Go model: 1/0 panics': True, 'Go model: MIN/-1 = MIN': True, 'Python model: -7//2 = -4': True, 'Python model: 1//0 raises': True, 'JS BigInt model: 1n/0n RangeError': True, 'JS BigInt model: -7n/2n = -3': True}
+== exp005_ieee_validation.py
+EXP-005 {'binary32': (0, 0, 158, 300, 142), 'binary64': (0, 0, 159, 300, 141)} after rounding
+== exp006_adder_circuits.py
+EXP-006 errors: 0
+1 {'ripple-carry': (2, 1), 'Sklansky': (2, 1), 'Kogge–Stone': (2, 1), 'Brent–Kung': (2, 1)} True
+2 {'ripple-carry': (7, 3), 'Sklansky': (7, 3), 'Kogge–Stone': (7, 3), 'Brent–Kung': (7, 3)} True
+4 {'ripple-carry': (17, 7), 'Sklansky': (20, 6), 'Kogge–Stone': (23, 5), 'Brent–Kung': (20, 6)} True
+8 {'ripple-carry': (37, 15), 'Sklansky': (52, 8), 'Kogge–Stone': (67, 7), 'Brent–Kung': (49, 10)} True
+16 {'ripple-carry': (77, 31), 'Sklansky': (128, 10), 'Kogge–Stone': (179, 9), 'Brent–Kung': (110, 14)} True
+32 {'ripple-carry': (157, 63), 'Sklansky': (304, 12), 'Kogge–Stone': (451, 11), 'Brent–Kung': (235, 18)} True
+64 {'ripple-carry': (317, 127), 'Sklansky': (704, 14), 'Kogge–Stone': (1091, 13), 'Brent–Kung': (488, 22)} True
+128 {'ripple-carry': (637, 255), 'Sklansky': (1600, 16), 'Kogge–Stone': (2563, 15), 'Brent–Kung': (997, 26)} True
+256 {'ripple-carry': (1277, 511), 'Sklansky': (3584, 18), 'Kogge–Stone': (5891, 17), 'Brent–Kung': (2018, 30)} True
+== exp007_mul_div_circuits.py
+EXP-007 {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0} {1: True, 2: True, 3: True, 4: True, 5: True, 6: True}
+{'n': 1, 'multiplier_gates': 1, 'multiplier_depth': 1, 'divider_gates': 16, 'divider_depth': 9, 'ripple_adder_gates': 2}
+{'n': 2, 'multiplier_gates': 8, 'multiplier_depth': 3, 'divider_gates': 50, 'divider_depth': 19, 'ripple_adder_gates': 7}
+{'n': 4, 'multiplier_gates': 64, 'multiplier_depth': 16, 'divider_gates': 172, 'divider_depth': 51, 'ripple_adder_gates': 17}
+{'n': 8, 'multiplier_gates': 320, 'multiplier_depth': 40, 'divider_gates': 632, 'divider_depth': 163, 'ripple_adder_gates': 37}
+{'n': 16, 'multiplier_gates': 1408, 'multiplier_depth': 88, 'divider_gates': 2416, 'divider_depth': 579, 'ripple_adder_gates': 77}
+{'n': 32, 'multiplier_gates': 5888, 'multiplier_depth': 184, 'divider_gates': 9440, 'divider_depth': 2179, 'ripple_adder_gates': 157}
+== exp008_bit_complexity.py
+add                      [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+sub                      [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+compare_equal            [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+mul_schoolbook           [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+mul_karatsuba            [2.0, 2.0, 2.0, 1.811, 1.701, 1.657, 1.625, 1.604]
+divmod_2L_by_L           [1.644, 1.632, 1.874, 1.932, 1.955, 1.983, 1.99, 1.996]
+gcd_euclid               [1.872, 1.733, 1.944, 1.854, 1.881, 2.011]
+gcd_binary               [1.758, 2.041, 1.899, 1.894, 2.028, 1.952]
+powmod_L_bit_exponent    [2.642, 2.922, 2.916]
+== exp009_euclid.py
+EXP-009 True 14 [{'n': 1009, 'average_steps': 6.287698, 'prediction': 7.29625, 'difference': -1.008551}, {'n': 10007, 'average_steps': 8.230762, 'prediction': 9.229829, 'difference': -0.999067}, {'n': 100003, 'average_steps': 10.170387, 'prediction': 11.169805, 'difference': -0.999418}, {'n': 1000003, 'average_steps': 12.109263, 'prediction': 13.110322, 'difference': -1.001059}] 0 {'mean_subtractions_binary': 45.2228, 'mean_divisions_euclid': 37.7552}
+== exp010_primes.py
+EXP-010 {'limit': 1000000, 'primes': 78498, 'crossings': 2122048, 'n_lnln_n': 2625792, 'ratio': 0.8082} 245 46 43 0 [{'bits': 11, 'prime': 1031, 'divisions': 15, 'sqrt_n_over_2': 16}, {'bits': 15, 'prime': 16411, 'divisions': 63, 'sqrt_n_over_2': 64}, {'bits': 19, 'prime': 262147, 'divisions': 255, 'sqrt_n_over_2': 256}, {'bits': 23, 'prime': 4194319, 'divisions': 1023, 'sqrt_n_over_2': 1024}, {'bits': 27, 'prime': 67108879, 'divisions': 4095, 'sqrt_n_over_2': 4096}, {'bits': 31, 'prime': 1073741827, 'divisions': 16383, 'sqrt_n_over_2': 16384}] [{'p_bits': 10, 'mean_steps': 25.2, 'mean_steps_over_sqrt_p': 0.911}, {'p_bits': 14, 'mean_steps': 104.7, 'mean_steps_over_sqrt_p': 0.966}, {'p_bits': 18, 'mean_steps': 505.9, 'mean_steps_over_sqrt_p': 1.134}, {'p_bits': 22, 'mean_steps': 1850.0, 'mean_steps_over_sqrt_p': 1.052}, {'p_bits': 26, 'mean_steps': 6284.2, 'mean_steps_over_sqrt_p': 0.908}]
+== exp011_numeral_shapes.py
+horner [1.882, 1.974, 1.983, 1.983, 1.989, 1.998, 1.998]
+balanced_schoolbook [1.326, 1.481, 1.608, 1.745, 1.838, 1.904, 1.949]
+balanced_karatsuba [1.326, 1.481, 1.554, 1.556, 1.579, 1.59, 1.594]
+{'digits': 8192, 'horner': 10105494, 'balanced_schoolbook': 1507887, 'balanced_karatsuba': 669698, 'compositions_balanced': 8191, 'depth_balanced': 13, 'depth_horner': 8192}
+== exp012_representation_boundaries.py
+EXP-012 {'binary8 (1-4-3 teaching format)': True, 'binary16': True, 'binary32': True, 'binary64': True} [(1, 1, True), (2, 3, True), (3, 7, True), (4, 15, True)] 242 [{'a': '0.1', 'b': '0.1', 'c': '0.4', '(a+b)+c': '0.6000000000000001', 'a+(b+c)': '0.6'}, {'a': '0.1', 'b': '0.1', 'c': '0.6', '(a+b)+c': '0.8', 'a+(b+c)': '0.7999999999999999'}] 0 {'forward': '10.480757', 'backward': '10.480734', 'exact_rounded': '10.480728', 'forward_error': 2.8542414227114685e-05, 'backward_error': 5.6542306333646854e-06}
+== exp013_execution_prediction.py
+C (gcc -O0, x86-64)    naive-py: 612/845  naive-c: 757/845  model[int32 C]: 731/731 (+114 abstain)  model[int32 x86-64]: 845/845
+Java                   naive-py: 613/845  naive-c: 758/845  model[int32 Java]: 845/845
+Go                     naive-py: 613/845  naive-c: 758/845  model[int32 Go]: 845/845
+Rust (debug)           naive-py: 612/845  naive-c: 757/845  model[int32 Rust (debug)]: 845/845
+JavaScript BigInt      naive-py: 700/845  naive-c: 845/845  model[JS BigInt]: 845/845
+JavaScript Number      naive-py: 767/845  naive-c: 718/845  model[JS Number]: 676/676 (+169 n/m)
+Python                 naive-py: 845/845  naive-c: 700/845  model[Python]: 845/845
+== exp014_isa_emulation.py
+EXP-014 aarch64 8/8 before rounding | riscv64 8/8 after rounding | x86-64 after rounding
+  aarch64 1/0 -> [(0, 1), (0, 0), (0, -7)] fdiv flags [('1/0', ['divideByZero']), ('0/0', ['invalid']), ('-1/0', ['divideByZero']), ('1e308/1e-10', ['inexact', 'overflow']), ('2.2250738585072014e-308/0.5', []), ('0/1', [])]
+  riscv64 1/0 -> [(-1, 1), (-1, 0), (-1, -7)] fdiv flags [('1/0', ['divideByZero']), ('0/0', ['invalid']), ('-1/0', ['divideByZero']), ('1e308/1e-10', ['inexact', 'overflow']), ('2.2250738585072014e-308/0.5', []), ('0/1', [])]
+== exp015_law_census.py
+EXP-015 wheel axioms all hold: True
+  field      1/0=undefined  0/0=undefined  converse law: hold 42, fail 0, undefined 7
+  meadow     1/0=0          0/0=0          converse law: hold 43, fail 6, undefined 0
+  wheel      1/0=∞          0/0=⊥          converse law: hold 43, fail 21, undefined 0
+  projective 1/0=∞          0/0=undefined  converse law: hold 24, fail 0, undefined 12
+  extended   1/0=undefined  0/0=undefined  converse law: hold 28, fail 0, undefined 21
+  ieee16     1/0=Infinity   0/0=NaN        converse law: hold 72, fail 49, undefined 0
+  riscv8     1/0=-1         0/0=-1         converse law: hold 29, fail 35, undefined 0
+  aarch64_8  1/0=0          0/0=0          converse law: hold 29, fail 35, undefined 0
+GIN-PROP-001: ok — 6303 word pairs
+GIN-PROP-002: ok — bases 2..16
+GIN-PROP-003: ok — m, n < 12
+GIN-PROP-004: ok — bijective bases 1,2,3,5 exhaustive by length; residue algorithm on 3 grammars
+GIN-PROP-005: ok — base 7, |u| = 3, |v| = 2
+GIN-PROP-006: ok — n < 300000
+GIN-PROP-008: ok — widths 1..12, all representable n
+GIN-PROP-009: ok — bases 2,3,10,12, denominators < 200
+GIN-PROP-010: ok — N ≤ 65536
+GIN-THM-001: ok — 30 rings, 5737 pairs
+GIN-THM-002: ok — n ≤ 60
+GIN-THM-003: ok — Z/n, n < 60
+GIN-THM-006: ok — pairs in [-4, 4]², 19200 operations
+GIN-PROP-015: ok — four formats, both signs
+GIN-PROP-021: ok — n < 200
+GIN-PROP-023: ok — n ≤ 6, all dividends
+GIN-PROP-030: ok — full search for p = 4, 11; boundary windows for p = 24, 53
+GIN-PROP-031: ok — k ≤ 5
+GIN-PROP-040: ok — all pairs below 700, step counts 1..13
+GIN-PROP-041: ok — e < 5000; the bit string of e is recovered from the move word
+GIN-PROP-042: ok — moduli < 16
+GIN-PROP-064: ok — n < 40
+GIN-PROP-062: ok — 2^24 triples: 4177792 non-associative
+GIN-PROP-060: ok — K = 1..6: every (n, 0) is identified with (0, 0)
+GIN-PROP-061: ok — 87380 pairs, widths 1..8
+GIN-PROP-057: ok — 61922 additions in bases 2..7
+GIN-PROP-050: ok — binary16 and binary8 enumerated; binary32 patterns decoded
+GIN-PROP-051: ok — 286 glued pairs with endpoints in [-6, 6]
+GIN-PROP-052: ok — w = 1 .. 12
+GIN-PROP-076: ok — all odd a < 2^10, all b < 2^10
+GIN-HIST-018: ok — 21 values reached by chains of length <= 5
+GIN-NEG-024: ok — 1426 violations for n < 30, all with non-unit base
+GIN-HIST-019: ok — odd composites 9 <= n <= 1500
+wrote results/SUMMARY.md
+
+real	1m34.073s
+user	1m31.608s
+sys	0m3.795s

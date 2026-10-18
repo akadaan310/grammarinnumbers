@@ -70,3 +70,24 @@
 - **Hypotheses.** H-031 … H-035.
 - **Design.** Least unrepresentable integer by search (full search for p = 4, 11; windows for p = 24, 53); exactly representable k-digit decimals, k ≤ 4; associativity over all tenth-triples; harmonic sum H₂₀₀₀₀ in binary32 in both orders; MAX + 1 for widths 8 … 64 under each overflow policy.
 - **Result.** PROP-030, PROP-031, PROP-032, OBS-015.
+
+---
+
+## First edition (session 2) experiments
+
+## GIN-EXP-013 Predicting real execution: operation contracts vs naive evaluation (`exp013_execution_prediction.py`, oracles in `experiments/machine/predict/`)
+- **Hypothesis.** H-040.
+- **Design.** 845 single operations (13 operands including 0, ±1, INT_MIN, INT_MAX, 46341, 65536; operators + − × / %) executed at run time by C (gcc -O0, x86-64), Java, Go, Rust (debug), JavaScript (BigInt and Number) and Python; each predicted by three predictors: the SDK's domain model (`ginsdk.expr.evaluate` with operands passed as variables), "naive-py" (evaluate in Python), "naive-c" (unbounded integers, truncating division). Scored on outcome class (value vs refusal) and value.
+- **Result.** Model: 845/845 for Java, Go, Rust, JS BigInt, Python and C at the instruction-set level (`int32 x86-64`); for ISO C it abstains on 114 undefined-behaviour cases and is right on the other 731; JS Number 676/676 with `%` not modelled (169 cases). Naive-py: 612–767 of 845 on the six non-Python toolchains (845 on Python); naive-c: 700–845 (845 only for JS BigInt). See OBS-017.
+- **Limitation.** One host; one version per toolchain; operands from a fixed set; the model was built from the same specifications these toolchains implement, so the result validates the model's coverage, not an independent learning method. **AI-only baseline not run** (no model API available to the experiment): OPEN-013.
+
+## GIN-EXP-014 AArch64 and RISC-V division and tininess under emulation (`exp014_isa_emulation.py`, `machine/isa_div.c`)
+- **Hypotheses.** H-038, H-039.
+- **Design.** Freestanding C compiled with clang for aarch64/riscv64 (`-nostdlib -static -fuse-ld=lld`), run under QEMU user mode 8.2.2; 8 signed and unsigned 32-bit divisions (incl. x/0, INT_MIN/−1), 6 binary64 divisions with FPSR/fflags read directly, and a discriminating tininess product (exact value 2⁻¹²⁶(1 − 2⁻⁴⁶), rounds up to the smallest normal). x86-64 tininess measured natively.
+- **Result.** SDK models agree 8/8 on both ISAs (AArch64 x/0 → 0; RISC-V x/0 → −1, remainder = dividend; INT_MIN/−1 → INT_MIN on both). FP flags as IEEE specifies on both. Tininess: QEMU-AArch64 before rounding (underflow raised), QEMU-RISC-V after rounding, x86-64 hardware after rounding (OBS-018).
+- **Limitation.** Emulator, not hardware: tests the models against QEMU's independent implementation. AArch64 has no remainder instruction (C's % = SDIV + MSUB, mod 2³²).
+
+## GIN-EXP-015 The law census of totalized division (`exp015_law_census.py`, `ginsdk.totalized`)
+- **Hypothesis.** H-041.
+- **Design.** Ten laws evaluated exactly on all tuples from fixed samples (6–11 elements) of eight systems: field ℚ, meadow ℚ, wheel of fractions of ℤ, projective line, extended rationals, IEEE binary16, 8-bit RISC-V and AArch64 division. The wheel also checked against 14 axiom instances (Carlström's axioms as listed in a secondary source).
+- **Result.** All wheel axioms hold. Every total system fails y(x/y) = x; the partial systems never fail it where defined. Full table: book Chapter 18; IMP-007, OBS in the book.

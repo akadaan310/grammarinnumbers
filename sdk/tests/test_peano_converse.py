@@ -94,5 +94,28 @@ class TestConverse(unittest.TestCase):
             self.assertEqual(has, n == 1)
 
 
+
+class TestRewriting(unittest.TestCase):
+    """The rule counts charged by peano.add/mul equal the length of an actual derivation."""
+
+    def test_counts_match_derivations(self):
+        from ginsdk import peano as P
+        from ginsdk.cost import Cost
+        for m in range(7):
+            for n in range(7):
+                c = Cost(); P.add(m, n, c)
+                nf, tr = P.rewrite(("add", P.num(m), P.num(n)))
+                self.assertEqual((nf, len(tr)), (P.num(m + n), c["rule"]))
+                c = Cost(); P.mul(m, n, c)
+                nf, tr = P.rewrite(("mul", P.num(m), P.num(n)))
+                self.assertEqual((nf, len(tr)), (P.num(m * n), c["rule"]))
+                self.assertEqual(len(tr), m * n + 2 * n + 1)
+
+    def test_show(self):
+        from ginsdk import peano as P
+        self.assertEqual(P.show(P.num(3)), "SSS0")
+        self.assertEqual(P.show(("add", P.num(1), P.num(2))), "add(S0, SS0)")
+
+
 if __name__ == "__main__":
     unittest.main()

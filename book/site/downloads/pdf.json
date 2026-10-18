@@ -1,0 +1,21 @@
+{
+ "file": "grammar-in-numbers.pdf",
+ "pages": 351,
+ "bytes": 8091333,
+ "sha256": "4f9a50bf5d49ba8f94e914d5d3082c2e09ae02fcee176441543b970182047ea1",
+ "content_version": "cc88d59d24bd",
+ "source_build": "19ce8d9",
+ "words_extracted": 97643,
+ "fonts": 61,
+ "generated": "2026-10-18",
+ "generator": "book/tools/pdf.mjs (Chromium print of dist/print.html)",
+ "checks": [
+  "width",
+  "pdf-header",
+  "pdfinfo-pages",
+  "chapter-titles",
+  "no-U+FFFD",
+  "fonts-embedded",
+  "content-version"
+ ]
+}

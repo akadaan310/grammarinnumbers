@@ -313,3 +313,52 @@ def mobius(n: int) -> int:
 
 def sigma(n: int) -> int:
     return sum(divisors(n))
+
+
+# --- The Dirichlet ring of arithmetic functions (book, Chapter 32) -------------------------
+# An arithmetic function is represented by its values on 1..N as a list of length N + 1
+# (index 0 unused). Values may be int or Fraction.
+
+def table(f, N: int) -> list:
+    """Tabulate f on 1..N."""
+    return [0] + [f(n) for n in range(1, N + 1)]
+
+
+def dirichlet(f: list, g: list, cost: Cost | None = None) -> list:
+    """Dirichlet convolution (f * g)(n) = sum over d | n of f(d) g(n/d), on 1..N."""
+    N = min(len(f), len(g)) - 1
+    h = [0] * (N + 1)
+    for d in range(1, N + 1):
+        if f[d] == 0:
+            continue
+        for m in range(1, N // d + 1):
+            h[d * m] += f[d] * g[m]
+            charge(cost, "mul")
+    return h
+
+
+def dirichlet_divide(h: list, f: list) -> tuple[str, list | None]:
+    """Solve f * g = h for g on 1..N, over the rationals.
+
+    Returns ("unique", g) when f(1) != 0; otherwise the ring has no inverse for f and the
+    function reports "not-solved" (the Dirichlet ring over a field is an integral domain,
+    so a solution, if any, is unique, but this solver does not search for one)."""
+    from fractions import Fraction
+    N = min(len(f), len(h)) - 1
+    if f[1] == 0:
+        return "not-solved", None
+    g = [Fraction(0)] * (N + 1)
+    for n in range(1, N + 1):
+        s = Fraction(h[n])
+        for d in divisors(n):
+            if d > 1:
+                s -= f[d] * g[n // d]
+        g[n] = s / f[1]
+    return "unique", g
+
+
+def is_multiplicative(f: list) -> bool:
+    """f(1) = 1 and f(mn) = f(m) f(n) for coprime m, n with mn <= N."""
+    N = len(f) - 1
+    return f[1] == 1 and all(f[m * n] == f[m] * f[n]
+                             for m in range(2, N + 1) for n in range(2, N // m + 1) if math.gcd(m, n) == 1)

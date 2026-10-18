@@ -28,3 +28,16 @@ Each entry is a constructed or measured case in which a plausible claim about ar
 - **GIN-REJ-002** (session-1 working assumption) "The simulator need not model signaling NaNs to match hardware flags." Rejected by EXP-005: all 101 initial flag mismatches were operations on signaling NaNs, where hardware raises *invalid*. Kept as evidence that the experiment can find defects in the instrument.
 - **GIN-REJ-003** "Balanced evaluation of numerals is asymptotically cheaper than Horner's rule in bit cost." Rejected for schoolbook multiplication (NEG-008); the surviving form needs a subquadratic multiplication.
 - **GIN-REJ-004** "Compilers delete post-division zero tests" as a general statement (NEG-004).
+
+## First edition (session 2) additions
+
+| ID | Plausible claim | Counterexample | Failure mode | Source |
+|---|---|---|---|---|
+| GIN-NEG-018 | A bit pattern determines a value. | 0xFFFFFFFF is −1, 4294967295 or a binary32 NaN; 0x40490FDB is 1078530011 and the binary32 approximation 13176795/2²² of π. | the encoding (type) is not stored in the bits | PROP-050, book Ch. 2 |
+| GIN-NEG-019 | Solution sets of converse problems are always cosets of a kernel. | In ℤ/8, c·c = 1 has 4 solutions {1,3,5,7} and c·c = 4 has 2 solutions {2,6}: different sizes, so not cosets of one subgroup. | squaring is not a homomorphism; GIN-THM-007 needs linearity | book Ch. 9 |
+| GIN-NEG-020 | Adjoining negatives to any machine addition yields the integers. | The group completion of saturating addition on {0,…,K} is trivial: K ⊞ x = K forces every element to 0. | non-cancellative monoid | PROP-060, book Ch. 12 |
+| GIN-NEG-021 | Saturating addition is associative. | 8-bit signed: (100 ⊞ 100) ⊞ (−100) = 27 but 100 ⊞ (100 ⊞ (−100)) = 100; 24.90% of all triples fail. | clamping loses information | PROP-062, book Ch. 13 |
+| GIN-NEG-022 | The principal square root is multiplicative. | √−1·√−1 = −1 but √((−1)(−1)) = 1 (exact and in CPython cmath). | a selection from two-element solution sets cannot respect multiplication on ℂ | PROP-070, book Ch. 28 |
+| GIN-NEG-023 | Factorization into irreducibles is unique in every ring of integers. | In ℤ[√−5], 6 = 2·3 = (1+√−5)(1−√−5), all four irreducible (no element of norm 2 or 3). | irreducible ≠ prime: Euclid's lemma fails | HIST-010, book Ch. 30 |
+| GIN-NEG-024 | Exponents may be reduced modulo φ(n). | Modulo 4: 2³ ≡ 0 but 2^(3 mod φ(4)) = 2¹ = 2. For n < 40 there are 2,665 violations, every one with gcd(a, n) > 1; the rule holds for all units (Euler). | exponent reduction needs a unit base | book Ch. 34 |
+| GIN-NEG-025 | Unit-cost multiplication is a reasonable cost model for unbounded integers. | k squarings of 2 produce 2^(2^k), a number of 2^k + 1 bits, in k unit steps; any model with bounded-size steps needs ≥ 2^k steps (executed to k = 12: 4,097 bits, 8,450 limb operations for the last square). | operands grow; the word RAM bounds word size by O(log n) | book Ch. 36 |

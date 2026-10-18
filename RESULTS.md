@@ -306,6 +306,7 @@ What session 1 has produced, measured against the mandate's list:
 | GIN-REI-008 | Positional notation is CGT's M-SHARE (grammar compression) applied to unary numerals (GIN-PROP-007). |
 | GIN-REI-009 | Long division is a finite transition system on remainders; periodic decimals are its cycles (GIN-PROP-009). |
 | GIN-REI-010 | The segment notation a{I}b is formal notation for a marked path, without new content (§B). |
+| GIN-REI-011 | Representations trade operations against each other: unary, positional, prime-exponent vectors and residue (CRT) representations are each exact, with different operations cheap (book, Chapter 7). Classical facts about algorithms read as properties of grammars. |
 
 ## I. Conjecture
 
@@ -318,3 +319,187 @@ CGT's five mechanisms (CGT-DEF-009) should be extended by **M-ASSOC**: when a co
 | C-001 | The first evaluator treated exponents as elements of ℤ/n, so 0^−1 in ℤ/6 evaluated as 0⁵ = 0. Exponents are now integers acting on the domain (GIN-NEG-013). |
 | C-002 | The IEEE simulator first treated all NaNs as quiet; GIN-EXP-005 found 101 flag mismatches, all on signaling-NaN operands. Signaling NaNs are now modelled (GIN-REJ-002). |
 | C-003 | The simulator's docstring first claimed AArch64 detects tininess after rounding; this was unverified and is removed. The x86-64 claim is now measured (GIN-OBS-009). |
+
+## K. First edition (session 2, 2026-10-09): entries added while writing the book
+
+Same conventions as above. "Proved here" statements of this section are checked by `experiments/check_theorems_edition1.py` (results in `experiments/results/checks_edition1.json`). Unless stated otherwise every entry is classical or elementary; none is claimed as new.
+
+### GIN-HIST-002 Dedekind's categoricity theorem *(Historical result: Dedekind 1888)*
+Any two successor algebras are isomorphic by a unique isomorphism. Proof via the recursion theorem (book, Chapter 2). This is what justifies "the" natural numbers; GiN's four-layer model rests on it (values are what all representations of a successor term have in common).
+
+### GIN-PROP-050 Encoding and decoding are not mutually inverse *(Proposition; elementary, proved here)*
+dec ∘ enc = id on the domain of enc; enc ∘ dec ≠ id in general: binary64 has 2⁵³ − 2 NaN patterns decoding to one datum and two patterns (±0) decoding to the value 0; the 32-bit pattern 0xFFFFFFFF is −1 (two's complement), 4294967295 (unsigned) and a NaN (binary32). *Check.* NaN and zero pattern counts by enumeration for binary16 and the 1-4-3 format, and by formula for binary32/64.
+
+### GIN-PROP-051 Gluing segments; the boundary of a glued segment *(Proposition; trivial, proved here; a REINTERPRETATION of 1-chains)*
+For a{I}b and b{J}c, gluing gives a{I,b,J}c; gluing is associative where defined; ∂(σ ⊕ τ) = ∂σ △ ∂τ (symmetric difference, i.e. the boundary of 1-chains over Z/2); every segment is uniquely a glued sequence of empty-interior segments. Answers the "calculus" half of GIN-OPEN-008: a calculus exists and it is the classical calculus of paths and chains. *Check.* All segments with endpoints in [−6, 6].
+
+### GIN-PROP-052 Fixed-width successor violates exactly one Peano axiom *(Proposition; elementary, proved here)*
+On W = {0,…,2ʷ−1} with s(x) = (x+1) mod 2ʷ: s is injective and induction holds, but 0 = s(2ʷ−1). The transition system is one cycle of length 2ʷ; the predecessor is total; overflow is a step across the seam. *Check.* w ≤ 12.
+
+### GIN-HIST-003 The recursion theorem *(Historical result: Dedekind 1888)*
+For x₀ ∈ X and g: ℕ × X → X there is exactly one f with f(0) = x₀, f(Sn) = g(n, f(n)). Needs all three Peano axioms; it fails on fixed-width words (GIN-PROP-052), where "count up" definitions are inconsistent across the seam. Book, Chapter 4.
+
+### GIN-HIST-004 The Peano laws of addition *(Historical result: classical; Peano 1889, Grassmann)*
+0 + a = a, Sa + b = S(a + b), commutativity and associativity, proved by induction from the primitive-recursive definitions (book, Chapter 4). The derivations of a + b and b + a have different lengths (b + 1 and a + 1 rule applications): a law asserts that different computations agree in value.
+
+### GIN-IMP-004 Peano rule counts are witnessed by term rewriting *(Implementation result)*
+`ginsdk.peano.rewrite` normalizes add/mul terms by the defining equations (leftmost-outermost). The number of rewrite steps equals the counts of GIN-PROP-003 (n + 1 and mn + 2n + 1) for all m, n < 12 (book, Chapter 4) and < 7 in the SDK tests.
+
+### GIN-PROP-053 The length of a canonical numeral *(Proposition; classical)*
+For b ≥ 2 and n ≥ 1 the canonical base-b numeral has ⌊log_b n⌋ + 1 digits. The input size of a number is the length of its numeral, Θ(log n); algorithms taking n steps on input n are exponential in input size. Book, Chapter 5.
+
+### GIN-PROP-054 Hyperbinary representations are counted by Stern's sequence *(Reproduced result: classical, Calkin & Wilf 2000)*
+The words over {0,1,2} without leading zero with base-2 value n number s(n+1), Stern's diatomic sequence. Proof by the recurrences h(2k+1) = h(k), h(2k+2) = h(k) + h(k+1) (book, Chapter 6). Reproduced by enumeration for n < 60 (SDK test `TestOtherBases`). Used in the book to show that redundant digit sets make numerals non-unique even without leading zeros.
+
+### GIN-IMP-005 Negative bases in the SDK *(Implementation result)*
+`ginsdk.numerals.DigitGrammar` accepts bases ≤ −2; `NEGABINARY` (base −2, digits 0, 1) names each integer in [−80, 80] by a unique word without leading zeros, and the value map is injective on all such words of length ≤ 8 (SDK tests).
+
+### GIN-PROP-055 Divisibility automata *(Proposition; classical)*
+For base b ≥ 2 and modulus m ≥ 1, the DFA on residues {0,…,m−1} with r →d (br + d) mod m accepts exactly the base-b numerals of multiples of m (the digit grammar reduced mod m). *Check.* Base 2, n < 4000, m < 20 (book, Chapter 7). A special case of the regularity statements of GIN-THM-005.
+
+### GIN-PROP-056 The four evaluation layers are independent *(Proposition; by exhibited witnesses, proved here)*
+Witnesses: `0.5 + 1` in ℤ (well formed, ill-typed); `1 / 0` in ℚ (typed, no solution); `(−2147483647 − 1) / −1` in int32 x86-64 (unique solution 2147483648 in ℤ, trap at execution); `1 / 0` in int32 AArch64 (no solution, executes to 0); `2147483648 − 1` (ill-typed in int32, a value in Python); `2 ^ 10` in binary64 (admissible in ℚ, unsupported as a basic IEEE operation). Refines CGT-PROP-002 by the typing layer. Book, Chapter 8.
+
+### GIN-THM-007 Converse of a homomorphism *(Theorem; classical linear algebra)*
+For a homomorphism f: G → H of abelian groups, {c : f(c) = a} is empty or c₀ + ker f: existence iff a ∈ f(G) (image condition); when non-empty it has |ker f| elements (kernel condition). The general form behind GIN-THM-001 (division in rings), subtraction, modular inverses and linear Diophantine equations. Book, Chapter 9.
+
+### GIN-PROP-057 Correctness of column addition; the carry is at most 1 *(Proposition; classical, proof written here)*
+In any base b, column addition keeps the invariant Σ_{j≤i} s_j bʲ + c_{i+1} b^{i+1} = Σ_{j≤i}(a_j + b_j) bʲ and every carry is 0 or 1; for k addends the carry is at most k − 1. Book, Chapter 10. *Check.* Bases 2–7, all pairs of 3-digit numerals.
+
+### GIN-PROP-058 Addition needs linear time on numerals *(Proposition; classical adversary argument)*
+Computing the binary numeral of x + y from L-bit numerals requires reading all 2L input bits in the worst case: Θ(L) bit operations sequentially; with parallel processors O(log L) depth (GIN-PROP-020). Book, Chapter 10.
+
+### GIN-PROP-059 Addition needs logarithmic depth *(Proposition; classical)*
+A fan-in-2 circuit computing the carry out of n-bit addition has depth ≥ ⌈log₂ 2n⌉, because the carry out depends on all 2n inputs. At n = 256 the bound is 9; the measured Kogge–Stone depth is 17, Brent–Kung 30, ripple 511 (GIN-EXP-006). Book, Chapter 11.
+
+### GIN-PROP-060 Adjoining negatives to saturating addition destroys it *(Proposition; elementary, proved here)*
+For M_K = {0,…,K} with x ⊞ y = min(x + y, K), every monoid homomorphism to a group is trivial (K ⊞ x = K forces h(x) = 0). The group completion of saturating arithmetic is trivial; the Grothendieck construction of ℤ needs cancellation. Book, Chapter 12. *Check.* For K ≤ 6, the congruence generated by the completion relation identifies all elements.
+
+### GIN-PROP-061 Subtraction as addition of the complement; carry = comparison *(Proposition; classical, proof written here)*
+For w-bit unsigned a, b: a + (2ʷ − 1 − b) + 1 = (a − b) + 2ʷ, so the low w bits are (a − b) mod 2ʷ and the carry out is 1 iff a ≥ b (x86 exposes the borrow, ARM the carry). *Check.* All a, b for w ≤ 8; gate-level `ginsdk.circuits.subtractor` exhaustively for n = 6 (book, Chapter 12; GIN-IMP-003).
+
+### GIN-PROP-062 Laws kept by wraparound and by saturation: an 8-bit census *(Proposition; proved here by exhaustive computation)*
+On 8-bit signed integers: wraparound + and × form the ring ℤ/256 (signed labels); saturating addition is commutative with identity 0 but not associative — exactly 4,177,792 of 2²⁴ triples (24.90%) fail — has no inverse for −128, and saturating × does not distribute over saturating + (2·(100 ⊞ −100) = 0 vs (200) ⊞ (−200) clamps to −1). Consequence: saturating code cannot be reassociated or vectorized freely. Book, Chapter 13. *Check.* `check_theorems_edition1.py` recomputes the count.
+
+### GIN-PROP-063 Karatsuba's bound *(Proposition; classical: Karatsuba & Ofman 1962)*
+T(n) = 3T(n/2) + Θ(n) gives Θ(n^{log₂3}) digit operations; exact solution 3n^{log₂3} − 2n for T(1) = 1 and unit linear cost. The gain comes from rearranging distributivity (one product replaces two). Measured slope 1.604 at 16,384 bits (GIN-OBS-010). Book, Chapter 15.
+
+### GIN-IMP-006 Array multiplier size and depth *(Implementation result)*
+The n×n array multiplier of `ginsdk.circuits` has exactly 6n² − 8n gates and depth 6n − 8 for n = 3…32 (at n = 2: 8 gates, depth 3), and is correct exhaustively for n ≤ 6 (book, Chapter 15; GIN-EXP-007).
+
+### GIN-PROP-064 Counting the solvable divisions in ℤ/n *(Proposition; elementary, proved here)*
+The pairs (a, b) ∈ (ℤ/n)² with bc ≡ a solvable number Σ_{d|n} d·φ(d) (OEIS A057660, Σ_k n/gcd(n,k)); those with several solutions number Σ_{d|n} dφ(d) − nφ(n). *Check.* n < 40 exhaustively; census in the book for n = 6, 7, 12, 30 (Chapter 16).
+
+### GIN-PROP-065 Unique quotients characterize integral domains *(Proposition; classical)*
+For a commutative ring with 1 ≠ 0: at most one quotient for every b ≠ 0 ⇔ no zero divisors ⇔ cancellation by non-zero elements; a finite integral domain is a field. In a field the only inadmissible divisions are those by 0. Book, Chapter 16.
+
+### GIN-IMP-007 The wheel of fractions of ℤ satisfies the wheel axioms *(Implementation result)*
+`ginsdk.totalized.WheelZ` (classes of integer pairs up to non-zero scaling; ∞ = [1,0], ⊥ = [0,0]) satisfies all 14 axiom instances of a wheel on every tuple from the sample {0, 1, −1, 2, 1/2, −3, ∞, ⊥}; 1/0 = ∞, 0/0 = ⊥, 0·∞ = ⊥. Axiom list from the Wikipedia article on wheel theory (secondary; Carlström 2004 not read). GIN-EXP-015.
+
+### GIN-IMP-008 ISA division models agree with QEMU *(Implementation result)*
+`ginsdk.machine.div_aarch64`, `div_riscv`, `divu_riscv` agree with QEMU 8.2.2 user-mode execution on 8 signed/unsigned 32-bit cases each, including x/0 and INT_MIN/−1 (GIN-EXP-014). Emulator evidence, not hardware.
+
+### GIN-OBS-017 Contract models predict real execution; naive models do not *(Empirical observation)*
+On 845 operations × 7 toolchains (GIN-EXP-013), the SDK's domain models predict outcome class and value in every covered case (845/845 for Java, Go, Rust debug, JS BigInt, Python, and C at the x86-64 level; 731/731 for ISO C with 114 undefined-behaviour abstentions; 676/676 for JS Number, `%` not modelled). "Evaluate in Python" predicts 612–767 correctly on the six non-Python toolchains (845 on Python itself, trivially); "mathematical integers with C division" 700–758 except 845 for JS BigInt. Failures concentrate on overflow, negative division, true division and zero divisors.
+
+### GIN-OBS-018 Tininess detection differs between ISAs (emulated) *(Empirical observation)*
+For the binary32 product (1 − 2⁻²³) × 2⁻¹²⁶(1 + 2⁻²³), whose exact value rounds up to the smallest normal: QEMU-AArch64 raises underflow (before-rounding detection), QEMU-RISC-V does not (after rounding), x86-64 hardware does not (after rounding; consistent with OBS-009). GIN-EXP-014. Partially answers OPEN-009 (emulator only).
+
+### GIN-HIST-005 The division theorem *(Historical result: classical, Euclid)*
+For b ≠ 0, a = qb + r with |r| < |b| has two solutions when b ∤ a and one when b | a; exactly one has 0 ≤ r < |b|. Quotient-with-remainder is a selection among them: truncated (C99, Java, Go, Rust, x86, ARM, RISC-V, JS BigInt), floored (Python, Ruby, Haskell div/mod), Euclidean (Rust rem_euclid), rounded (IEEE remainder). Book, Chapter 19.
+
+### GIN-PROP-066 Division by an invariant integer using multiplication *(Proposition; classical: Granlund & Montgomery 1994; proof written here)*
+For 0 ≤ x < 2^N, M = ⌈2^{N+s}/d⌉ with Md − 2^{N+s} ≤ 2^s: ⌊xM/2^{N+s}⌋ = ⌊x/d⌋. Instance N = 32, d = 7, s = 3, M = 4908534053. *Check.* All x < 2²⁰, 200,000 random and the top 1,000 32-bit values (book, Chapter 19).
+
+### GIN-PROP-067 Signed overflow is a disagreement of carries *(Proposition; classical, proof written here)*
+For w-bit two's-complement addition, the exact sum is out of range iff the carry into the top position differs from the carry out of it (equivalently: same-sign operands, result of the other sign). *Check.* All pairs for w = 2…8 (book, Chapter 21).
+
+### GIN-HIST-006 The circuit complexity of the four operations *(Historical result: classical)*
+Addition and comparison are in AC⁰ (carry = OR over j of g_j ∧ p_{j+1} ∧ … ∧ p_{i−1}); multiplication is not in AC⁰ (Furst, Saxe & Sipser 1984, via parity); multiplication, division and iterated multiplication are in TC⁰, division in uniform TC⁰ (Hesse, Allender & Barrington 2002; corrigendum 2014). The circuit-level twin of GIN-THM-005. Book, Chapter 22.
+
+### GIN-PROP-068 The Calkin–Wilf enumeration of the positive rationals *(Proposition; classical: Calkin & Wilf 2000)*
+With Stern's diatomic sequence s, n ↦ s(n)/s(n+1) (n ≥ 1) is a bijection ℕ⁺ → ℚ⁺ onto reduced fractions; the binary length of n equals the sum of the continued-fraction partial quotients of s(n)/s(n+1). *Check.* First 4,000 terms distinct and reduced; length identity for n < 4001; 11/12 and 12 first appear at 4094 and 4095 (book, Chapter 27).
+
+### GIN-HIST-007 √2 is irrational *(Historical result: classical)*
+No rational c satisfies c² = 2; in the SDK, sqrt(2) is no-solution in ℚ and non-unique (selected) in ℝ. Book, Chapter 28.
+
+### GIN-HIST-008 The reals are uncountable *(Historical result: classical, Cantor 1891)*
+Diagonal argument (Cantor's own version uses two-symbol sequences). Consequence used in the book: the reals with a finite description form a countable subset. Book, Chapter 28.
+
+### GIN-PROP-069 Equality of computable reals is undecidable; inequality semi-decidable *(Proposition; classical, proof written here by reduction from halting)*
+Turing 1936 framework. The SDK's ℝ domain illustrates: sqrt(2)·sqrt(2) − 2 evaluates to ≈1e−39 flagged approximate. Book, Chapter 28.
+
+### GIN-PROP-070 ℂ has no order compatible with its field operations *(Proposition; classical, proof written here)*
+Squares are non-negative in any ordered field; 1 ≥ 0 and i² = −1 ≥ 0 contradict. Book, Chapter 28.
+
+### GIN-OBS-019 Naive complex division fails on representable inputs *(Empirical observation)*
+CPython 3.13, x86-64: textbook (a+bi)/(c+di) on x + xi over itself gives nan+nanj for x = 1e300 (c²+d² overflows) and ZeroDivisionError for x = 1e−300 (underflows to 0; Python float division signals); Smith's algorithm (1962) and CPython's built-in division return 1. Book, Chapter 28.
+
+### GIN-PROP-071 Unit or zero divisor in a finite commutative ring *(Proposition; classical, proof written here)*
+c ↦ bc is a bijection (b a unit) or has a non-trivial kernel (b a zero divisor), never both; fails for infinite rings (2 in ℤ). Census: ℤ/12, ℤ/30, ℤ/31, ℤ/256 have φ(n) units and n−1−φ(n) zero divisors. Book, Chapter 29.
+
+### GIN-PROP-072 Newton iteration for inverses modulo 2^w; exact division *(Proposition; classical, proof written here)*
+x' = x(2 − ax) doubles the correct low bits; from x₀ = a (a² ≡ 1 mod 8) it needs 4 steps for w = 32, 5 for w = 64. If d odd and d | x, x/d = x·d⁻¹ mod 2^w. *Check.* a ∈ {3, 7, 12345}, w ∈ {32, 64} (book, Chapter 29).
+
+### GIN-PROP-073 The divisibility lattice *(Proposition; classical, proof written here)*
+(ℕ, |) is a lattice with meet gcd, join lcm, least element 1, greatest element 0; atoms are the primes. Divisors of 60: 12 elements, 20 covering pairs (a 3×2×2 grid). Book, Chapter 30.
+
+### GIN-HIST-009 Euclid's lemma *(Historical result: classical; proof via Bézout written here)*
+p | ab ⇒ p | a or p | b. Book, Chapter 30.
+
+### GIN-HIST-010 The fundamental theorem of arithmetic *(Historical result: classical)*
+Existence and uniqueness of prime factorization; ℕ_{>0} under × is the free commutative monoid on the primes. Book, Chapter 30.
+
+### GIN-HIST-011 Infinitely many primes *(Historical result: Euclid, Elements IX.20)*
+Read as an algorithm; the smallest-factor variant gives the Euclid–Mullin sequence 2, 3, 7, 43, 13, 53, 5, 6221671 (computed). π(x)/(x/ln x) = 1.1513, 1.1605, 1.1320, 1.1043, 1.0845 at x = 10²…10⁶; largest gap below 10⁶ is 114 (492113–492227). Book, Chapter 30.
+
+### GIN-HIST-012 Euler's theorem; Fermat's little theorem *(Historical result: classical)*
+gcd(a, n) = 1 ⇒ a^φ(n) ≡ 1 (mod n); proof by permutation of the unit group written here. Book, Chapter 31.
+
+### GIN-HIST-013 Wilson's theorem *(Historical result: classical)*
+n ≥ 2 is prime iff (n−1)! ≡ −1 (mod n): exact but infeasible as a test ((n−1)! has 5,565,721 digits for n = 1,000,003). Book, Chapter 31.
+
+### GIN-HIST-014 Moduli with primitive roots *(Historical result: classical, Gauss)*
+ℤ/n has a primitive root iff n ∈ {1, 2, 4, p^k, 2p^k}, p an odd prime. *Check.* Exhaustive search agrees for 2 ≤ n < 400. Book, Chapter 31.
+
+### GIN-PROP-074 The discrete logarithm is the converse of a homomorphism *(Proposition; elementary, proved here; packaging of classical facts)*
+For g of order d mod p, x ↦ g^x : ℤ/(p−1) → (ℤ/p)^× has kernel dℤ/(p−1); g^x ≡ b has 0 solutions (b ∉ ⟨g⟩) or (p−1)/d. *Check.* Census mod 11 over all 100 pairs: {0: 37, 1: 40, 2: 20, 5: 2, 10: 1}, as predicted. Book, Chapter 31.
+
+### GIN-HIST-015 Euler's criterion *(Historical result: classical)*
+For odd prime p ∤ a, a is a square mod p iff a^((p−1)/2) ≡ 1. *Check.* p = 23, all units. Book, Chapter 31.
+### GIN-PROP-075 Units and division in the Dirichlet ring *(Proposition; classical facts, proof written here; reading of Möbius inversion as division by 1 is GiN's)*
+Over a field, f is a unit iff f(1) ≠ 0; the ring has no zero divisors, so f * g = h has at most one solution for f ≠ 0; over ℤ, units are f(1) = ±1. `ginsdk.numbertheory.dirichlet`, `dirichlet_divide`. *Check.* μ = ε/1, φ = id/1 on 1..30; τ = 1*1, σ = 1*id, φ*1 = id, μ*1 = ε on 1..10⁴; one convolution on 1..10⁴ costs Σ τ(n) = 93,668 multiplications. Book, Chapter 32.
+
+### GIN-OBS-020 Averages of arithmetic functions, measured *(Empirical observation; classical asymptotics)*
+Σ_{n≤x} τ(n) − (x ln x + (2γ−1)x) = 6.8, 20.3, 14.3 at x = 10³, 10⁴, 10⁵; Σ φ / (3x²/π²) = 1.00075, 1.000037, 1.000005; coprime fraction of 10⁵ random pairs 0.6089 (16-bit), 0.6078 (64-bit) vs 6/π² = 0.6079 (seed 32); up to 10⁴: perfect 6, 28, 496, 8128; 2,488 abundant, 7,508 deficient. Book, Chapter 32.
+
+## L. Completion of the first edition (2026-10-17): entries added with Chapters 33–42
+
+### GIN-HIST-016 Bézout's identity, constructively *(Historical result: classical)*
+For a, b not both 0 the extended Euclidean algorithm returns s, t with sa + tb = gcd(a, b); invariant r_i = s_i a + t_i b on every row. *Check.* 2,000 random pairs below 10⁹ (sdk tests). Book, Chapter 33.
+
+### GIN-HIST-017 The bit cost of Euclid's algorithm *(Historical result: classical; Knuth TAOCP vol. 2 §4.5.3)*
+O(L²) bit operations with schoolbook division, because the logarithms of the quotients sum to at most log a. *Measurement.* Limb operations grow by factors 3.69, 4.03, 3.87 per doubling of L = 256 … 2048 (book Ch. 33). Book, Chapters 33, 36.
+
+### GIN-PROP-076 An iteration bound for the binary gcd *(Proposition; elementary, proved here; likely folklore)*
+On odd a and positive b, each iteration of Stein's main loop (halve b to odd, order, subtract) at least halves the product of the components; hence at most log₂(ab) + 1 subtractions. *Check.* `check_theorems_edition1.py` (all odd a, b < 2¹⁰); on 3,000 random 64-bit pairs the largest ratio subtractions/log₂(ab) was 0.433. Book, Chapter 33.
+
+### GIN-HIST-018 The doubling lower bound for addition chains *(Historical result: classical)*
+Every addition chain for e has length ≥ ⌈log₂ e⌉; binary exponentiation is within a factor 2 of optimal. *Computation.* Shortest chains for e = 15, 23, 31, 127 have lengths 5, 6, 7, 10 against 6, 7, 8, 12 for the binary method. Book, Chapter 34.
+
+### GIN-HIST-019 The Miller–Rabin error bound *(Historical result: Rabin 1980; Monier 1980)*
+For odd composite n > 9 at most φ(n)/4 bases are strong liars. The bound is a probability over random bases for a fixed n, not over n. Book, Chapter 35.
+
+### GIN-OBS-021 Census of strong liars *(Empirical observation; exhaustive computation)*
+Over all 1,831 odd composites 9 ≤ n ≤ 5000, the largest fraction of strong liars among 1 ≤ a < n is exactly 1/4, at n = 9 (consistent with HIST-019). Base-2 Fermat pseudoprimes below 10⁵: 78; Carmichael numbers below 10⁵: 16. Book, Chapter 35.
+
+### GIN-OBS-022 Fitted exponents depend on the range *(Empirical observation)*
+Least-squares log–log slopes of GIN-EXP-008 counts: add 1.000 and schoolbook 2.000 on every range; Karatsuba 2.000 (first four points, below its 16-limb threshold), 1.797 (all), 1.628 (last four) vs log₂3 = 1.585; division 1.708 / 1.891 / 1.990; Euclid gcd 1.838 / 1.875 / 1.912. Spread of Euclid's limb operations over 40 random pairs: 21% (L = 256), 12% (L = 1024) of the median. Book, Chapter 37.
+
+### Corrections made while completing the first edition
+| ID | Correction |
+|---|---|
+| C-004 | 32-bit division on wrapping machines (Java, Go, AArch64, RISC-V models) did not raise the `overflow` flag when the quotient of INT_MIN / −1 wrapped, so `contracts.inspect` classified it as `different-selection` with an explanation (truncation vs Euclidean selection) that is false for that case. Found while writing Chapter 39; fixed in `ginsdk.expr` and `gin-core.js`, regression test `test_division_overflow_is_wrapped`, fixtures regenerated. EXP-013's scores (outcome class and value) are unaffected. |
+| C-005 | `run_all.sh` did not run `check_theorems_edition1.py`, so its committed result file recorded 4 of the 8 checks; and EXP-014 overwrote its committed emulation results with a skip when QEMU was absent. Both fixed (AUDIT_2026-10.md, A-03/A-04). |
+| C-006 | The SDK tokenizer matched numerals with Python's Unicode-aware `\d`, so `evaluate` accepted any decimal digits — Arabic-Indic `٣٤`, Extended Arabic-Indic `۳۴`, Devanagari, Fullwidth, even the mixed-script `٣۴` — as 34, while the laboratory core `gin-core.js` (ASCII `\d`) rejected them with a syntax error: an SDK–laboratory disagreement outside the fixture set (GIN-D-015). Found by the research lane's NUM-EXP-003 (`research/the-number/`). Fixed by restricting numerals to the ASCII digits 0–9 in `ginsdk.expr`, as in the laboratory; regression test `test_numerals_are_ascii_digits`. No book example or experiment used non-ASCII digits; all recorded results are unchanged. |
+| C-007 | The executed example of Chapter 37 §"Wall-clock time is secondary" prints the CPython timings recorded in `exp008.json`; the audit's re-run of the experiments rewrote those timings after the chapter's output block had been filled, so the committed edition-1.0 state (19ce8d9) did not reproduce that one block (120/121). Fixed: blocks marked `# wall-clock` are compared with digits masked (shape only), the block was refilled from the current recording, and the prose now states both recordings. No claim rested on these numbers (GIN-D-003). |

@@ -36,7 +36,7 @@ from .converse import MULTIPLE, NONE, UNIQUE
 # ---------------------------------------------------------------------------
 _TOKEN = re.compile(r"""
     (?P<ws>\s+)
-  | (?P<num>0b[01]+|0x[0-9a-fA-F]+|[01]+₂|\d+\.\d*|\.\d+|\d+)
+  | (?P<num>0b[01]+|0x[0-9a-fA-F]+|[01]+₂|[0-9]+\.[0-9]*|\.[0-9]+|[0-9]+)
   | (?P<ident>[A-Za-z_][A-Za-z_0-9]*|√)
   | (?P<op>//|\*\*|[-+*/^%(),×·÷−])
 """, re.X)
@@ -764,6 +764,9 @@ class IntModel(Domain):
             o = self.div_model(a, b, self.w)
             if o.kind == "value":
                 res = o.value if op in ("/", "//") else (o.remainder if o.remainder is not None else a - b * o.value)
+                if b != 0 and op in ("/", "//") and machine.trunc_div(a, b)[0] != res:
+                    # INT_MIN / -1 on a wrapping machine: the exact integer quotient is not representable
+                    ctx.flags.add("overflow")
                 if b == 0:
                     ctx.notes.append(f"{self.name} returns {res} for {a} {op} 0 without any signal ({o.note}); "
                                      "this value is not a solution of 0 · c = " + str(a))

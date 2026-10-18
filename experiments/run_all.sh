@@ -8,4 +8,5 @@ for f in exp0*.py; do
   python3 "$f"
 done
 python3 check_theorems.py
+python3 check_theorems_edition1.py
 python3 analyze.py
