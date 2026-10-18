@@ -3,7 +3,9 @@
 // SDK (ginsdk) by `npm test`.  Widgets that show stored experiment data say so
 // and name the file.  Every widget has a written text alternative in the page.
 import "./gin-core.js";
+import "./num-core.js";
 const G = globalThis.GIN;
+const N = globalThis.NUM;   // research lane THE NUMBER (num-core.js, checked against research/the-number/numlab)
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const WIDGETS = {};
@@ -216,4 +218,74 @@ WIDGETS["cost"] = (host, rel) => {
     $(host, "plot").innerHTML = `<svg class="lab-svg" viewBox="0 0 ${W + 90} ${H}" role="img" aria-label="Counted limb operations against operand bits, log-log"><line class="edge" x1="${P}" y1="${H - P}" x2="${W - P}" y2="${H - P}"/><line class="edge" x1="${P}" y1="${P / 2}" x2="${P}" y2="${H - P}"/>${ticks}<text x="${W / 2}" y="${H - 6}" text-anchor="middle" class="lbl">operand length (bits)</text>${paths}</svg>`;
     $(host, "tab").textContent = ["bits".padStart(7) + series.map(([k]) => k.padStart(16)).join(""), ...xs.map((b, j) => String(b).padStart(7) + series.map(([, v]) => String(v[j] ?? "").padStart(16)).join(""))].join("\n");
   }).catch((err) => { $(host, "tab").textContent = "Could not load the stored data: " + err.message; });
+};
+
+// ===================================================================== research lane THE NUMBER (NUM-*; not claims of the edition)
+// zero, empty, absent: the census probes run in the reader's own JavaScript engine, next to stored results
+WIDGETS["num-zero"] = (host, rel) => {
+  host.innerHTML = `<p class="lab-note">Live column: computed now by <em>your</em> browser's JavaScript engine. Stored columns: <code>research/the-number/results/num_exp001.json</code> (NUM-EXP-001; Node 22, Python 3.13, SQLite 3.45.1). A difference in the live column is a finding about your engine, not an error of the page.</p><div data-k="js"></div><div data-k="py"></div>`;
+  const live = N.zeroProbes();
+  fetch(rel + "assets/num_results.json").then((r) => r.json()).then((x) => {
+    const e1 = x.num_exp001, node = (e1.js_census.results || {});
+    const rows = Object.keys(live).map((k) => `<tr><td><code>${esc(k)}</code></td><td>${esc(live[k])}</td><td>${esc(node[k] ?? "—")}</td><td>${live[k] === node[k] ? "" : "≠"}</td></tr>`).join("");
+    $(host, "js").innerHTML = `<table class="lab-table"><thead><tr><th>JavaScript probe</th><th>your engine</th><th>stored (${esc(e1.js_census.node || "node")})</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+    const py = e1.python_census, sq = e1.sqlite_census;
+    $(host, "py").innerHTML = `<div class="lab-out">Python (stored): ${py.equality_classes.length} equality classes under == among ${Object.keys(py.objects).length} zero-like objects; the numeric class is\n  ${esc(py.equality_classes[0].join(", "))}\ninserting 7 numeric zeros as dict keys leaves ${Object.keys(py.dict_after_inserting_7_zero_keys).length} key.\nSubstitutivity failures (x == y but f(x) ≠ f(y)):\n  ${py.substitutivity_failures.map(esc).join("\n  ")}\n\nSQLite ${esc(sq.sqlite_version)} (stored): SUM over an empty table = ${sq["SUM over empty table"]}, TOTAL = ${sq["TOTAL over empty table"]}, COUNT = ${sq["COUNT over empty table"]}; NULL = NULL is ${sq["NULL = NULL"]}; 1/0 = ${sq["1/0"]}.</div>`;
+  }).catch((err) => { $(host, "js").textContent = "Could not load the stored data: " + err.message; });
+};
+
+// one value, many words: translation between numeration systems
+WIDGETS["num-translate"] = (host) => {
+  host.innerHTML = `<div class="lab-row"><label>n <input data-k="n" type="number" value="1994" min="-1000000" max="1000000000" style="width:9rem"></label><button data-k="go">Translate</button></div><table class="lab-table" data-k="out" aria-live="polite"></table><p class="lab-note" data-k="note"></p>`;
+  const run = () => {
+    const n = Math.max(-1e6, Math.min(1e9, Math.trunc(Number($(host, "n").value) || 0)));
+    const rows = Object.entries(N.SYSTEMS).map(([k, label]) => { const w = N.encode(k, n); return `<tr><td>${esc(label)}</td><td><code>${w === null ? "— (no word: outside this system's language)" : esc(w)}</code></td><td>${w === null ? "O1 fails" : w.length}</td></tr>`; }).join("");
+    $(host, "out").innerHTML = `<thead><tr><th>system</th><th>canonical word for ${n}</th><th>length</th></tr></thead><tbody>${rows}</tbody>`;
+    $(host, "note").textContent = `Every row denotes the same value; a dash is a translation that fails obligation O1 (value preservation) — Roman has no zero and no negatives, unsigned systems have no negatives, 8-bit two's complement stops at 127. Uniqueness of each word is a property of the system's language: allow leading zeros, or two adjacent Fibonacci terms, and the same value gets many words (NUM-HYP-002).`;
+  };
+  $(host, "go").addEventListener("click", run); $(host, "n").addEventListener("change", run); run();
+};
+
+// spatial grammar canvas: two channels, a vertical place-value comparator, and the browser's own bidi rendering
+WIDGETS["num-spatial"] = (host) => {
+  host.innerHTML = `<div class="lab-row"><label>left glyph <select data-k="a">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => `<option${d === 2 ? " selected" : ""}>${d}</option>`).join("")}</select></label>
+  <label>right glyph <select data-k="b">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => `<option${d === 3 ? " selected" : ""}>${d}</option>`).join("")}</select></label>
+  <label>Maya-style n <input data-k="m" type="number" value="1000" min="0" max="3199999" style="width:8rem"></label><button data-k="go">Lay out</button></div>
+  <div class="lab-cmp"><div class="lab-card"><h4>Horizontal × vertical channel</h4><div data-k="grid"></div></div><div class="lab-card"><h4>Vertical place value (bottom = units)</h4><div class="lab-out" data-k="maya"></div></div></div>
+  <div class="lab-card"><h4>Digit order inside right-to-left text, rendered by your browser</h4><div data-k="bidi"></div></div>`;
+  const run = () => {
+    const a = $(host, "a").value, b = $(host, "b").value;
+    const t = N.channelTable(a, b), rels = [["base", "on the baseline"], ["sup", "raised (exponent)"], ["sub", "lowered (base of the left run)"]];
+    const cell = (k) => { const v = t[k]; return v === null || v === undefined ? "<td class='cell bad'>undefined</td>" : `<td class="cell ok">${v}</td>`; };
+    $(host, "grid").innerHTML = `<table class="lab-table"><thead><tr><th>right glyph is …</th><th>order ${a}${b}</th><th>order ${b}${a}</th></tr></thead><tbody>${rels.map(([r, txt]) => `<tr><td>${txt}</td>${cell(`${a}${b}/${r}`)}${cell(`${b}${a}/${r}`)}</tr>`).join("")}</tbody></table><p class="lab-note">Columns change the horizontal order; rows change the vertical relation. When both change the value, the two channels are independent (NUM-DEF-031).</p>`;
+    const n = Math.max(0, Math.min(3199999, Math.trunc(Number($(host, "m").value) || 0)));
+    const lay = N.mayaLayout(n);
+    $(host, "maya").textContent = lay.map((m) => `place ${m.place}  ${m.glyph.padEnd(8)}`).join("\n") + `\n\npure base 20:          ${N.mayaValue(lay)}\ncalendrical (1,20,360,…): ${N.mayaValue(lay, true)}\nSame marks, two semantics: the layout alone does not fix the value (NUM-NEG-005).`;
+    const ai = "٠١٢٣٤٥٦٧٨٩", eai = "۰۱۲۳۴۵۶۷۸۹", n2 = String(n).slice(0, 6);
+    const tr = (s, set) => [...s].map((c) => set[Number(c)]).join("");
+    $(host, "bidi").innerHTML = `<table class="lab-table"><tbody>
+      <tr><td>Arabic text, Arabic-Indic digits (bidi class AN)</td><td dir="rtl" lang="ar" style="font-size:1.3em">العدد ${tr(n2, ai)} هنا</td></tr>
+      <tr><td>Arabic text, Extended Arabic-Indic digits (EN)</td><td dir="rtl" lang="fa" style="font-size:1.3em">العدد ${tr(n2, eai)} هنا</td></tr>
+      <tr><td>Hebrew text, European digits (EN) — comparator</td><td dir="rtl" lang="he" style="font-size:1.3em">המספר ${n2} כאן</td></tr>
+      <tr><td>Latin text, European digits — comparator</td><td dir="ltr" style="font-size:1.3em">the number ${n2} here</td></tr></tbody></table>
+      <p class="lab-note">In every right-to-left row the digits keep their most-significant-first order and read left to right, while the words read right to left. The behaviour is the same for Hebrew with European digits: it is a property of the Unicode Bidirectional Algorithm (UAX #9), not of one script (NUM-HYP-003u, refuted). Rendering is your browser's.</p>`;
+  };
+  $(host, "go").addEventListener("click", run); ["a", "b", "m"].forEach((k) => $(host, k).addEventListener("change", run)); run();
+};
+
+// converse fiber explorer: profiles of b·c = a in Z/m and how classes move along Z/m → Z/k
+WIDGETS["num-fibers"] = (host) => {
+  host.innerHTML = `<div class="lab-row"><label>m <input data-k="m" type="number" value="12" min="1" max="40" style="width:5rem"></label><label>k (divides m) <input data-k="k" type="number" value="4" min="1" max="40" style="width:5rem"></label><button data-k="go">Reduce</button></div><div class="lab-out" data-k="out" aria-live="polite"></div>`;
+  const run = () => {
+    const m = Math.max(1, Math.min(40, Math.trunc(Number($(host, "m").value) || 1))), k = Math.max(1, Math.min(m, Math.trunc(Number($(host, "k").value) || 1)));
+    if (m % k) { $(host, "out").textContent = `${k} does not divide ${m}: x ↦ x mod ${k} is not a ring homomorphism Z/${m} → Z/${k}.`; return; }
+    const pm = N.profile(m), pk = N.profile(k), T = N.transfer(m, k), K = ["none", "unique", "many"];
+    const lines = [`profile of b·c = a over all (a, b):   Z/${m}: none ${pm.none}, unique ${pm.unique}, many ${pm.many}    Z/${k}: none ${pk.none}, unique ${pk.unique}, many ${pk.many}`, "",
+      `class in Z/${m} → class in Z/${k} (counts of pairs (a, b) of Z/${m}):`, "            " + K.map((t) => t.padStart(8)).join(""),
+      ...K.map((s) => s.padEnd(12) + K.map((t) => String(T[s][t]).padStart(8)).join("")), "",
+      `forbidden by the classical preservation theorem (NUM-HIST-001): unique → none = ${T.unique.none}, many → none = ${T.many.none}.`,
+      `Other changes are allowed, and some occur here: a problem with no solution can gain one (3·c = 1 in Z/12 has none; in Z/4, c = 3), and many solutions can become one (3·c = 3).`];
+    $(host, "out").textContent = lines.join("\n");
+  };
+  $(host, "go").addEventListener("click", run); ["m", "k"].forEach((x) => $(host, x).addEventListener("change", run)); run();
 };

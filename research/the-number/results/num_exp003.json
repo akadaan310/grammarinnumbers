@@ -1,0 +1,418 @@
+{
+ "A_two_channel_grammar": {
+  "all pairs: both channels change value": true,
+  "note": "for '11' the horizontal channel cannot change the value (swapping equal glyphs is the identity): a degenerate case, recorded",
+  "pairs": {
+   "11": {
+    "distinct_values": 2,
+    "distinct_values_x_only": 1,
+    "distinct_values_y_only": 2,
+    "table": {
+     "11/base": 11,
+     "11/sub": null,
+     "11/sup": 1
+    },
+    "x_changes_value": false,
+    "y_changes_value": true
+   },
+   "12": {
+    "distinct_values": 4,
+    "distinct_values_x_only": 2,
+    "distinct_values_y_only": 2,
+    "table": {
+     "12/base": 12,
+     "12/sub": 1,
+     "12/sup": 1,
+     "21/base": 21,
+     "21/sub": null,
+     "21/sup": 2
+    },
+    "x_changes_value": true,
+    "y_changes_value": true
+   },
+   "23": {
+    "distinct_values": 5,
+    "distinct_values_x_only": 2,
+    "distinct_values_y_only": 3,
+    "table": {
+     "23/base": 23,
+     "23/sub": 2,
+     "23/sup": 8,
+     "32/base": 32,
+     "32/sub": null,
+     "32/sup": 9
+    },
+    "x_changes_value": true,
+    "y_changes_value": true
+   },
+   "25": {
+    "distinct_values": 4,
+    "distinct_values_x_only": 2,
+    "distinct_values_y_only": 3,
+    "table": {
+     "25/base": 25,
+     "25/sub": 2,
+     "25/sup": 32,
+     "52/base": 52,
+     "52/sub": null,
+     "52/sup": 25
+    },
+    "x_changes_value": true,
+    "y_changes_value": true
+   }
+  }
+ },
+ "B_reversal": {
+  "rows": [
+   {
+    "base": 2,
+    "length": 1,
+    "palindromes": 2,
+    "value_preserved": 2,
+    "words": 2
+   },
+   {
+    "base": 2,
+    "length": 2,
+    "palindromes": 2,
+    "value_preserved": 2,
+    "words": 4
+   },
+   {
+    "base": 2,
+    "length": 3,
+    "palindromes": 4,
+    "value_preserved": 4,
+    "words": 8
+   },
+   {
+    "base": 2,
+    "length": 4,
+    "palindromes": 4,
+    "value_preserved": 4,
+    "words": 16
+   },
+   {
+    "base": 2,
+    "length": 5,
+    "palindromes": 8,
+    "value_preserved": 8,
+    "words": 32
+   },
+   {
+    "base": 2,
+    "length": 6,
+    "palindromes": 8,
+    "value_preserved": 8,
+    "words": 64
+   },
+   {
+    "base": 3,
+    "length": 1,
+    "palindromes": 3,
+    "value_preserved": 3,
+    "words": 3
+   },
+   {
+    "base": 3,
+    "length": 2,
+    "palindromes": 3,
+    "value_preserved": 3,
+    "words": 9
+   },
+   {
+    "base": 3,
+    "length": 3,
+    "palindromes": 9,
+    "value_preserved": 9,
+    "words": 27
+   },
+   {
+    "base": 3,
+    "length": 4,
+    "palindromes": 9,
+    "value_preserved": 9,
+    "words": 81
+   },
+   {
+    "base": 3,
+    "length": 5,
+    "palindromes": 27,
+    "value_preserved": 27,
+    "words": 243
+   },
+   {
+    "base": 3,
+    "length": 6,
+    "palindromes": 27,
+    "value_preserved": 27,
+    "words": 729
+   },
+   {
+    "base": 10,
+    "length": 1,
+    "palindromes": 10,
+    "value_preserved": 10,
+    "words": 10
+   },
+   {
+    "base": 10,
+    "length": 2,
+    "palindromes": 10,
+    "value_preserved": 10,
+    "words": 100
+   },
+   {
+    "base": 10,
+    "length": 3,
+    "palindromes": 100,
+    "value_preserved": 100,
+    "words": 1000
+   },
+   {
+    "base": 10,
+    "length": 4,
+    "palindromes": 100,
+    "value_preserved": 100,
+    "words": 10000
+   },
+   {
+    "base": 10,
+    "length": 5,
+    "palindromes": 1000,
+    "value_preserved": 1000,
+    "words": 100000
+   },
+   {
+    "base": 10,
+    "length": 6,
+    "palindromes": 1000,
+    "value_preserved": 1000,
+    "words": 1000000
+   }
+  ],
+  "value_preserved == palindromes in every row": true
+ },
+ "C_arabic_indic_case": {
+  "digit_sets": {
+   "ASCII (European)": {
+    "bidi class": [
+     "EN"
+    ],
+    "code points": "U+0030..U+0039",
+    "decimal values 0..9": true,
+    "general category": [
+     "Nd"
+    ]
+   },
+   "Arabic-Indic (U+0660)": {
+    "bidi class": [
+     "AN"
+    ],
+    "code points": "U+0660..U+0669",
+    "decimal values 0..9": true,
+    "general category": [
+     "Nd"
+    ]
+   },
+   "Devanagari (U+0966)": {
+    "bidi class": [
+     "L"
+    ],
+    "code points": "U+0966..U+096F",
+    "decimal values 0..9": true,
+    "general category": [
+     "Nd"
+    ]
+   },
+   "Extended Arabic-Indic (U+06F0)": {
+    "bidi class": [
+     "EN"
+    ],
+    "code points": "U+06F0..U+06F9",
+    "decimal values 0..9": true,
+    "general category": [
+     "Nd"
+    ]
+   },
+   "Fullwidth (U+FF10)": {
+    "bidi class": [
+     "EN"
+    ],
+    "code points": "U+FF10..U+FF19",
+    "decimal values 0..9": true,
+    "general category": [
+     "Nd"
+    ]
+   }
+  },
+  "display_order": {
+   "Arabic text + Arabic-Indic 34": {
+    "display (left to right)": "٣٤ ددع",
+    "each digit run keeps its logical order left-to-right": true,
+    "letters reversed in display": true,
+    "logical": "عدد ٣٤",
+    "order of the numbers in display": [
+     "٣٤"
+    ]
+   },
+   "Arabic text + European 34": {
+    "display (left to right)": "34 ددع",
+    "each digit run keeps its logical order left-to-right": true,
+    "letters reversed in display": true,
+    "logical": "عدد 34",
+    "order of the numbers in display": [
+     "34"
+    ]
+   },
+   "Arabic text + Extended Arabic-Indic 34": {
+    "display (left to right)": "۳۴ ددع",
+    "each digit run keeps its logical order left-to-right": true,
+    "letters reversed in display": true,
+    "logical": "عدد ۳۴",
+    "order of the numbers in display": [
+     "۳۴"
+    ]
+   },
+   "Arabic text, two numbers 12 34": {
+    "display (left to right)": "34 ددع 12 ددع",
+    "each digit run keeps its logical order left-to-right": true,
+    "letters reversed in display": true,
+    "logical": "عدد 12 عدد 34",
+    "order of the numbers in display": [
+     "34",
+     "12"
+    ]
+   },
+   "Hebrew text + European 34": {
+    "display (left to right)": "34 רפסמ",
+    "each digit run keeps its logical order left-to-right": true,
+    "letters reversed in display": true,
+    "logical": "מספר 34",
+    "order of the numbers in display": [
+     "34"
+    ]
+   },
+   "Hebrew text, two numbers 12 34": {
+    "display (left to right)": "34 רפסמ 12 רפסמ",
+    "each digit run keeps its logical order left-to-right": true,
+    "letters reversed in display": true,
+    "logical": "מספר 12 מספר 34",
+    "order of the numbers in display": [
+     "34",
+     "12"
+    ]
+   },
+   "Latin text + European 34 (LTR paragraph)": {
+    "display (left to right)": "num 34",
+    "each digit run keeps its logical order left-to-right": true,
+    "letters reversed in display": true,
+    "logical": "num 34",
+    "order of the numbers in display": [
+     "34"
+    ]
+   }
+  },
+  "mixed Arabic-Indic 3 + Extended 4, Python int()": 34,
+  "model": "restricted UBA subset (numlab.layout.display_order); not a conformant implementation",
+  "parse_34": {
+   "ASCII (European)": {
+    "JS Number()": "34",
+    "JS parseInt()": "34",
+    "Python int()": 34,
+    "SQLite CAST AS INTEGER": 34,
+    "ginsdk evaluate in Z": "value 34",
+    "word": "34"
+   },
+   "Arabic-Indic (U+0660)": {
+    "JS Number()": "NaN",
+    "JS parseInt()": "NaN",
+    "Python int()": 34,
+    "SQLite CAST AS INTEGER": 0,
+    "ginsdk evaluate in Z": "syntax-error",
+    "word": "٣٤"
+   },
+   "Devanagari (U+0966)": {
+    "JS Number()": "NaN",
+    "JS parseInt()": "NaN",
+    "Python int()": 34,
+    "SQLite CAST AS INTEGER": 0,
+    "ginsdk evaluate in Z": "syntax-error",
+    "word": "३४"
+   },
+   "Extended Arabic-Indic (U+06F0)": {
+    "JS Number()": "NaN",
+    "JS parseInt()": "NaN",
+    "Python int()": 34,
+    "SQLite CAST AS INTEGER": 0,
+    "ginsdk evaluate in Z": "syntax-error",
+    "word": "۳۴"
+   },
+   "Fullwidth (U+FF10)": {
+    "JS Number()": "NaN",
+    "JS parseInt()": "NaN",
+    "Python int()": 34,
+    "SQLite CAST AS INTEGER": 0,
+    "ginsdk evaluate in Z": "syntax-error",
+    "word": "３４"
+   }
+  },
+  "unicode_version": "15.1.0"
+ },
+ "D_maya_vertical": {
+  "calendrical round trip n < 7200": true,
+  "channel test 421": {
+   "add one dot in the top place": 821,
+   "value": 421
+  },
+  "example 1000": {
+   "calendrical": 920,
+   "layout (top to bottom)": [
+    "..",
+    "||",
+    "shell"
+   ],
+   "pure vigesimal": 1000
+  },
+  "layouts (pure, n < 8000) whose calendrical reading differs": 7600,
+  "pure vigesimal round trip n < 8000": true,
+  "source status": "structure as described in Chrisomalis 2010 (secondary); place weights of the calendrical variant are stated there and in standard accounts, page references not verified here"
+ },
+ "E_rod_orientation": {
+  "limit": 10000,
+  "no zero mark, alternating orientation": {
+   "ambiguous_renders": 99,
+   "example": [
+    1,
+    100
+   ],
+   "max_fiber": 3,
+   "numbers": 9999,
+   "numbers_in_ambiguous_renders": 279,
+   "renders": 9819
+  },
+  "no zero mark, one orientation": {
+   "ambiguous_renders": 819,
+   "example": [
+    1,
+    10,
+    100,
+    1000
+   ],
+   "max_fiber": 6,
+   "numbers": 9999,
+   "numbers_in_ambiguous_renders": 3438,
+   "renders": 7380
+  },
+  "source status": "alternation of orientation by place as described for counting-rod numerals in Chrisomalis 2010 (secondary); the model idealizes a gap as invisible",
+  "zero mark, one orientation": {
+   "ambiguous_renders": 0,
+   "example": null,
+   "max_fiber": 1,
+   "numbers": 9999,
+   "numbers_in_ambiguous_renders": 0,
+   "renders": 9999
+  }
+ },
+ "experiment": "NUM-EXP-003"
+}

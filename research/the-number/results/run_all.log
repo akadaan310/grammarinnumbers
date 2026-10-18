@@ -1,0 +1,81 @@
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.037s
+
+OK
+NUM-EXP-001: {"python_objects": 15, "python_equality_classes_under_==": 8, "python_zero_keys_surviving_in_dict": 1, "substitutivity_failures_found": 4, "sqlite_empty_sum": null, "sqlite_empty_total": 0.0}
+  three-way separation: {"Python": {"zero vs empty": true, "zero vs absence": true, "empty vs absence": true, "observables": "v + 0 (TypeError for () and None), == 0, len (0 for (), TypeError for None)"}, "SQLite": {"zero vs absence": true, "empty sum is absence, not zero": true, "zero vs empty string": true, "observables": "= (three-valued), SUM vs TOTAL over empty, typed comparison"}, "JavaScript": {"zero vs absence (null)": true, "comparison is not an order on {null, 0}": true, "empty array coerces to zero": true, "observables": "==, >=, coercion by +"}}
+NUM-EXP-002 fiber census (unique? / fiber sizes / collision):
+  base2                  len≤12 values=4096   unique=True  sizes={1: 4096} 
+  base3                  len≤8  values=6561   unique=True  sizes={1: 6561} 
+  base10                 len≤4  values=10000  unique=True  sizes={1: 10000} 
+  base10-leading-zeros   len≤4  values=10000  unique=False sizes={1: 9000, 2: 900, 3: 90, 4: 9, 5: 1} {'value': 0, 'words': ['ε', '0', '00', '000']}
+  base16                 len≤3  values=4096   unique=True  sizes={1: 4096} 
+  bijective2             len≤12 values=8191   unique=True  sizes={1: 8191} 
+  bijective10            len≤4  values=11111  unique=True  sizes={1: 11111} 
+  balanced-ternary       len≤8  values=6561   unique=True  sizes={1: 6561} 
+  negabinary             len≤12 values=4096   unique=True  sizes={1: 4096} 
+  negadecimal            len≤4  values=10000  unique=True  sizes={1: 10000} 
+  sign-magnitude2        len≤9  values=511    unique=False sizes={1: 510, 2: 1} {'value': 0, 'words': ['+', '-']}
+  twos8                  len≤8  values=256    unique=True  sizes={1: 256} 
+  factoradic             len≤6  values=5040   unique=True  sizes={1: 5040} 
+  zeckendorf             len≤14 values=987    unique=True  sizes={1: 987} 
+  fibonacci-lax          len≤14 values=1596   unique=False sizes={1: 28, 2: 44, 3: 72, 4: 88, 5: 96, 6: 120, 7: 88, 8: 124, 9: 112, 10: 120, 11: 64, 12: 164, 13: 40, 14: 80, 15: 80, 16: 76, 17: 16, 18: 72, 19: 16, 20: 36, 21: 24, 22: 8, 24: 20, 25: 4, 26: 4} {'value': 715, 'words': ['1011101111011', '1011101111100', '1011110011011', '1011110011100']}
+  roman-strict           len≤7  values=1999   unique=True  sizes={1: 1999} 
+  roman-lax              len≤5  values=1186   unique=False sizes={1: 226, 2: 60, 3: 91, 4: 53, 5: 54, 6: 16, 7: 63, 8: 44, 9: 42, 10: 17, 11: 64, 12: 26, 13: 22, 14: 21, 15: 43, 16: 16, 17: 12, 18: 7, 19: 31, 20: 5, 21: 11, 22: 7, 23: 2, 24: 11, 25: 7, 26: 12, 27: 8, 28: 12, 29: 7, 30: 5, 31: 15, 32: 5, 33: 6, 34: 4, 35: 12, 36: 2, 37: 2, 38: 2, 39: 1, 40: 7, 41: 4, 42: 6, 43: 2, 44: 6, 45: 5, 46: 3, 47: 3, 48: 3, 49: 4, 50: 2, 51: 3, 52: 3, 53: 1, 55: 7, 56: 4, 57: 3, 58: 2, 59: 1, 60: 4, 61: 2, 62: 4, 63: 1, 65: 1, 66: 2, 67: 2, 68: 2, 70: 2, 72: 2, 73: 7, 75: 1, 76: 1, 80: 1, 81: 1, 82: 1, 83: 1, 84: 2, 85: 2, 86: 1, 88: 1, 89: 1, 90: 2, 91: 2, 92: 1, 93: 1, 94: 1, 96: 1, 101: 1, 102: 2, 103: 1, 104: 1, 108: 1, 109: 1, 111: 1, 114: 1, 115: 1, 116: 1, 117: 1, 118: 1, 119: 1, 121: 3, 122: 1, 127: 1, 140: 2, 159: 1, 179: 1} {'value': 1000, 'words': ['M', 'DD', 'IIM', 'IMI']}
+translations:
+  decimal -> binary [{"obligation": "O1 value preservation", "checked": 64, "failures": 0, "example": null}, {"obligation": "O2 commutation with +", "checked": 4096, "failures": 0, "example": null}, {"obligation": "O2 commutation with *", "checked": 4096, "failures": 0, "example": null}, {"obligation": "O3 converse class of *", "checked": 4096, "failures": 0, "example": null}, {"obligation": "O4 cost ratio in [1.000, 4.000]", "checked": 63, "failures": 0, "example": null}, {"obligation": "O5 commutation with reversal", "checked": 58, "failures": 51, "example": "2: t(reversal(w)) ≠ reversal(t(w))"}]
+  decimal -> bijective decimal [{"obligation": "O1 value preservation", "checked": 120, "failures": 0, "example": null}, {"obligation": "O2 commutation with +", "checked": 14400, "failures": 0, "example": null}, {"obligation": "O2 commutation with *", "checked": 14400, "failures": 0, "example": null}, {"obligation": "O3 converse class of *", "checked": 14400, "failures": 0, "example": null}, {"obligation": "O4 cost ratio in [0.500, 1.000]", "checked": 119, "failures": 0, "example": null}, {"obligation": "O5 commutation with reversal", "checked": 109, "failures": 9, "example": "101: t(reversal(w)) ≠ reversal(t(w))"}]
+  decimal -> Roman (strict) [{"obligation": "O1 value preservation", "checked": 4001, "failures": 2, "example": "0: () -> None"}, {"obligation": "O4 cost ratio in [0.250, 4.000]", "checked": 3999, "failures": 0, "example": null}]
+  int8 -> int16 (sign extension) [{"obligation": "O1 value preservation", "checked": 52, "failures": 0, "example": null}, {"obligation": "O2 commutation with +", "checked": 2704, "failures": 702, "example": "h(-128 + -128) = 0 but h(-128) + h(-128) = -256"}, {"obligation": "O2 commutation with *", "checked": 2704, "failures": 2606, "example": "h(-128 * -128) = 0 but h(-128) * h(-128) = 16384"}, {"obligation": "O3 converse class of *", "checked": 2704, "failures": 0, "example": null}, {"obligation": "O4 cost ratio in [2.000, 2.000]", "checked": 52, "failures": 0, "example": null}]
+  int8 -> int16 converse class of *, exhaustive {"pairs": 65536, "class changes": 0}
+  reversal in base 10 vs base 2, n < 10^4 {"decimal palindromes (reversal fixes value)": 198, "n with rev10(n) == rev2(n)": 18}
+cost slopes: {'horner_decimal': 1.995, 'divide_conquer_decimal': 1.618, 'regroup_hex': 1.0}
+NUM-EXP-003
+ A: {"table": {"23/base": 23, "23/sup": 8, "23/sub": 2, "32/base": 32, "32/sup": 9, "32/sub": null}, "x_changes_value": true, "y_changes_value": true, "distinct_values": 5, "distinct_values_x_only": 2, "distinct_values_y_only": 3}
+ B: True
+ C parse: ASCII (European) {"word": "34", "Python int()": 34, "SQLite CAST AS INTEGER": 34, "ginsdk evaluate in Z": "value 34", "JS Number()": "34", "JS parseInt()": "34"}
+ C parse: Arabic-Indic (U+0660) {"word": "٣٤", "Python int()": 34, "SQLite CAST AS INTEGER": 0, "ginsdk evaluate in Z": "syntax-error", "JS Number()": "NaN", "JS parseInt()": "NaN"}
+ C parse: Extended Arabic-Indic (U+06F0) {"word": "۳۴", "Python int()": 34, "SQLite CAST AS INTEGER": 0, "ginsdk evaluate in Z": "syntax-error", "JS Number()": "NaN", "JS parseInt()": "NaN"}
+ C parse: Devanagari (U+0966) {"word": "३४", "Python int()": 34, "SQLite CAST AS INTEGER": 0, "ginsdk evaluate in Z": "syntax-error", "JS Number()": "NaN", "JS parseInt()": "NaN"}
+ C parse: Fullwidth (U+FF10) {"word": "３４", "Python int()": 34, "SQLite CAST AS INTEGER": 0, "ginsdk evaluate in Z": "syntax-error", "JS Number()": "NaN", "JS parseInt()": "NaN"}
+ C display: Arabic text + Arabic-Indic 34 | ٣٤ ددع | runs kept: True | order: ['٣٤']
+ C display: Arabic text + Extended Arabic-Indic 34 | ۳۴ ددع | runs kept: True | order: ['۳۴']
+ C display: Arabic text + European 34 | 34 ددع | runs kept: True | order: ['34']
+ C display: Hebrew text + European 34 | 34 רפסמ | runs kept: True | order: ['34']
+ C display: Latin text + European 34 (LTR paragraph) | num 34 | runs kept: True | order: ['34']
+ C display: Arabic text, two numbers 12 34 | 34 ددع 12 ددع | runs kept: True | order: ['34', '12']
+ C display: Hebrew text, two numbers 12 34 | 34 רפסמ 12 רפסמ | runs kept: True | order: ['34', '12']
+ C digit bidi: {'ASCII (European)': ['EN'], 'Arabic-Indic (U+0660)': ['AN'], 'Extended Arabic-Indic (U+06F0)': ['EN'], 'Devanagari (U+0966)': ['L'], 'Fullwidth (U+FF10)': ['EN']}
+ D: {"pure vigesimal round trip n < 8000": true, "calendrical round trip n < 7200": true, "layouts (pure, n < 8000) whose calendrical reading differs": 7600, "example 1000": {"layout (top to bottom)": ["..", "||", "shell"], "pure vigesimal": 1000, "calendrical": 920}, "channel test 421": {"value": 421, "add one dot in the top place": 821}}
+ E: {"limit": 10000, "no zero mark, one orientation": {"renders": 7380, "numbers": 9999, "ambiguous_renders": 819, "numbers_in_ambiguous_renders": 3438, "max_fiber": 6, "example": [1, 10, 100, 1000]}, "no zero mark, alternating orientation": {"renders": 9819, "numbers": 9999, "ambiguous_renders": 99, "numbers_in_ambiguous_renders": 279, "max_fiber": 3, "example": [1, 100]}, "zero mark, one orientation": {"renders": 9999, "numbers": 9999, "ambiguous_renders": 0, "numbers_in_ambiguous_renders": 0, "max_fiber": 1, "example": null}}
+NUM-EXP-004
+ A Z/12 {'+': {'none': 0, 'unique': 144, 'many': 0}, '*': {'none': 67, 'unique': 48, 'many': 29}}
+ A Z/4 {'+': {'none': 0, 'unique': 16, 'many': 0}, '*': {'none': 5, 'unique': 8, 'many': 3}}
+ A GF(4) {'+': {'none': 0, 'unique': 16, 'many': 0}, '*': {'none': 3, 'unique': 12, 'many': 1}}
+ A Z/1 {'+': {'none': 0, 'unique': 1, 'many': 0}, '*': {'none': 0, 'unique': 1, 'many': 0}}
+ A sat{0..7} (monoid +) {'+': {'none': 28, 'unique': 29, 'many': 7}}
+ A max{0..7} (monoid +) {'+': {'none': 28, 'unique': 29, 'many': 7}}
+ B Z/12 -> Z/4 (reduction) [+] | hom: True | changes: {} | violations: []
+ B Z/12 -> Z/4 (reduction) [*] | hom: True | changes: {'none->unique': 16, 'none->many': 6, 'many->unique': 8} | violations: []
+ B Z/12 -> Z/3 (reduction) [+] | hom: True | changes: {} | violations: []
+ B Z/12 -> Z/3 (reduction) [*] | hom: True | changes: {'none->unique': 30, 'none->many': 5, 'many->unique': 18} | violations: []
+ B Z/8 -> Z/2 (reduction) [+] | hom: True | changes: {} | violations: []
+ B Z/8 -> Z/2 (reduction) [*] | hom: True | changes: {'none->many': 5} | violations: []
+ B Z/6 -> Z/2 x Z/3 (CRT isomorphism) [+] | hom: True | changes: {} | violations: []
+ B Z/6 -> Z/2 x Z/3 (CRT isomorphism) [*] | hom: True | changes: {} | violations: []
+ B GF(2) -> GF(4) (subfield) [+] | hom: True | changes: {} | violations: []
+ B GF(2) -> GF(4) (subfield) [*] | hom: True | changes: {} | violations: []
+ B Z/4 -> Z/12, x -> 3x (additive) [+] | hom: True | changes: {} | violations: []
+ B Z/4 -> Z/12, x -> 3x (additive) [*] | hom: False | changes: {'unique->many': 8} | violations: []
+ B sat{0..7} -> sat{0..3}, x -> min(x,3) [+] | hom: True | changes: {'none->many': 10, 'unique->many': 18} | violations: []
+ B max{0..7} -> max{0..3}, x -> min(x,3) [+] | hom: True | changes: {'none->many': 10, 'unique->many': 10} | violations: []
+ B Z -> Z/4 on a in [-12,12], b in [-12,12] [+] | hom: True | changes: {} | violations: []
+ B Z -> Z/4 on a in [-12,12], b in [-12,12] [*] | hom: True | changes: {'none->unique': 204, 'none->many': 58, 'unique->many': 68} | violations: []
+ B Z -> Z/6 on a in [-12,12], b in [-12,12] [+] | hom: True | changes: {} | violations: []
+ B Z -> Z/6 on a in [-12,12], b in [-12,12] [*] | hom: True | changes: {'none->unique': 128, 'none->many': 72, 'unique->many': 92} | violations: []
+ B Z -> Z/8 on a in [-12,12], b in [-12,12] [+] | hom: True | changes: {} | violations: []
+ B Z -> Z/8 on a in [-12,12], b in [-12,12] [*] | hom: True | changes: {'none->unique': 204, 'none->many': 46, 'unique->many': 68} | violations: []
+ B Z -> Q inclusion on a, b in [-12,12] [*] | hom: True | changes: {'none->unique': 436} | violations: []
+ C {"Z/6": {"none": 15, "unique": 12, "many": 9, "total value is the unique solution": 12, "problems answered with a value that is not a unique solution": 24, "fraction": 0.6667, "none and many both answered 0": true}, "Z/8": {"none": 21, "unique": 32, "many": 11, "total value is the unique solution": 32, "problems answered with a value that is not a unique solution": 32, "fraction": 0.5, "none and many both answered 0": true}, "Z/12": {"none": 67, "unique": 48, "many": 29, "total value is the unique solution": 48, "problems answered with a value that is not a unique solution": 96, "fraction": 0.6667, "none and many both answered 0": true}}
+ D {"cases": 650, "ginsdk disagreements with exact": [], "ginsdk agreement count": 650, "gin-core.js agreement count": 650, "gin-core.js disagreements with exact": []}

@@ -1,0 +1,522 @@
+{
+ "census": {
+  "balanced-ternary": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 6561
+   },
+   "max_len": 8,
+   "unique": true,
+   "values": 6561,
+   "words": 6561
+  },
+  "base10": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 10000
+   },
+   "max_len": 4,
+   "unique": true,
+   "values": 10000,
+   "words": 10000
+  },
+  "base10-leading-zeros": {
+   "example_collision": {
+    "value": 0,
+    "words": [
+     "ε",
+     "0",
+     "00",
+     "000"
+    ]
+   },
+   "fiber_sizes": {
+    "1": 9000,
+    "2": 900,
+    "3": 90,
+    "4": 9,
+    "5": 1
+   },
+   "max_len": 4,
+   "unique": false,
+   "values": 10000,
+   "words": 11111
+  },
+  "base16": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 4096
+   },
+   "max_len": 3,
+   "unique": true,
+   "values": 4096,
+   "words": 4096
+  },
+  "base2": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 4096
+   },
+   "max_len": 12,
+   "unique": true,
+   "values": 4096,
+   "words": 4096
+  },
+  "base3": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 6561
+   },
+   "max_len": 8,
+   "unique": true,
+   "values": 6561,
+   "words": 6561
+  },
+  "bijective10": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 11111
+   },
+   "max_len": 4,
+   "unique": true,
+   "values": 11111,
+   "words": 11111
+  },
+  "bijective2": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 8191
+   },
+   "max_len": 12,
+   "unique": true,
+   "values": 8191,
+   "words": 8191
+  },
+  "factoradic": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 5040
+   },
+   "max_len": 6,
+   "unique": true,
+   "values": 5040,
+   "words": 5040
+  },
+  "fibonacci-lax": {
+   "example_collision": {
+    "value": 715,
+    "words": [
+     "1011101111011",
+     "1011101111100",
+     "1011110011011",
+     "1011110011100"
+    ]
+   },
+   "fiber_sizes": {
+    "1": 28,
+    "2": 44,
+    "3": 72,
+    "4": 88,
+    "5": 96,
+    "6": 120,
+    "7": 88,
+    "8": 124,
+    "9": 112,
+    "10": 120,
+    "11": 64,
+    "12": 164,
+    "13": 40,
+    "14": 80,
+    "15": 80,
+    "16": 76,
+    "17": 16,
+    "18": 72,
+    "19": 16,
+    "20": 36,
+    "21": 24,
+    "22": 8,
+    "24": 20,
+    "25": 4,
+    "26": 4
+   },
+   "max_len": 14,
+   "unique": false,
+   "values": 1596,
+   "words": 16384
+  },
+  "negabinary": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 4096
+   },
+   "max_len": 12,
+   "unique": true,
+   "values": 4096,
+   "words": 4096
+  },
+  "negadecimal": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 10000
+   },
+   "max_len": 4,
+   "unique": true,
+   "values": 10000,
+   "words": 10000
+  },
+  "roman-lax": {
+   "example_collision": {
+    "value": 1000,
+    "words": [
+     "M",
+     "DD",
+     "IIM",
+     "IMI"
+    ]
+   },
+   "fiber_sizes": {
+    "1": 226,
+    "2": 60,
+    "3": 91,
+    "4": 53,
+    "5": 54,
+    "6": 16,
+    "7": 63,
+    "8": 44,
+    "9": 42,
+    "10": 17,
+    "11": 64,
+    "12": 26,
+    "13": 22,
+    "14": 21,
+    "15": 43,
+    "16": 16,
+    "17": 12,
+    "18": 7,
+    "19": 31,
+    "20": 5,
+    "21": 11,
+    "22": 7,
+    "23": 2,
+    "24": 11,
+    "25": 7,
+    "26": 12,
+    "27": 8,
+    "28": 12,
+    "29": 7,
+    "30": 5,
+    "31": 15,
+    "32": 5,
+    "33": 6,
+    "34": 4,
+    "35": 12,
+    "36": 2,
+    "37": 2,
+    "38": 2,
+    "39": 1,
+    "40": 7,
+    "41": 4,
+    "42": 6,
+    "43": 2,
+    "44": 6,
+    "45": 5,
+    "46": 3,
+    "47": 3,
+    "48": 3,
+    "49": 4,
+    "50": 2,
+    "51": 3,
+    "52": 3,
+    "53": 1,
+    "55": 7,
+    "56": 4,
+    "57": 3,
+    "58": 2,
+    "59": 1,
+    "60": 4,
+    "61": 2,
+    "62": 4,
+    "63": 1,
+    "65": 1,
+    "66": 2,
+    "67": 2,
+    "68": 2,
+    "70": 2,
+    "72": 2,
+    "73": 7,
+    "75": 1,
+    "76": 1,
+    "80": 1,
+    "81": 1,
+    "82": 1,
+    "83": 1,
+    "84": 2,
+    "85": 2,
+    "86": 1,
+    "88": 1,
+    "89": 1,
+    "90": 2,
+    "91": 2,
+    "92": 1,
+    "93": 1,
+    "94": 1,
+    "96": 1,
+    "101": 1,
+    "102": 2,
+    "103": 1,
+    "104": 1,
+    "108": 1,
+    "109": 1,
+    "111": 1,
+    "114": 1,
+    "115": 1,
+    "116": 1,
+    "117": 1,
+    "118": 1,
+    "119": 1,
+    "121": 3,
+    "122": 1,
+    "127": 1,
+    "140": 2,
+    "159": 1,
+    "179": 1
+   },
+   "max_len": 5,
+   "unique": false,
+   "values": 1186,
+   "words": 19607
+  },
+  "roman-strict": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 1999
+   },
+   "max_len": 7,
+   "unique": true,
+   "values": 1999,
+   "words": 1999
+  },
+  "sign-magnitude2": {
+   "example_collision": {
+    "value": 0,
+    "words": [
+     "+",
+     "-"
+    ]
+   },
+   "fiber_sizes": {
+    "1": 510,
+    "2": 1
+   },
+   "max_len": 9,
+   "unique": false,
+   "values": 511,
+   "words": 512
+  },
+  "twos8": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 256
+   },
+   "max_len": 8,
+   "unique": true,
+   "values": 256,
+   "words": 256
+  },
+  "zeckendorf": {
+   "example_collision": null,
+   "fiber_sizes": {
+    "1": 987
+   },
+   "max_len": 14,
+   "unique": true,
+   "values": 987,
+   "words": 987
+  }
+ },
+ "conversion_cost": {
+  "log-log slope over the last 3 sizes": {
+   "divide_conquer_decimal": 1.618,
+   "horner_decimal": 1.995,
+   "regroup_hex": 1.0
+  },
+  "rows": [
+   {
+    "digits": 64,
+    "divide_conquer_decimal": 153,
+    "horner_decimal": 726,
+    "regroup_hex": 64
+   },
+   {
+    "digits": 128,
+    "divide_conquer_decimal": 440,
+    "horner_decimal": 2713,
+    "regroup_hex": 128
+   },
+   {
+    "digits": 256,
+    "divide_conquer_decimal": 1355,
+    "horner_decimal": 10574,
+    "regroup_hex": 256
+   },
+   {
+    "digits": 512,
+    "divide_conquer_decimal": 4316,
+    "horner_decimal": 41471,
+    "regroup_hex": 512
+   },
+   {
+    "digits": 1024,
+    "divide_conquer_decimal": 13416,
+    "horner_decimal": 164746,
+    "regroup_hex": 1024
+   },
+   {
+    "digits": 2048,
+    "divide_conquer_decimal": 41218,
+    "horner_decimal": 656072,
+    "regroup_hex": 2048
+   },
+   {
+    "digits": 4096,
+    "divide_conquer_decimal": 126324,
+    "horner_decimal": 2618309,
+    "regroup_hex": 4096
+   }
+  ],
+  "unit": "32-bit word operations (ginsdk.bigint add/mul/div/cmp)"
+ },
+ "experiment": "NUM-EXP-002",
+ "translations": {
+  "decimal -> Roman (strict)": [
+   {
+    "checked": 4001,
+    "example": "0: () -> None",
+    "failures": 2,
+    "obligation": "O1 value preservation"
+   },
+   {
+    "checked": 3999,
+    "example": null,
+    "failures": 0,
+    "obligation": "O4 cost ratio in [0.250, 4.000]"
+   }
+  ],
+  "decimal -> bijective decimal": [
+   {
+    "checked": 120,
+    "example": null,
+    "failures": 0,
+    "obligation": "O1 value preservation"
+   },
+   {
+    "checked": 14400,
+    "example": null,
+    "failures": 0,
+    "obligation": "O2 commutation with +"
+   },
+   {
+    "checked": 14400,
+    "example": null,
+    "failures": 0,
+    "obligation": "O2 commutation with *"
+   },
+   {
+    "checked": 14400,
+    "example": null,
+    "failures": 0,
+    "obligation": "O3 converse class of *"
+   },
+   {
+    "checked": 119,
+    "example": null,
+    "failures": 0,
+    "obligation": "O4 cost ratio in [0.500, 1.000]"
+   },
+   {
+    "checked": 109,
+    "example": "101: t(reversal(w)) ≠ reversal(t(w))",
+    "failures": 9,
+    "obligation": "O5 commutation with reversal"
+   }
+  ],
+  "decimal -> binary": [
+   {
+    "checked": 64,
+    "example": null,
+    "failures": 0,
+    "obligation": "O1 value preservation"
+   },
+   {
+    "checked": 4096,
+    "example": null,
+    "failures": 0,
+    "obligation": "O2 commutation with +"
+   },
+   {
+    "checked": 4096,
+    "example": null,
+    "failures": 0,
+    "obligation": "O2 commutation with *"
+   },
+   {
+    "checked": 4096,
+    "example": null,
+    "failures": 0,
+    "obligation": "O3 converse class of *"
+   },
+   {
+    "checked": 63,
+    "example": null,
+    "failures": 0,
+    "obligation": "O4 cost ratio in [1.000, 4.000]"
+   },
+   {
+    "checked": 58,
+    "example": "2: t(reversal(w)) ≠ reversal(t(w))",
+    "failures": 51,
+    "obligation": "O5 commutation with reversal"
+   }
+  ],
+  "int8 -> int16 (sign extension)": [
+   {
+    "checked": 52,
+    "example": null,
+    "failures": 0,
+    "obligation": "O1 value preservation"
+   },
+   {
+    "checked": 2704,
+    "example": "h(-128 + -128) = 0 but h(-128) + h(-128) = -256",
+    "failures": 702,
+    "obligation": "O2 commutation with +"
+   },
+   {
+    "checked": 2704,
+    "example": "h(-128 * -128) = 0 but h(-128) * h(-128) = 16384",
+    "failures": 2606,
+    "obligation": "O2 commutation with *"
+   },
+   {
+    "checked": 2704,
+    "example": null,
+    "failures": 0,
+    "obligation": "O3 converse class of *"
+   },
+   {
+    "checked": 52,
+    "example": null,
+    "failures": 0,
+    "obligation": "O4 cost ratio in [2.000, 2.000]"
+   }
+  ],
+  "int8 -> int16 converse class of *, exhaustive": {
+   "class changes": 0,
+   "pairs": 65536
+  },
+  "reversal in base 10 vs base 2, n < 10^4": {
+   "decimal palindromes (reversal fixes value)": 198,
+   "n with rev10(n) == rev2(n)": 18
+  }
+ }
+}

@@ -2,7 +2,7 @@
   "name": "gin-book",
   "private": true,
   "version": "1.0.0",
-  "description": "Grammar in Numbers — the book as a website and a print edition (research program of Abed Kadaan)",
+  "description": "Grammar in Numbers — the book as a website and a print edition (research program of Abed Kadan)",
   "type": "module",
   "scripts": {
     "prebuild": "python3 tools/export_data.py",

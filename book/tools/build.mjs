@@ -698,10 +698,10 @@ write("glossary.html", page({ title: `Glossary — ${book.title}`, rel: "", body
 write("bibliography.html", page({ title: `Bibliography — ${book.title}`, rel: "", body: bibliographyBody() }));
 write("sdk.html", page({ title: `SDK reference — ${book.title}`, rel: "", body: sdkBody(), active: "sdk.html" }));
 write("contracts.html", page({ title: `Operation contracts — ${book.title}`, rel: "", body: contractsBody(), active: "contracts.html" }));
-const PAGES = { researcher: book.author, status: "Publication status", lab: "Arithmetic laboratory", "math-tests": "Mathematical typography tests", edition: "Edition history" };
+const PAGES = { researcher: book.author, status: "Publication status", lab: "Arithmetic laboratory", "math-tests": "Mathematical typography tests", edition: "Edition history", "the-number": "THE NUMBER (research lane)" };
 for (const [name, title] of Object.entries(PAGES)) {
   if (!fs.existsSync(path.join(CONTENT, "pages", `${name}.md`))) { err("pages", `missing page ${name}.md`); continue; }
-  write(`${name}.html`, page({ title: `${title} — ${book.title}`, rel: "", body: readPage(name), active: { lab: "lab.html", status: "status.html" }[name], bodyClass: name === "lab" ? "lab-page" : "" }));
+  write(`${name}.html`, page({ title: `${title} — ${book.title}`, rel: "", body: readPage(name), active: { lab: "lab.html", status: "status.html" }[name], bodyClass: name === "lab" || name === "the-number" ? "lab-page" : "" }));
 }
 write("search.html", page({ title: `Search — ${book.title}`, rel: "", body: `<h1>Search</h1><div id="search-results" aria-live="polite"><noscript>Search requires JavaScript. Use the <a href="contents.html">contents</a>, <a href="theorems.html">results index</a> or <a href="glossary.html">glossary</a>.</noscript></div>` }));
 
@@ -765,7 +765,7 @@ for (const pkg of ["source-serif-4", "ibm-plex-sans", "jetbrains-mono"]) {
     (f) => /-(latin|latin-ext)-(400|600|700)-(normal|italic)\.woff2$/.test(f));
 }
 if (!CHECK_ONLY) {
-  for (const n of ["lab_fixtures.json", "experiments.json", "contracts.json"]) {
+  for (const n of ["lab_fixtures.json", "experiments.json", "contracts.json", "num_results.json"]) {
     if (fs.existsSync(path.join(dataDir, n))) fs.copyFileSync(path.join(dataDir, n), path.join(DIST, "assets", n));
   }
   fs.writeFileSync(path.join(DIST, ".nojekyll"), "");

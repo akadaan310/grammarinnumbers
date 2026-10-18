@@ -9,10 +9,10 @@ An independent **research monograph** (not peer reviewed) that asks: *what is th
 ## State of this branch (2026-10-17)
 
 - **Book:** first complete edition (1.0) — 42 chapters and 3 appendices, a website and a print edition generated from the same sources. Strict build, 121 executed examples, laboratory-vs-SDK tests and link check pass. Print edition: `book/site/downloads/grammar-in-numbers.pdf` (page count, SHA-256 and content version in `pdf.json`). The website is **not deployed**.
-- **SDK:** `ginsdk` 1.0 (Python, standard library only), 74 tests.
+- **SDK:** `ginsdk` 1.0 (Python, standard library only), 75 tests.
 - **Evidence:** experiments EXP-001 – 015 and 33 exhaustive theorem checks, re-run in a clean environment by the October 2026 audit (`AUDIT_2026-10.md`).
 - **Status and limits:** `PUBLICATION_STATUS.md`; history: `EDITION_HISTORY.md`. The 53-page PDF of 2026-10-08 was a compilation of the research ledger, not this book; it is archived unchanged in `archive/`.
-- **Research frontier:** *The Number* — a separate, falsifiable research lane in `research/the-number/` (identifiers `NUM-*`), not part of the edition's claims.
+- **Research frontier:** *The Number — From Distinction to Computation* (working title) — a separate, falsifiable research lane in `research/the-number/` (identifiers `NUM-*`): foundations, falsification matrix, four experiments, four website laboratories. Not part of the edition's claims; so far it confirms classical results on small cases, records measured software behaviour, and found one SDK defect (C-006).
 
 ## Findings in brief (details: `RESULTS.md`, book Chapter 41)
 

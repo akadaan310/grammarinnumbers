@@ -1,0 +1,833 @@
+{
+ "A_profile_not_complete": {
+  "idempotent elements": {
+   "max": 8,
+   "sat": 2
+  },
+  "isomorphic (exhaustive search over bijections fixing 0)": false,
+  "max{0..7} profile": {
+   "many": 7,
+   "none": 28,
+   "unique": 29
+  },
+  "sat{0..7} profile": {
+   "many": 7,
+   "none": 28,
+   "unique": 29
+  }
+ },
+ "A_profiles": {
+  "GF(11)": {
+   "*": {
+    "many": 1,
+    "none": 10,
+    "unique": 110
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 121
+   }
+  },
+  "GF(2)": {
+   "*": {
+    "many": 1,
+    "none": 1,
+    "unique": 2
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 4
+   }
+  },
+  "GF(3)": {
+   "*": {
+    "many": 1,
+    "none": 2,
+    "unique": 6
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 9
+   }
+  },
+  "GF(4)": {
+   "*": {
+    "many": 1,
+    "none": 3,
+    "unique": 12
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 16
+   }
+  },
+  "GF(5)": {
+   "*": {
+    "many": 1,
+    "none": 4,
+    "unique": 20
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 25
+   }
+  },
+  "GF(7)": {
+   "*": {
+    "many": 1,
+    "none": 6,
+    "unique": 42
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 49
+   }
+  },
+  "Z/1": {
+   "*": {
+    "many": 0,
+    "none": 0,
+    "unique": 1
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 1
+   }
+  },
+  "Z/10": {
+   "*": {
+    "many": 23,
+    "none": 37,
+    "unique": 40
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 100
+   }
+  },
+  "Z/11": {
+   "*": {
+    "many": 1,
+    "none": 10,
+    "unique": 110
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 121
+   }
+  },
+  "Z/12": {
+   "*": {
+    "many": 29,
+    "none": 67,
+    "unique": 48
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 144
+   }
+  },
+  "Z/2": {
+   "*": {
+    "many": 1,
+    "none": 1,
+    "unique": 2
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 4
+   }
+  },
+  "Z/3": {
+   "*": {
+    "many": 1,
+    "none": 2,
+    "unique": 6
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 9
+   }
+  },
+  "Z/4": {
+   "*": {
+    "many": 3,
+    "none": 5,
+    "unique": 8
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 16
+   }
+  },
+  "Z/5": {
+   "*": {
+    "many": 1,
+    "none": 4,
+    "unique": 20
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 25
+   }
+  },
+  "Z/6": {
+   "*": {
+    "many": 9,
+    "none": 15,
+    "unique": 12
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 36
+   }
+  },
+  "Z/7": {
+   "*": {
+    "many": 1,
+    "none": 6,
+    "unique": 42
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 49
+   }
+  },
+  "Z/8": {
+   "*": {
+    "many": 11,
+    "none": 21,
+    "unique": 32
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 64
+   }
+  },
+  "Z/8 (monoid +)": {
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 64
+   }
+  },
+  "Z/9": {
+   "*": {
+    "many": 7,
+    "none": 20,
+    "unique": 54
+   },
+   "+": {
+    "many": 0,
+    "none": 0,
+    "unique": 81
+   }
+  },
+  "max{0..7} (monoid +)": {
+   "+": {
+    "many": 7,
+    "none": 28,
+    "unique": 29
+   }
+  },
+  "sat{0..7} (monoid +)": {
+   "+": {
+    "many": 7,
+    "none": 28,
+    "unique": 29
+   }
+  }
+ },
+ "B_transfer": {
+  "GF(2) -> GF(4) (subfield) [*]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": true,
+   "matrix": {
+    "many": {
+     "many": 1,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 1,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 2
+    }
+   },
+   "surjective": false,
+   "violations of the preservation prediction": []
+  },
+  "GF(2) -> GF(4) (subfield) [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": true,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 4
+    }
+   },
+   "surjective": false,
+   "violations of the preservation prediction": []
+  },
+  "Z -> Q inclusion on a, b in [-12,12] [*]": {
+   "examples": {
+    "none->unique": "2c=1 in Z (none) -> 2c=1 in Q (unique)"
+   },
+   "homomorphism for op": true,
+   "injective": true,
+   "matrix": {
+    "many": {
+     "many": 1,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 24,
+     "unique": 436
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 164
+    }
+   },
+   "surjective": false,
+   "violations of the preservation prediction": []
+  },
+  "Z -> Z/4 on a in [-12,12], b in [-12,12] [*]": {
+   "examples": {
+    "none->many": "-10*c=-12 in Z[-12..12] (none) -> 2*c=0 in Z/4 (many)",
+    "none->unique": "-11*c=-12 in Z[-12..12] (none) -> 1*c=0 in Z/4 (unique)",
+    "unique->many": "-12*c=-12 in Z[-12..12] (unique) -> 0*c=0 in Z/4 (many)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 1,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 58,
+     "none": 198,
+     "unique": 204
+    },
+    "unique": {
+     "many": 68,
+     "none": 0,
+     "unique": 96
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z -> Z/4 on a in [-12,12], b in [-12,12] [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 625
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z -> Z/6 on a in [-12,12], b in [-12,12] [*]": {
+   "examples": {
+    "none->many": "-10*c=-12 in Z[-12..12] (none) -> 2*c=0 in Z/6 (many)",
+    "none->unique": "-11*c=-12 in Z[-12..12] (none) -> 1*c=0 in Z/6 (unique)",
+    "unique->many": "-12*c=-12 in Z[-12..12] (unique) -> 0*c=0 in Z/6 (many)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 1,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 72,
+     "none": 260,
+     "unique": 128
+    },
+    "unique": {
+     "many": 92,
+     "none": 0,
+     "unique": 72
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z -> Z/6 on a in [-12,12], b in [-12,12] [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 625
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z -> Z/8 on a in [-12,12], b in [-12,12] [*]": {
+   "examples": {
+    "none->many": "-10*c=-12 in Z[-12..12] (none) -> 6*c=4 in Z/8 (many)",
+    "none->unique": "-11*c=-12 in Z[-12..12] (none) -> 5*c=4 in Z/8 (unique)",
+    "unique->many": "-12*c=-12 in Z[-12..12] (unique) -> 4*c=4 in Z/8 (many)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 1,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 46,
+     "none": 210,
+     "unique": 204
+    },
+    "unique": {
+     "many": 68,
+     "none": 0,
+     "unique": 96
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z -> Z/8 on a in [-12,12], b in [-12,12] [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 625
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/12 -> Z/3 (reduction) [*]": {
+   "examples": {
+    "many->unique": "2*c=0 in Z/12 (many) -> 2*c=0 in Z/3 (unique)",
+    "none->many": "0*c=3 in Z/12 (none) -> 0*c=0 in Z/3 (many)",
+    "none->unique": "2*c=1 in Z/12 (none) -> 2*c=1 in Z/3 (unique)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 11,
+     "none": 0,
+     "unique": 18
+    },
+    "none": {
+     "many": 5,
+     "none": 32,
+     "unique": 30
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 48
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/12 -> Z/3 (reduction) [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 144
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/12 -> Z/4 (reduction) [*]": {
+   "examples": {
+    "many->unique": "3*c=0 in Z/12 (many) -> 3*c=0 in Z/4 (unique)",
+    "none->many": "6*c=2 in Z/12 (none) -> 2*c=2 in Z/4 (many)",
+    "none->unique": "3*c=1 in Z/12 (none) -> 3*c=1 in Z/4 (unique)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 21,
+     "none": 0,
+     "unique": 8
+    },
+    "none": {
+     "many": 6,
+     "none": 45,
+     "unique": 16
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 48
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/12 -> Z/4 (reduction) [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 144
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/4 -> Z/12, x -> 3x (additive) [*]": {
+   "examples": {
+    "unique->many": "1*c=0 in Z/4 (unique) -> 3*c=0 in Z/12 (many)"
+   },
+   "homomorphism for op": false,
+   "injective": true,
+   "matrix": {
+    "many": {
+     "many": 3,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 5,
+     "unique": 0
+    },
+    "unique": {
+     "many": 8,
+     "none": 0,
+     "unique": 0
+    }
+   },
+   "surjective": false,
+   "violations of the preservation prediction": []
+  },
+  "Z/4 -> Z/12, x -> 3x (additive) [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": true,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 16
+    }
+   },
+   "surjective": false,
+   "violations of the preservation prediction": []
+  },
+  "Z/6 -> Z/2 x Z/3 (CRT isomorphism) [*]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": true,
+   "matrix": {
+    "many": {
+     "many": 9,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 15,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 12
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/6 -> Z/2 x Z/3 (CRT isomorphism) [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": true,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 36
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/8 -> Z/2 (reduction) [*]": {
+   "examples": {
+    "none->many": "0*c=2 in Z/8 (none) -> 0*c=0 in Z/2 (many)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 11,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 5,
+     "none": 16,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 32
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "Z/8 -> Z/2 (reduction) [+]": {
+   "examples": {},
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 0,
+     "none": 0,
+     "unique": 0
+    },
+    "unique": {
+     "many": 0,
+     "none": 0,
+     "unique": 64
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "max{0..7} -> max{0..3}, x -> min(x,3) [+]": {
+   "examples": {
+    "none->many": "4+c=3 in max{0..7} (none) -> 3+c=3 in max{0..3} (many)",
+    "unique->many": "3+c=4 in max{0..7} (unique) -> 3+c=3 in max{0..3} (many)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 7,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 10,
+     "none": 18,
+     "unique": 0
+    },
+    "unique": {
+     "many": 10,
+     "none": 0,
+     "unique": 19
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  },
+  "sat{0..7} -> sat{0..3}, x -> min(x,3) [+]": {
+   "examples": {
+    "none->many": "4+c=3 in sat{0..7} (none) -> 3+c=3 in sat{0..3} (many)",
+    "unique->many": "1+c=3 in sat{0..7} (unique) -> 1+c=3 in sat{0..3} (many)"
+   },
+   "homomorphism for op": true,
+   "injective": false,
+   "matrix": {
+    "many": {
+     "many": 7,
+     "none": 0,
+     "unique": 0
+    },
+    "none": {
+     "many": 10,
+     "none": 18,
+     "unique": 0
+    },
+    "unique": {
+     "many": 18,
+     "none": 0,
+     "unique": 11
+    }
+   },
+   "surjective": true,
+   "violations of the preservation prediction": []
+  }
+ },
+ "C_totalization": {
+  "Z/12": {
+   "fraction": 0.6667,
+   "many": 29,
+   "none": 67,
+   "none and many both answered 0": true,
+   "problems answered with a value that is not a unique solution": 96,
+   "total value is the unique solution": 48,
+   "unique": 48
+  },
+  "Z/6": {
+   "fraction": 0.6667,
+   "many": 9,
+   "none": 15,
+   "none and many both answered 0": true,
+   "problems answered with a value that is not a unique solution": 24,
+   "total value is the unique solution": 12,
+   "unique": 12
+  },
+  "Z/8": {
+   "fraction": 0.5,
+   "many": 11,
+   "none": 21,
+   "none and many both answered 0": true,
+   "problems answered with a value that is not a unique solution": 32,
+   "total value is the unique solution": 32,
+   "unique": 32
+  }
+ },
+ "D_evaluators": {
+  "cases": 650,
+  "gin-core.js agreement count": 650,
+  "gin-core.js disagreements with exact": [],
+  "ginsdk agreement count": 650,
+  "ginsdk disagreements with exact": []
+ },
+ "experiment": "NUM-EXP-004"
+}

@@ -91,12 +91,12 @@ A `gin-inspect/1` record (Chapter 39) contains, in addition, the reference domai
 
 Software that defines the semantics of a book needs independent checks; agreeing with itself proves nothing. The checks are of four kinds:
 
-1. **Unit tests** — 74 tests at the time of the 2026-10 audit (`python3 -m unittest discover -s sdk/tests`), including exhaustive small-case checks of every circuit and every converse-problem formula.
+1. **Unit tests** — 74 tests at the time of the 2026-10 audit, 75 in this edition (`python3 -m unittest discover -s sdk/tests`), including exhaustive small-case checks of every circuit and every converse-problem formula.
 2. **Independent oracles** — the IEEE simulator against the host processor's own arithmetic and exception flags on 80,600 cases (\ledger{GIN-IMP-001}); the machine models against real executions in seven toolchains (\ledger{GIN-IMP-002}, \ledger{GIN-OBS-017}) and against QEMU's emulation of AArch64 and RISC-V (\ledger{GIN-IMP-008}); the limb arithmetic against Python's integers.
 3. **Theorem checks** — exhaustive small-case checks of every "proved here" statement (`experiments/check_theorems*.py`).
 4. **The book itself** — every executed example must reproduce its printed output, and the browser laboratory must reproduce the SDK on the exported fixtures (`npm test`).
 
-These checks found real defects, and the book records them rather than hiding them: exponents were once evaluated inside $\Z/n$ (\ledger{GIN-NEG-013}); signaling NaNs were once ignored (\ledger{GIN-REJ-002}); and during the writing of Chapter 39 the 32-bit division path was found not to flag the wraparound of $\mathrm{INT\_MIN}/-1$, which made the inspection relation call it a "selection" — fixed in both the SDK and the laboratory, with a regression test.
+These checks found real defects, and the book records them rather than hiding them: exponents were once evaluated inside $\Z/n$ (\ledger{GIN-NEG-013}); signaling NaNs were once ignored (\ledger{GIN-REJ-002}); and during the writing of Chapter 39 the 32-bit division path was found not to flag the wraparound of $\mathrm{INT\_MIN}/-1$, which made the inspection relation call it a "selection" — fixed in both the SDK and the laboratory, with a regression test. Later, an experiment of the separate research lane *The Number* found that the SDK's tokenizer accepted any Unicode decimal digits (`٣٤` evaluated to 34) where the laboratory accepted only `0`–`9`; the SDK now follows the laboratory (correction C-006 in the results ledger).
 
 ## Where the models stop {#sec:sdk-limits}
 
@@ -126,6 +126,6 @@ Use `contracts.verify` on the outcome of `evaluate("0.1 + 0.2", "binary64")` and
 ::: summary
 - `ginsdk` is the book's executable reference semantics: standard-library Python, twelve modules, a stable 1.x API.
 - `evaluate`, `compare` and `contracts.inspect` (also `python3 -m ginsdk eval|compare|inspect`) return layered records, never a bare error.
-- It is checked by 74 unit tests, by independent oracles (hardware, seven toolchains, QEMU, Python integers), by theorem checks, and by the book's executed examples and laboratory fixtures; defects found by these checks are recorded.
+- It is checked by 75 unit tests, by independent oracles (hardware, seven toolchains, QEMU, Python integers), by theorem checks, and by the book's executed examples and laboratory fixtures; defects found by these checks are recorded.
 - Its limits — binary IEEE formats with one rounding mode, 32-bit specification models, approximated reals — are stated, not discovered by the reader.
 :::

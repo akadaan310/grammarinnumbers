@@ -122,6 +122,15 @@ class TestExpr(unittest.TestCase):
             self.assertEqual(contracts.inspect("(-2147483647 - 1) / -1", d)["relation"]["kind"], "wrapped", d)
         self.assertEqual(contracts.inspect("-7 / 2", "int32 Java")["relation"]["kind"], "selected")
 
+    def test_numerals_are_ascii_digits(self):
+        # regression (NUM-EXP-003): the SDK tokenizer used Python's Unicode \d and accepted
+        # "٣٤" (and the mixed-script "٣۴") as 34, while the laboratory core rejects them:
+        # the expression grammar's digits are 0-9, as in gin-core.js
+        for s in ("\u0663\u0664", "\u06f3\u06f4", "\u0663\u06f4", "\uff13\uff14"):
+            o = E.evaluate(s, "Z")
+            self.assertEqual((o.status, o.layer), ("syntax-error", "syntax"), s)
+        self.assertEqual(E.evaluate("34", "Z").display, "34")
+
     def test_every_failure_has_a_reason(self):
         for src in ["1/0", "0/0", "0-1", "sqrt(-4)", "7/2", "1+", "2147483647*2", "x/0", "0^-1"]:
             for o in E.compare(src):

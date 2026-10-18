@@ -40,6 +40,10 @@ The October 2026 audit re-ran every test, experiment and check in a clean enviro
 - The website edition is built and tested locally; **it is not deployed** by this build, and no online address is claimed for it.
 - Wall-clock timings are host-specific and secondary; no asymptotic claim rests on them.
 
+## Research lane: THE NUMBER
+
+A separate research lane, *THE NUMBER — From Distinction to Computation* (identifiers `NUM-*`), studies what must be fixed before two notations, data types or machines can be said to denote "the same number". Its results are **not** claims of this edition. It has its own [page and laboratories](the-number.html) and its foundations and falsification matrix are in `research/the-number/`. So far its results confirm classical mathematics on small cases and record measured software behaviour. It has also found one defect in this edition's SDK, which is now corrected (C-006).
+
 ## History
 
 See the [edition history](edition.html) and `EDITION_HISTORY.md`.

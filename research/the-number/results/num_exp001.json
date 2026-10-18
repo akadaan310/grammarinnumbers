@@ -1,0 +1,351 @@
+{
+ "experiment": "NUM-EXP-001",
+ "gin_census": {
+  "evaluate": {
+   "0": {
+    "JS BigInt": "value 0",
+    "Python": "value 0",
+    "Q": "value 0",
+    "Z": "value 0",
+    "Z/6": "value 0",
+    "binary64": "value 0",
+    "int32 C": "value 0"
+   },
+   "0 - 0": {
+    "JS BigInt": "value 0",
+    "Python": "value 0",
+    "Q": "value 0",
+    "Z": "value 0",
+    "Z/6": "value 0",
+    "binary64": "value 0",
+    "int32 C": "value 0"
+   },
+   "0 / 0": {
+    "JS BigInt": "exception",
+    "Python": "exception",
+    "Q": "non-unique",
+    "Z": "non-unique",
+    "Z/6": "non-unique",
+    "binary64": "special NaN",
+    "int32 C": "undefined"
+   },
+   "0 / 1": {
+    "JS BigInt": "value 0",
+    "Python": "value 0.0",
+    "Q": "value 0",
+    "Z": "value 0",
+    "Z/6": "value 0",
+    "binary64": "value 0",
+    "int32 C": "value 0"
+   },
+   "0 ^ -1": {
+    "JS BigInt": "exception",
+    "Python": "exception",
+    "Q": "no-solution",
+    "Z": "no-solution",
+    "Z/6": "no-solution",
+    "binary64": "unsupported",
+    "int32 C": "unsupported"
+   },
+   "0 ^ 0": {
+    "JS BigInt": "value 1",
+    "Python": "value 1",
+    "Q": "value 1",
+    "Z": "value 1",
+    "Z/6": "value 1",
+    "binary64": "unsupported",
+    "int32 C": "unsupported"
+   },
+   "1 / 0": {
+    "JS BigInt": "exception",
+    "Python": "exception",
+    "Q": "no-solution",
+    "Z": "no-solution",
+    "Z/6": "no-solution",
+    "binary64": "special Infinity",
+    "int32 C": "undefined"
+   }
+  },
+  "solution set of 0·c = 0 in Z/6": {
+   "kind": "non-unique",
+   "size": 6
+  }
+ },
+ "js_census": {
+  "node": "v22.22.0",
+  "results": {
+   "'' == 0": "true",
+   "0 === -0": "true",
+   "0n === -0n": "true",
+   "1/-0": "-Infinity",
+   "1n/0n": "throws RangeError",
+   "Math.max()": "-Infinity",
+   "Math.min()": "Infinity",
+   "NaN === NaN": "false",
+   "Number('')": "0",
+   "Number(null)": "0",
+   "Number(undefined)": "NaN",
+   "Object.is(0, -0)": "false",
+   "Object.is(NaN, NaN)": "true",
+   "[NaN].includes(NaN)": "true",
+   "[NaN].indexOf(NaN)": "-1",
+   "[] + []": "\"\"",
+   "[] == ''": "true",
+   "[] == 0": "true",
+   "[].reduce((a,b)=>a+b)": "throws TypeError",
+   "[].reduce((a,b)=>a+b, 0)": "0",
+   "new Map([[0,'a'],[-0,'b']]).size": "1",
+   "null + 1": "1",
+   "null == 0": "false",
+   "null > 0": "false",
+   "null >= 0": "true",
+   "undefined + 1": "NaN",
+   "undefined == 0": "false",
+   "undefined == null": "true"
+  }
+ },
+ "python": "3.13.16",
+ "python_census": {
+  "dict_after_inserting_7_zero_keys": {
+   "0": "Decimal 0"
+  },
+  "empty_aggregates": {
+   "''.join([])": "''",
+   "all([])": "True",
+   "any([])": "False",
+   "len(())": "0",
+   "math.prod([])": "1",
+   "max of empty raises": "'ValueError'",
+   "min([], default=None)": "None",
+   "sum([])": "0"
+  },
+  "equality_classes": [
+   [
+    "int 0",
+    "float +0.0",
+    "float -0.0",
+    "False",
+    "Fraction 0",
+    "complex 0j",
+    "Decimal 0",
+    "Decimal -0"
+   ],
+   [
+    "empty str"
+   ],
+   [
+    "empty tuple"
+   ],
+   [
+    "empty list"
+   ],
+   [
+    "empty frozenset"
+   ],
+   [
+    "range(0)"
+   ],
+   [
+    "None"
+   ],
+   [
+    "NaN"
+   ]
+  ],
+  "objects": {
+   "Decimal -0": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "Decimal",
+    "v + 0": "Decimal('0')"
+   },
+   "Decimal 0": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "Decimal",
+    "v + 0": "Decimal('0')"
+   },
+   "False": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "bool",
+    "v + 0": "0"
+   },
+   "Fraction 0": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "Fraction",
+    "v + 0": "Fraction(0, 1)"
+   },
+   "NaN": {
+    "== 0": false,
+    "hash == hash(0)": false,
+    "is identical to itself under ==": false,
+    "len": "TypeError",
+    "truthy": true,
+    "type": "float",
+    "v + 0": "nan"
+   },
+   "None": {
+    "== 0": false,
+    "hash == hash(0)": false,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "NoneType",
+    "v + 0": "TypeError"
+   },
+   "complex 0j": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "complex",
+    "v + 0": "0j"
+   },
+   "empty frozenset": {
+    "== 0": false,
+    "hash == hash(0)": false,
+    "is identical to itself under ==": true,
+    "len": 0,
+    "truthy": false,
+    "type": "frozenset",
+    "v + 0": "TypeError"
+   },
+   "empty list": {
+    "== 0": false,
+    "hash == hash(0)": "unhashable",
+    "is identical to itself under ==": true,
+    "len": 0,
+    "truthy": false,
+    "type": "list",
+    "v + 0": "TypeError"
+   },
+   "empty str": {
+    "== 0": false,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": 0,
+    "truthy": false,
+    "type": "str",
+    "v + 0": "TypeError"
+   },
+   "empty tuple": {
+    "== 0": false,
+    "hash == hash(0)": false,
+    "is identical to itself under ==": true,
+    "len": 0,
+    "truthy": false,
+    "type": "tuple",
+    "v + 0": "TypeError"
+   },
+   "float +0.0": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "float",
+    "v + 0": "0.0"
+   },
+   "float -0.0": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "float",
+    "v + 0": "0.0"
+   },
+   "int 0": {
+    "== 0": true,
+    "hash == hash(0)": true,
+    "is identical to itself under ==": true,
+    "len": "TypeError",
+    "truthy": false,
+    "type": "int",
+    "v + 0": "0"
+   },
+   "range(0)": {
+    "== 0": false,
+    "hash == hash(0)": false,
+    "is identical to itself under ==": true,
+    "len": 0,
+    "truthy": false,
+    "type": "range",
+    "v + 0": "TypeError"
+   }
+  },
+  "reflexivity": {
+   "NaN == NaN": false,
+   "NaN in [NaN] (same object)": true,
+   "float('nan') in [float('nan')]": false
+  },
+  "substitutivity_failures": [
+   "+0.0 == -0.0 but copysign(1, x) gives 1.0 vs -1.0",
+   "+0.0 == -0.0 but atan2(x, -1) gives 3.141592653589793 vs -3.141592653589793",
+   "0 == False but repr differs ('0' vs 'False')",
+   "0 == 0.0 but x // 1 has type int vs float"
+  ]
+ },
+ "sqlite_census": {
+  "0 = ''": 0,
+  "0 = 0.0": 1,
+  "0/0": null,
+  "1.0/0": null,
+  "1/0": null,
+  "CAST('' AS INTEGER)": 0,
+  "CAST('abc' AS INTEGER)": 0,
+  "COUNT over empty table": 0,
+  "COUNT(*) (4 rows)": 4,
+  "COUNT(x) with a NULL row (4 rows)": 3,
+  "NULL + 1": null,
+  "NULL = NULL": null,
+  "NULL IS NULL": 1,
+  "SUM over empty table": null,
+  "SUM(x) ignoring NULL and ''": 1.0,
+  "TOTAL over empty table": 0.0,
+  "sqlite_version": "3.45.1"
+ },
+ "summary": {
+  "python_equality_classes_under_==": 8,
+  "python_objects": 15,
+  "python_zero_keys_surviving_in_dict": 1,
+  "sqlite_empty_sum": null,
+  "sqlite_empty_total": 0.0,
+  "substitutivity_failures_found": 4
+ },
+ "three_way_separation": {
+  "JavaScript": {
+   "comparison is not an order on {null, 0}": true,
+   "empty array coerces to zero": true,
+   "observables": "==, >=, coercion by +",
+   "zero vs absence (null)": true
+  },
+  "Python": {
+   "empty vs absence": true,
+   "observables": "v + 0 (TypeError for () and None), == 0, len (0 for (), TypeError for None)",
+   "zero vs absence": true,
+   "zero vs empty": true
+  },
+  "SQLite": {
+   "empty sum is absence, not zero": true,
+   "observables": "= (three-valued), SUM vs TOTAL over empty, typed comparison",
+   "zero vs absence": true,
+   "zero vs empty string": true
+  }
+ }
+}

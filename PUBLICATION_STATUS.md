@@ -14,11 +14,13 @@
 | executed examples reproduce printed output | **pass** — 121/121 | `npm run examples` |
 | laboratory vs SDK fixtures; binary64 rounding vs host | **pass** — 4/4 tests | `npm test` |
 | internal links | **pass** — 0 broken | `node tools/linkcheck.mjs` |
-| SDK tests | **pass** — 74/74 | `python3 -m unittest discover -s sdk/tests` |
+| SDK tests | **pass** — 75/75 (74 at the audit, plus the C-006 regression test) | `python3 -m unittest discover -s sdk/tests` |
 | experiments EXP-001 – 015 re-run | **pass** — counted fields identical to the recorded results except the explained changes below | `sh experiments/run_all.sh`; `audit/logs/` |
 | theorem checks | **pass** — 21 + 12 | `check_theorems.py`, `check_theorems_edition1.py` |
 | print edition regenerated from canonical sources | **pass** — see `book/site/downloads/pdf.json` (pages, SHA-256, content version) | `npm run pdf` release checks: width, fonts embedded, chapter titles, no U+FFFD, content version |
 | visual print audit | **pass, with notes** — sample pages inspected (title, contents, Ch. 2, 9, 18, 37, 39, results index, bibliography); fixed: 4 elements wider than the text block, broken ledger ids in narrow columns, 37 duplicated cross-reference words ("Proposition Proposition"), lab-box label implying an online edition | `AUDIT_2026-10.md` |
+| research lane *The Number* kept separate | **pass** — own identifiers, runner, results and tests (`sh research/the-number/run_all.sh`: 10 tests, NUM-EXP-001 – 004 deterministic); not in `experiments/run_all.sh`; no chapter renumbered | `research/the-number/` |
+| research-lane laboratories vs Python library | **pass** — 5/5 fixture tests | `npm test` (`tests/num.test.mjs`) |
 | changelog and known issues | **pass** | `EDITION_HISTORY.md`, below |
 
 ### Explained changes in re-run results

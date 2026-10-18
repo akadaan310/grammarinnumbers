@@ -6,6 +6,11 @@ Each block runs in a fresh interpreter with the SDK on the path
 is non-zero if any block fails or any output differs; the book must not show
 output that its code does not produce.
 
+A block whose code contains the marker comment ``# wall-clock`` prints host
+timings that every re-run of the experiments rewrites; for such a block the
+digits are masked before comparison, so its *shape* (lines, labels, signs) is
+checked and its numbers are not (GIN-D-003: no claim rests on them).
+
 Usage:  python3 book/tools/check_examples.py [chapter-slug ...]
         python3 book/tools/check_examples.py --write slug   (authoring aid: fill
         the output blocks of one chapter from actual execution; the author must
@@ -58,7 +63,8 @@ def main(only=()):
             total += 1
             p = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, timeout=300)
             got = p.stdout.rstrip()
-            if p.returncode != 0 or got != expected.rstrip():
+            mask = (lambda t: re.sub(r"\d", "#", t)) if "# wall-clock" in code else (lambda t: t)
+            if p.returncode != 0 or mask(got) != mask(expected.rstrip()):
                 failed += 1
                 print(f"FAIL {slug} block {i} (exit {p.returncode})")
                 print("--- expected ---\n" + expected.rstrip() + "\n--- got ---\n" + got + ("\n--- stderr ---\n" + p.stderr if p.stderr else ""))

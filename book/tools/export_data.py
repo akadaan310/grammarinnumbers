@@ -9,6 +9,9 @@
 * lab_fixtures.json    -- reference outcomes computed by the SDK, which the browser
                           laboratory (gin-core.js) must reproduce exactly (`npm test`)
 * experiments.json     -- compact experiment numbers quoted by the book
+* num_fixtures.json    -- reference results of the research lane's library (research/the-number/numlab)
+                          that the lane's browser port num-core.js must reproduce (`npm test`)
+* num_results.json     -- the lane's stored experiment results (NUM-EXP-001..004), shown by its labs
 
 Run from anywhere:  python3 book/tools/export_data.py
 """
@@ -113,6 +116,42 @@ def experiments():
     return out
 
 
+def num_fixtures():
+    """Fixtures for num-core.js from the research lane's Python library (not part of the edition's claims)."""
+    lane = os.path.join(REPO, "research", "the-number")
+    sys.path.insert(0, lane)
+    from numlab import fibers as F, layout as L, systems as S
+    keys = ["base2", "base3", "base10", "base16", "bijective2", "bijective10", "balanced-ternary", "negabinary", "negadecimal",
+            "sign-magnitude2", "twos8", "factoradic", "zeckendorf", "roman-strict"]
+    signed = {"balanced-ternary", "negabinary", "negadecimal", "sign-magnitude2", "twos8"}
+    values = sorted(set(list(range(-130, 131)) + [255, 256, 999, 1000, 1994, 3999, 4000, 65535, 10 ** 6, 123456789]))
+    enc = []
+    for k in keys:
+        s = S.SYSTEMS[k]()
+        for n in values:
+            if n < 0 and k not in signed:
+                continue
+            w = s.encode(n)
+            enc.append({"s": k, "n": n, "w": None if w is None else S.show(w)})
+    prof = {str(n): F.zmod(n).profile("*") for n in range(1, 13)}
+    trans = {}
+    for m in range(1, 13):
+        for k in range(1, m + 1):
+            if m % k == 0:
+                mp = F.Map("", F.zmod(m), F.zmod(k), lambda x, k=k: x % k, ("*",), False, True)
+                trans[f"{m}->{k}"] = F.transfer(mp, "*")["matrix"]
+    chan = {f"{a}{b}": L.channel_independence(str(a), str(b))["table"] for a in range(1, 10) for b in range(1, 10) if a != b}
+    maya = [{"n": n, "glyphs": [m.glyph for m in L.maya_layout(n)], "cal": L.maya_value(L.maya_layout(n), True)}
+            for n in list(range(0, 450, 7)) + [1000, 7999, 8000, 159999]]
+    return {"generated_by": "book/tools/export_data.py from research/the-number/numlab", "encode": enc, "profiles": prof,
+            "transfer": trans, "channels": chan, "maya": maya}
+
+
+def num_results():
+    res = os.path.join(REPO, "research", "the-number", "results")
+    return {f[:-5]: json.load(open(os.path.join(res, f), encoding="utf8")) for f in sorted(os.listdir(res)) if f.endswith(".json")}
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
 
@@ -137,6 +176,8 @@ def main():
         print("CGT_REPO given but its book has not been built (book/dist/ledger missing): cgt_ids.json kept")
     dump("lab_fixtures.json", lab_fixtures())
     dump("experiments.json", experiments())
+    dump("num_fixtures.json", num_fixtures())
+    dump("num_results.json", num_results())
     print(f"exported book/data (ginsdk {ginsdk.__version__})")
 
 

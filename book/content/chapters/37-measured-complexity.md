@@ -109,6 +109,7 @@ The spread (at most about a fifth of the median) is small compared with the fact
 GIN-EXP-008 also timed CPython's built-in `int` multiplication. Those numbers depend on the machine, the interpreter and its internal thresholds (CPython switches from schoolbook to Karatsuba multiplication above a fixed size), and on noise:
 
 ```python run
+# wall-clock: these digits change at every re-run of GIN-EXP-008; the build checks the shape only
 import json, math, os, ginsdk
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(ginsdk.__file__))))
@@ -122,18 +123,18 @@ for r in rows:
 ```
 
 ```output
-    64 bits:     0.124 µs   
-   128 bits:     0.082 µs   slope from previous -0.59
-   256 bits:     0.136 µs   slope from previous +0.72
-   512 bits:     0.346 µs   slope from previous +1.35
-  1024 bits:     1.141 µs   slope from previous +1.72
-  2048 bits:     4.683 µs   slope from previous +2.04
-  4096 bits:    21.472 µs   slope from previous +2.20
-  8192 bits:    45.040 µs   slope from previous +1.07
- 16384 bits:   142.012 µs   slope from previous +1.66
+    64 bits:     0.061 µs   
+   128 bits:     0.074 µs   slope from previous +0.28
+   256 bits:     0.123 µs   slope from previous +0.72
+   512 bits:     0.314 µs   slope from previous +1.36
+  1024 bits:     1.042 µs   slope from previous +1.73
+  2048 bits:     4.447 µs   slope from previous +2.09
+  4096 bits:    13.425 µs   slope from previous +1.59
+  8192 bits:    41.047 µs   slope from previous +1.61
+ 16384 bits:   124.652 µs   slope from previous +1.60
 ```
 
-At small sizes the time is dominated by interpreter overhead and is not even monotone. At large sizes the growth per doubling fluctuates between about $1.1$ and $2.2$ — it matches neither the schoolbook nor the Karatsuba exponent cleanly, and a single noisy measurement per size cannot separate the algorithm from caches, allocation and timer resolution. These numbers were recorded on one host; they are not reproducible to the digit and the book never uses them to support an asymptotic claim (\ledger{GIN-D-003}).
+At small sizes the time is dominated by interpreter overhead, and the growth per doubling is far below any multiplication exponent. At large sizes it varies from one recording to the next: in the recording printed here it lies between about $1.6$ and $2.1$, and an earlier recording of the same experiment on the same host gave values between about $1.1$ and $2.2$, with a slope below zero at 128 bits. A single noisy measurement per size cannot separate the algorithm from caches, allocation and timer resolution. These numbers are rewritten at every re-run, are not reproducible to the digit — the build checks this block's shape, not its digits — and the book never uses them to support an asymptotic claim (\ledger{GIN-D-003}).
 
 ## Shape changes depth, the cost model decides work {#sec:shape}
 
